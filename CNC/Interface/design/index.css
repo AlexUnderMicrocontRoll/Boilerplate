@@ -1,15 +1,16 @@
 #sidemenu{
     position:fixed;
     left: 0;
-    width: 150px;
-    padding: 10px;
+    right: auto;
+    width:150px;
+    background-color: antiquewhite;
 }
 
 #main{
     position: absolute;
-    right: 0;
-    width: 50%;
-    padding: 10px;
+    right: 25px;
+    width: 80%;
+    background-color: antiquewhite;
 }
 
 #status-overview,thead,tbody,th,tr,td{
@@ -21,16 +22,12 @@ thead{
     background-color: cornflowerblue;
 }
 
-a:hover{
-    color:darkviolet;
-}
-
 a:active{
     color:red;
 }
 
-a:link{
-    color:olivedrab;
+a:hover{
+    color:blueviolet;
 }
 
 html{
