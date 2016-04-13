@@ -8,11 +8,8 @@ oReq.open("GET", "http://botnet.artificial.engineering:8080/api/Status",true);
 oReq.responseType = "text";
 oReq.send();
 oReq.onload = function(e) {
-    console.log("before status");
     if (this.status == 200) {
-        console.log("status 200");
         var bb = new Text();
-        bb.wholeText(this.response);
     }
 };
 
