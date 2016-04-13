@@ -23,7 +23,7 @@
 
 <aside id="sidemenu">
     <menu>
-        <li><a href="#status">Status</a></li>
+        <li><a href="#status" onclick=initialize();>Status</a></li>
         <li><a href="#tasks">Tasks</a></li>
     </menu>
 </aside>
@@ -34,98 +34,15 @@
         <table id="status-overview">
             <thead>
             <tr>
-                <td>Workload</td>
-                <td>IP</td>
-                <td>Auftrag (ID)</td>
-                <td>Stop/Start Button</td>
+                <th>Workload</th>
+                <th>IP</th>
+                <th>Auftrag (ID)</th>
+                <th>Stop/Start Button</th>
             </tr>
             </thead>
 
             <tbody>
-            <!--<tr>
-                <td>asgfadg</td>
-                <td>dsfgs</td>
-                <td>--e-</td>
-                <td><button type="button" name="action" value="0">Start/Stop</button></td>
-            </tr>
-            <tr>
-                <td>-bbbb--</td>
-                <td>-nnnn--</td>
-                <td>-mmmm--</td>
-                <td><button type="button" name="action" value="0">Start/Stop</button></td>
-            </tr>
-            <tr>
-                <td>asgfadg</td>
-                <td>dsfgs</td>
-                <td>--e-</td>
-                <td><button type="button" name="action" value="0">Start/Stop</button></td>
-            </tr>
-            <tr>
-                <td>-bbbb--</td>
-                <td>-nnnn--</td>
-                <td>-mmmm--</td>
-                <td><button type="button" name="action" value="0">Start/Stop</button></td>
-            </tr>
-            <tr>
-                <td>asgfadg</td>
-                <td>dsfgs</td>
-                <td>--e-</td>
-                <td><button type="button" name="action" value="0">Start/Stop</button></td>
-            </tr>
-            <tr>
-                <td>-bbbb--</td>
-                <td>-nnnn--</td>
-                <td>-mmmm--</td>
-                <td><button type="button" name="action" value="0">Start/Stop</button></td>
-            </tr>
-            <tr>
-                <td>asgfadg</td>
-                <td>dsfgs</td>
-                <td>--e-</td>
-                <td><button type="button" name="action" value="0">Start/Stop</button></td>
-            </tr>
-            <tr>
-                <td>-bbbb--</td>
-                <td>-nnnn--</td>
-                <td>-mmmm--</td>
-                <td><button type="button" name="action" value="0">Start/Stop</button></td>
-            </tr>
-            <tr>
-                <td>asgfadg</td>
-                <td>dsfgs</td>
-                <td>--e-</td>
-                <td><button type="button" name="action" value="0">Start/Stop</button></td>
-            </tr>
-            <tr>
-                <td>-bbbb--</td>
-                <td>-nnnn--</td>
-                <td>-mmmm--</td>
-                <td><button type="button" name="action" value="0">Start/Stop</button></td>
-            </tr>
-            <tr>
-                <td>asgfadg</td>
-                <td>dsfgs</td>
-                <td>--e-</td>
-                <td><button type="button" name="action" value="0">Start/Stop</button></td>
-            </tr>
-            <tr>
-                <td>-bbbb--</td>
-                <td>-nnnn--</td>
-                <td>-mmmm--</td>
-                <td><button type="button" name="action" value="0">Start/Stop</button></td>
-            </tr>
-            <tr>
-                <td>asgfadg</td>
-                <td>dsfgs</td>
-                <td>--e-</td>
-                <td><button type="button" name="action" value="0">Start/Stop</button></td>
-            </tr>
-            <tr>
-                <td>-bbbb--</td>
-                <td>-nnnn--</td>
-                <td>-mmmm--</td>
-                <td><button type="button" name="action" value="0">Start/Stop</button></td>
-            </tr>-->
+
             </tbody>
         </table>
     </section>
@@ -134,86 +51,15 @@
         <table id="task-overview">
             <thead>
             <tr>
-                <td>Workload</td>
-                <td>IP</td>
-                <td>Auftrag (ID)</td>
-                <td>Laufzeit</td>
+                <th>Workload</th>
+                <th>IP</th>
+                <th>Auftrag (ID)</th>
+                <th>Laufzeit</th>
             </tr>
             </thead>
 
             <tbody>
-            <!--<tr>
-                <td>asgfadg</td>
-                <td>dsfgs</td>
-                <td>--e-</td>
-                <td>hsdsh</td>
-            </tr>
-            <tr>
-                <td>-bbbb--</td>
-                <td>-nnnn--</td>
-                <td>-mmmm--</td>
-                <td>-hhhh---</td>
-            </tr>
-            <tr>
-                <td>asgfadg</td>
-                <td>dsfgs</td>
-                <td>--e-</td>
-                <td>hsdsh</td>
-            </tr>
-            <tr>
-                <td>-bbbb--</td>
-                <td>-nnnn--</td>
-                <td>-mmmm--</td>
-                <td>-hhhh---</td>
-            </tr>
-            <tr>
-                <td>asgfadg</td>
-                <td>dsfgs</td>
-                <td>--e-</td>
-                <td>hsdsh</td>
-            </tr>
-            <tr>
-                <td>-bbbb--</td>
-                <td>-nnnn--</td>
-                <td>-mmmm--</td>
-                <td>-hhhh---</td>
-            </tr>
-            <tr>
-                <td>asgfadg</td>
-                <td>dsfgs</td>
-                <td>--e-</td>
-                <td>hsdsh</td>
-            </tr>
-            <tr>
-                <td>-bbbb--</td>
-                <td>-nnnn--</td>
-                <td>-mmmm--</td>
-                <td>-hhhh---</td>
-            </tr>
-            <tr>
-                <td>asgfadg</td>
-                <td>dsfgs</td>
-                <td>--e-</td>
-                <td>hsdsh</td>
-            </tr>
-            <tr>
-                <td>-bbbb--</td>
-                <td>-nnnn--</td>
-                <td>-mmmm--</td>
-                <td>-hhhh---</td>
-            </tr>
-            <tr>
-                <td>asgfadg</td>
-                <td>dsfgs</td>
-                <td>--e-</td>
-                <td>hsdsh</td>
-            </tr>
-            <tr>
-                <td>-bbbb--</td>
-                <td>-nnnn--</td>
-                <td>-mmmm--</td>
-                <td>-hhhh---</td>
-            </tr>-->
+
             </tbody>
         </table>
     </section>
