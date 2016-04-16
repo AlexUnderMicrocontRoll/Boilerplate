@@ -23,14 +23,28 @@ var initialize = function() {
         }
 
         var table = document.querySelector('#status-overview tbody');
+        if (table.childElementCount > 0){
+            clearTable(table);
+        }
+
         var row = null;
         for (var i = 0; i < data.length; i++) {
             row = table.insertRow(i);
-
             row.innerHTML = "<td>" + data[i].id + "</td><td>" + data[i].ip + "</td><td>" + data[i].task + "</td><td>" + data[i].workload + "</td>"
         }
     };
 };
+
+function clearTable(table) {
+    var rows = table.rows;
+    var i = rows.length;
+    while (--i) {
+        rows[i].parentNode.removeChild(rows[i]);
+        // or
+        // table.deleteRow(i);
+    }
+    rows[0].parentNode.removeChild(rows[0]);
+}
 
     
     

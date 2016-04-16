@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="54bfa994-2963-4972-80cb-85f6ccb86d20" name="Default" comment="cleaned komments weg etc">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CNC/Interface/index.html" afterPath="$PROJECT_DIR$/CNC/Interface/index.html" />
+    <list default="true" id="54bfa994-2963-4972-80cb-85f6ccb86d20" name="Default" comment="clearTable() add:  damit der status keine redundanten einträge beim mehrmaligen laden hat">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CNC/Interface/requests.js" afterPath="$PROJECT_DIR$/CNC/Interface/requests.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -46,21 +45,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/CNC/Interface/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.33333334">
-              <caret line="25" column="51" selection-start-line="25" selection-start-column="51" selection-end-line="25" selection-end-column="51" />
+            <state vertical-scroll-proportion="-23.041666">
+              <caret line="60" column="18" selection-start-line="60" selection-start-column="18" selection-end-line="60" selection-end-column="18" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="requests.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="requests.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/CNC/Interface/requests.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.2648402">
+              <caret line="24" column="69" selection-start-line="24" selection-start-column="69" selection-end-line="24" selection-end-column="69" />
               <folding />
             </state>
           </provider>
@@ -91,8 +90,8 @@
         <option value="$PROJECT_DIR$/design/index.css" />
         <option value="$PROJECT_DIR$/CNC/Interface/.gitkeep" />
         <option value="$PROJECT_DIR$/CNC/Interface/design/index.css" />
-        <option value="$PROJECT_DIR$/CNC/Interface/requests.js" />
         <option value="$PROJECT_DIR$/CNC/Interface/index.html" />
+        <option value="$PROJECT_DIR$/CNC/Interface/requests.js" />
       </list>
     </option>
   </component>
@@ -259,6 +258,7 @@
     <property name="DefaultHtmlFileTemplate" value="Html5" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="FullScreen" value="false" />
+    <property name="last_opened_file_path" value="/opt/lycheejs" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -378,6 +378,17 @@
     </UpdatedFiles>
   </component>
   <component name="RunManager">
+    <configuration default="true" type="BashConfigurationType" factoryName="Bash">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="INTERPRETER_PATH" value="/bin/bash" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="PARAMETERS" value="" />
+      <module name="" />
+      <envs />
+      <method />
+    </configuration>
     <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
       <method />
     </configuration>
@@ -512,7 +523,13 @@
       <option name="project" value="LOCAL" />
       <updated>1460554329303</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="cleaned komments weg etc">
+      <created>1460559519485</created>
+      <option name="number" value="00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1460559519485</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -563,7 +580,8 @@
     <MESSAGE value="requests.js added" />
     <MESSAGE value="requests.js modified" />
     <MESSAGE value="cleaned komments weg etc" />
-    <option name="LAST_COMMIT_MESSAGE" value="cleaned komments weg etc" />
+    <MESSAGE value="clearTable() add:  damit der status keine redundanten einträge beim mehrmaligen laden hat" />
+    <option name="LAST_COMMIT_MESSAGE" value="clearTable() add:  damit der status keine redundanten einträge beim mehrmaligen laden hat" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -889,18 +907,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/CNC/Interface/requests.js">
+    <entry file="file://$PROJECT_DIR$/CNC/Interface/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+        <state vertical-scroll-proportion="-23.041666">
+          <caret line="60" column="18" selection-start-line="60" selection-start-column="18" selection-end-line="60" selection-end-column="18" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/CNC/Interface/index.html">
+    <entry file="file://$PROJECT_DIR$/CNC/Interface/requests.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33333334">
-          <caret line="25" column="51" selection-start-line="25" selection-start-column="51" selection-end-line="25" selection-end-column="51" />
+        <state vertical-scroll-proportion="0.2648402">
+          <caret line="24" column="69" selection-start-line="24" selection-start-column="69" selection-end-line="24" selection-end-column="69" />
           <folding />
         </state>
       </provider>
