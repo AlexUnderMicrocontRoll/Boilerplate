@@ -37,13 +37,10 @@ var initialize = function() {
 
 function clearTable(table) {
     var rows = table.rows;
-    var i = rows.length;
-    while (--i) {
-        rows[i].parentNode.removeChild(rows[i]);
-        // or
-        // table.deleteRow(i);
+    var i = rows.length-1;
+    for( var k=i; k >=0; k--){
+        table.deleteRow(k);
     }
-    rows[0].parentNode.removeChild(rows[0]);
 }
 
     
