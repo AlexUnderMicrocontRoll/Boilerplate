@@ -3,7 +3,7 @@
     left: 0;
     right: auto;
     width:150px;
-    background-color: antiquewhite;
+    background-color: floralwhite;
 }
 
 #main{
@@ -13,13 +13,14 @@
     background-color: antiquewhite;
 }
 
+
 section.content{
     position: absolute;
     width: 100%;
     height: 100%;
     margin-top: -100%;
-    -webkit-transition: all 0.7s ease;
-    transition: all 0.7s ease;
+    -webkit-transition: all 1s ease;
+    transition: all 1s ease;
 }
 
 
@@ -35,6 +36,18 @@ header{
     border: 1px solid;
     border-collapse: collapse;
 }
+thead,th{
+    background-color: lightskyblue;
+    cursor: pointer;
+}
+tr:nth-child(even) {
+    background-color: lightblue;
+}
+
+
+tr:nth-child(odd) {
+    background-color: white;
+}
 
 thead{
     background-color: cornflowerblue;
@@ -49,5 +62,5 @@ a:hover{
 }
 
 html{
-    background: cadetblue;
+    background: white;
 }

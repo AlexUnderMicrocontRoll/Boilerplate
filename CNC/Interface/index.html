@@ -10,7 +10,9 @@
     <meta http-equiv="refresh" content="300">
     <link rel="stylesheet" href="design/index.css">
     <link rel="stylesheet" href="design/print.css">
+    <script src="https://code.jquery.com/jquery-2.2.3.min.js"   integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo="   crossorigin="anonymous"></script>
     <script src="requests.js"></script>
+    <script src="sort.js"></script>
 
     <title>BOT NET</title>
 </head>
@@ -34,14 +36,14 @@
         <table id="status-overview">
             <thead>
             <tr>
-                <th>Auftrag ID</th>
-                <th>IP</th>
-                <th>Task</th>
-                <th>Workload</th>
+                <th id="id">Auftrag ID </th>
+                <th id="ip">IP </th>
+                <th id="workload">Workload</th>
+                <th id="task">In- / Aktiv</th>
             </tr>
             </thead>
 
-            <tbody>
+            <tbody id="status-overview-results">
 
             </tbody>
         </table>
@@ -53,12 +55,12 @@
             <tr>
                 <th>Auftrag ID</th>
                 <th>IP</th>
-                <th>Task</th>
                 <th>Workload</th>
+                <th>In- / Aktiv</th>
             </tr>
             </thead>
 
-            <tbody>
+            <tbody id="task-overview-results">
 
             </tbody>
         </table>
