@@ -7,17 +7,15 @@
     <meta name="keywords" content="HTML,CSS">
     <meta name="author" content="Alex,Sai Team AlouScha">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="refresh" content="300">
     <link rel="stylesheet" href="design/index.css">
-    <link rel="stylesheet" href="design/print.css">
-    <script src="https://code.jquery.com/jquery-2.2.3.min.js"   integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo="   crossorigin="anonymous"></script>
-    <script src="requests.js"></script>
-    <script src="sort.js"></script>
+    <link rel="stylesheet" href="design/print.css" media="print">
+	<script src="cncRequest.js"></script>
+    <!--<script src="sort.js"></script>-->
 
-    <title>BOT NET</title>
+    <title>CNC Interface</title>
 </head>
 
-<body>
+<body onload="cncServerRequest(); initializePageReload();">
 
 <header>
     <h1>CNC Interface</h1>
@@ -25,8 +23,8 @@
 
 <aside id="sidemenu">
     <menu>
-        <li><a href="#status" onclick=initialize();>Status</a></li>
-        <li><a href="#tasks">Tasks</a></li>
+        <li><a href="#status" onclick="initializePageReload()">Status</a></li>
+        <li><a href="#tasks" onclick="Reloadstop()">Tasks</a></li>
     </menu>
 </aside>
 
@@ -39,7 +37,7 @@
                 <th id="id">Auftrag ID </th>
                 <th id="ip">IP </th>
                 <th id="workload">Workload</th>
-                <th id="task">In- / Aktiv</th>
+                <th id="task">Start/Stop</th>
             </tr>
             </thead>
 
@@ -53,10 +51,10 @@
         <table id="task-overview">
             <thead>
             <tr>
-                <th>Auftrag ID</th>
-                <th>IP</th>
-                <th>Workload</th>
-                <th>In- / Aktiv</th>
+                <th>Task table</th>
+                <th></th>
+                <th></th>
+                <th></th>
             </tr>
             </thead>
 
