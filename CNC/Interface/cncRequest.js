@@ -6,16 +6,163 @@
 
 // cnc server URI
 var cncServer = "http://botnet.artificial.engineering:8080/api/Status"
-var stop_reload;
+var stop_reload; // TODO rename
+
+
+var botnetData;
+var botnetDataSortType = "id";
+var botnetDataSortOrder = "asc"; // asc, desc
+
 
 var initializePageReload = function() {
 	console.log("periodic page reload started")
-    stop_reload= setInterval(function(){cncServerRequest();}, 5000);
+    stop_reload= setInterval(function(){cncServerRequest();}, 10000);
 };
 
 var Reloadstop = function() {
 	clearTimeout(stop_reload);
 };
+
+var sortIP = function() {
+	botnetDataSortType = "ip";
+	
+	if(botnetDataSortOrder === "asc") {
+		botnetDataSortOrder = "desc";
+		console.log("status table sort: ip descending");
+	}
+	else if (botnetDataSortOrder === "desc") {
+		botnetDataSortOrder = "asc";
+		console.log("status table sort: ip ascending");
+
+	}
+	
+	// update status table
+	updateStatusTable();
+};
+
+var sortID = function() {
+	botnetDataSortType = "id";
+	
+	if(botnetDataSortOrder === "asc") {
+		botnetDataSortOrder = "desc";
+		console.log("status table sort: id descending");
+	}
+	else if (botnetDataSortOrder === "desc") {
+		botnetDataSortOrder = "asc";
+		console.log("status table sort: id ascending");
+	}
+	
+	// update status table
+	updateStatusTable();
+};
+
+var sortWorkload = function() {
+	botnetDataSortType = "workload";
+	
+	if(botnetDataSortOrder === "asc") {
+		botnetDataSortOrder = "desc";
+		console.log("status table sort: workload descending");
+	}
+	else if (botnetDataSortOrder === "desc") {
+		botnetDataSortOrder = "asc";
+		console.log("status table sort: workload ascending");
+	}
+	
+	// update status table
+	updateStatusTable();
+};
+
+function compareIdDesc(a,b) {
+  if (a.id > b.id)
+    return -1;
+  else if (a.id < b.id)
+    return 1;
+  else 
+    return 0;
+};
+
+
+function compareIdAsc(a,b) {
+  if (a.id < b.id)
+    return -1;
+  else if (a.id > b.id)
+    return 1;
+  else 
+    return 0;
+};
+
+
+
+function compareIpDesc(a,b) {
+  if (a.ip > b.ip)
+    return -1;
+  else if (a.ip < b.ip)
+    return 1;
+  else 
+    return 0;
+};
+
+
+function compareIpAsc(a,b) {
+  if (a.ip < b.ip)
+    return -1;
+  else if (a.ip > b.ip)
+    return 1;
+  else 
+    return 0;
+};
+
+
+function compareWorkloadDesc(a,b) {
+  if (a.workload > b.workload)
+    return -1;
+  else if (a.workload < b.workload)
+    return 1;
+  else 
+    return 0;
+};
+
+
+function compareWorkloadAsc(a,b) {
+  if (a.workload < b.workload)
+    return -1;
+  else if (a.workload > b.workload)
+    return 1;
+  else 
+    return 0;
+};
+
+
+function sortBotnetData() {
+	if(botnetDataSortType === "id") {
+		if(botnetDataSortOrder === "asc") {
+			botnetData.sort(compareIdAsc);
+		}
+		else if(botnetDataSortOrder === "desc") {
+			botnetData.sort(compareIdDesc);
+		}
+	}
+	else if(botnetDataSortType === "ip") {
+		if(botnetDataSortOrder === "asc") {
+			botnetData.sort(compareIpAsc);
+		}
+		else if(botnetDataSortOrder === "desc") {
+			botnetData.sort(compareIpDesc);
+		}
+	}
+	else if(botnetDataSortType === "workload") {
+		if(botnetDataSortOrder === "asc") {
+			botnetData.sort(compareWorkloadAsc);
+		}
+		else if(botnetDataSortOrder === "desc") {
+			botnetData.sort(compareWorkloadDesc);
+		}
+		
+	}
+};
+
+
+
 
 /**
  * 
@@ -40,40 +187,19 @@ var cncServerRequest = function() {
 	
 	// onload event handler
     xhr.onload = function () {
-		var statusTable = document.querySelector('#status-overview-results');
-        var data = null;
-        var row = null;
+		
 
 		// try to parse response to json
         try {
-            data = JSON.parse(xhr.response);
+            botnetData = JSON.parse(xhr.response);
         } catch (e) {
             console.error(e);
         }
         
-        // empty table if already filled
-        if (statusTable.childElementCount > 0){
-            clearTable(statusTable);
-        }
-
-		// fill table with new table rows
-        for (var i = 0; i < data.length; i++) {
-			console.log(data[i].ip);
-            row = statusTable.insertRow(i);
-            row.innerHTML = "<td>" + data[i].id + "</td><td>" + data[i].ip + "</td><td>" + data[i].workload + "</td>"
-            
-            
-            if(data[i].task === 0) {
-				// inactive, button says start
-				row.innerHTML += "<td><button type=\"button\">Start</button></td>";
-			} else {
-				// running, button says stop
-				row.innerHTML += "<td><button type=\"button\">Stop</button></td>";
-			}
-            
-            
-            
-        }
+		updateStatusTable();
+		
+        
+        
         
         console.log("cnc server bot list reloaded")
     };
@@ -85,12 +211,38 @@ function clearTable(table) {
     for( var k=i; k >=0; k--){
         table.deleteRow(k);
     }
-}
+};
 
 
-    
-    
-   
+function updateStatusTable() {
+	var statusTable = document.querySelector('#status-overview-results');
+    var row = null;
+        
+	// empty table if already filled
+    if (statusTable.childElementCount > 0){
+		clearTable(statusTable);
+    }
+        
+    sortBotnetData();
+
+	// fill table with new table rows
+    for (var i = 0; i < botnetData.length; i++) {
+		console.log(botnetData[i].ip);
+        row = statusTable.insertRow(i);
+        row.innerHTML = "<td>" + botnetData[i].id + "</td><td>" + botnetData[i].ip + "</td><td>" + botnetData[i].workload + "</td>"
+            
+        if(botnetData[i].task === 0) {
+			// inactive, button says start
+			row.innerHTML += "<td><button type=\"button\">Start</button></td>";
+		} else {
+			// running, button says stop
+			row.innerHTML += "<td><button type=\"button\">Stop</button></td>";
+		}
+	}
+};
+
+
+
     
     
     

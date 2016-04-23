@@ -22,6 +22,7 @@
 </header>
 
 <aside id="sidemenu">
+	<h3>Menu</h3>
     <menu>
         <li><a href="#status" onclick="initializePageReload()">Status</a></li>
         <li><a href="#tasks" onclick="Reloadstop()">Tasks</a></li>
@@ -34,9 +35,9 @@
         <table id="status-overview">
             <thead>
             <tr>
-                <th id="id">Auftrag ID </th>
-                <th id="ip">IP </th>
-                <th id="workload">Workload</th>
+                <th id="id" onclick="sortID()" role="columnheader button">Auftrag ID </th>
+                <th id="ip" onclick="sortIP()">IP </th>
+                <th id="workload" onclick="sortWorkload()">Workload</th>
                 <th id="task">Start/Stop</th>
             </tr>
             </thead>

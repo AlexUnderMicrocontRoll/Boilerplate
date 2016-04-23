@@ -1,9 +1,13 @@
+h3 {
+	text-align: center;
+}
+
 #sidemenu{
     position:fixed;
     left: 0;
     right: auto;
     width:150px;
-    background-color: lightgrey;
+    background-color: lightskyblue;
 }
 
 #main{
@@ -66,13 +70,16 @@ tbody tr:hover{
 #    background-color: white;
 #}
 
-a:hover{
-    color: green;
+
+
+a:link, a:visited {
+	color: black;
 }
 
-a:link {
-	color: darkgrey;
-	#text-decoration: none;
+a:hover{
+	background: black;
+    color: lightskyblue;
+    #text-decoration: none;
 }
 
 body {
