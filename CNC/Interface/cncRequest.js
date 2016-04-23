@@ -170,7 +170,6 @@ function sortBotnetData() {
 var cncServerRequest = function() {
     var xhr = new XMLHttpRequest();
 
-
 	// TODO encoding auf UTF-8
     xhr.open("GET", cncServer, true);
     xhr.send();
@@ -191,6 +190,7 @@ var cncServerRequest = function() {
 
 		// try to parse response to json
         try {
+			// TODO xhr.response.setCharacterEncoding("UTF-8");
             botnetData = JSON.parse(xhr.response);
         } catch (e) {
             console.error(e);

@@ -10,7 +10,6 @@
     <link rel="stylesheet" href="design/index.css">
     <link rel="stylesheet" href="design/print.css" media="print">
 	<script src="cncRequest.js"></script>
-    <!--<script src="sort.js"></script>-->
 
     <title>CNC Interface</title>
 </head>
@@ -31,13 +30,13 @@
 
 <main id="main">
     <section id="status" class="content">
-		Status
+		<h3>Status</h3>
         <table id="status-overview">
             <thead>
             <tr>
-                <th id="id" onclick="sortID()" role="columnheader button">Auftrag ID </th>
-                <th id="ip" onclick="sortIP()">IP </th>
-                <th id="workload" onclick="sortWorkload()">Workload</th>
+                <th id="id" onclick="sortID()" role="columnheader button">Auftrag ID ↕</th>
+                <th id="ip" onclick="sortIP()">IP ↕</th>
+                <th id="workload" onclick="sortWorkload()">Workload ↕</th>
                 <th id="task">Start/Stop</th>
             </tr>
             </thead>
@@ -48,7 +47,7 @@
         </table>
     </section>
     <section id="tasks" class="content">
-		Tasks
+		<h3>Tasks</h3>
         <table id="task-overview">
             <thead>
             <tr>
@@ -63,6 +62,20 @@
 
             </tbody>
         </table>
+        
+        <h3>Neuen Task erstellen</h3>
+        <form id="taskform">
+			ID <input type="text" name="id"><br>
+			Type: 
+			<label for="hash-md5">MD5-Hash</label>
+			<input type="radio" name="type" id="hash-md5" value="hash-md5">
+			<label for="hash-sha256">SHA256-Hash</label>
+			<input type="radio" name="type" id="hash-sha256" value="hash-sha256">
+			<label for="crack-md5">Crack MD5-Hash</label>
+			<input type="radio" name="type" id="crack-md5" value="crack-md5"><br>
+			Data <input type="text" name="data">
+        </form>
+        <button type="submit" form="taskform">Auftrag abschicken</button>
     </section>
 
 
