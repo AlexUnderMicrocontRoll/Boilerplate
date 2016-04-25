@@ -54,7 +54,7 @@ var byPropertyAsc = function(prop) {
 
 var byPropertyDesc = function(prop) {
     return function (a, b) {
-            if (typeof b[prop] === 'string' || b[prop] instanceof String){
+            if (typeof a[prop] === 'string' || a[prop] instanceof String){
                 //für strings localCompare
                 return b[prop].localeCompare(a[prop]);
             }else{
