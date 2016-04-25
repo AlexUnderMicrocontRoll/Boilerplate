@@ -23,7 +23,7 @@ var Reloadstop = function() {
 	clearTimeout(stop_reload);
 };
 
-//shorter version******
+
 var sort = function(key){
     botnetDataSortProp = key;
 
@@ -40,169 +40,26 @@ var sort = function(key){
     updateStatusTable();
 };
 
-var byPropertyDesc = function(prop) {
-    return function(a,b) {
-        if (a[prop] > b[prop])
-            return -1;
-        else if (a[prop] < b[prop])
-            return 1;
-        else
-            return 0;
-    };
-};
-
 var byPropertyAsc = function(prop) {
     return function(a,b) {
-        if (a[prop] < b[prop])
-            return -1;
-        else if (a[prop] > b[prop])
-            return 1;
-        else
-            return 0;
+            if (typeof a[prop] === 'string' || a[prop] instanceof String){
+                return a[prop].localeCompare(b[prop]);
+            }else{
+                return a[prop] - b[prop];
+            }
     };
 };
-//** shorter version
 
-// redundant code ??? wie denkt ihr??
-/*var sortIP = function() {
-	botnetDataSortProp = "ip";
-	
-	if(botnetDataSortOrder === "asc") {
-		botnetDataSortOrder = "desc";
-		console.log("status table sort: ip descending");
-	}
-	else if (botnetDataSortOrder === "desc") {
-		botnetDataSortOrder = "asc";
-		console.log("status table sort: ip ascending");
-
-	}
-	
-	// update status table
-	updateStatusTable();
+var byPropertyDesc = function(prop) {
+    return function (a, b) {
+            if (typeof b[prop] === 'string' || b[prop] instanceof String){
+                return b[prop].localeCompare(a[prop]);
+            }else{
+                return b[prop] - a[prop];
+            }
+    };
 };
 
-
-var sortID = function() {
-	botnetDataSortProp = "id";
-	
-	if(botnetDataSortOrder === "asc") {
-		botnetDataSortOrder = "desc";
-		console.log("status table sort: id descending");
-	}
-	else if (botnetDataSortOrder === "desc") {
-		botnetDataSortOrder = "asc";
-		console.log("status table sort: id ascending");
-	}
-	
-	// update status table
-	updateStatusTable();
-};
-
-var sortWorkload = function() {
-	botnetDataSortProp = "workload";
-	
-	if(botnetDataSortOrder === "asc") {
-		botnetDataSortOrder = "desc";
-		console.log("status table sort: workload descending");
-	}
-	else if (botnetDataSortOrder === "desc") {
-		botnetDataSortOrder = "asc";
-		console.log("status table sort: workload ascending");
-	}
-	
-	// update status table
-	updateStatusTable();
-};
-
-function compareIdDesc(a,b) {
-  if (a.id > b.id)
-    return -1;
-  else if (a.id < b.id)
-    return 1;
-  else 
-    return 0;
-};
-
-function compareIdAsc(a,b) {
-  if (a.id < b.id)
-    return -1;
-  else if (a.id > b.id)
-    return 1;
-  else 
-    return 0;
-};
-
-function compareIpDesc(a,b) {
-  if (a.ip > b.ip)
-    return -1;
-  else if (a.ip < b.ip)
-    return 1;
-  else 
-    return 0;
-};
-
-function compareIpAsc(a,b) {
-  if (a.ip < b.ip)
-    return -1;
-  else if (a.ip > b.ip)
-    return 1;
-  else 
-    return 0;
-};
-
-function compareWorkloadDesc(a,b) {
-  if (a.workload > b.workload)
-    return -1;
-  else if (a.workload < b.workload)
-    return 1;
-  else 
-    return 0;
-};
-
-function compareWorkloadAsc(a,b) {
-  if (a.workload < b.workload)
-    return -1;
-  else if (a.workload > b.workload)
-    return 1;
-  else 
-    return 0;
-};*/
-//**************************** redundant code<----
-
-/*function sortBotnetData() {
-	if(botnetDataSortProp === "id") {
-		if(botnetDataSortOrder === "asc") {
-			botnetData.sort(byPropertyAsc(botnetDataSortProp));
-		}
-		else if(botnetDataSortOrder === "desc") {
-			botnetData.sort(byPropertyDesc(botnetDataSortProp));
-		}
-	}
-	else if(botnetDataSortProp === "ip") {
-		if(botnetDataSortOrder === "asc") {
-			botnetData.sort(byPropertyAsc(botnetDataSortProp));
-		}
-		else if(botnetDataSortOrder === "desc") {
-			botnetData.sort(byPropertyDesc(botnetDataSortProp));
-		}
-	}
-	else if(botnetDataSortProp === "workload") {
-		if(botnetDataSortOrder === "asc") {
-			botnetData.sort(byPropertyAsc(botnetDataSortProp));
-		}
-		else if(botnetDataSortOrder === "desc") {
-			botnetData.sort(byPropertyDesc(botnetDataSortProp));
-		}
-		
-	}
-}*/
-
-
-
-
-/**
- * 
- */
 var cncServerRequest = function() {
     var xhr = new XMLHttpRequest();
 
@@ -233,10 +90,6 @@ var cncServerRequest = function() {
         }
         
 		updateStatusTable();
-		
-        
-        
-        
         console.log("cnc server bot list reloaded");
     };
 };
@@ -258,8 +111,6 @@ function updateStatusTable() {
     if (statusTable.childElementCount > 0){
 		clearTable(statusTable);
     }
-        
-    //sortBotnetData();
 
 	// fill table with new table rows
     for (var i = 0; i < botnetData.length; i++) {
