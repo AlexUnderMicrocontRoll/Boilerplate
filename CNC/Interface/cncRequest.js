@@ -43,8 +43,10 @@ var sort = function(key){
 var byPropertyAsc = function(prop) {
     return function(a,b) {
             if (typeof a[prop] === 'string' || a[prop] instanceof String){
+                //für strings localCompare
                 return a[prop].localeCompare(b[prop]);
             }else{
+                //sonst für nummern
                 return a[prop] - b[prop];
             }
     };
@@ -53,8 +55,10 @@ var byPropertyAsc = function(prop) {
 var byPropertyDesc = function(prop) {
     return function (a, b) {
             if (typeof b[prop] === 'string' || b[prop] instanceof String){
+                //für strings localCompare
                 return b[prop].localeCompare(a[prop]);
             }else{
+                //sonst für nummern
                 return b[prop] - a[prop];
             }
     };
