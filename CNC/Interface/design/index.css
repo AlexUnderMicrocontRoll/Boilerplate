@@ -1,13 +1,9 @@
-h3 {
-	text-align: center;
-}
-
 #sidemenu{
     position:fixed;
     left: 0;
     right: auto;
     width:150px;
-    background-color: lightskyblue;
+    background-color: lightgrey;
 }
 
 #main{
@@ -62,24 +58,21 @@ tbody tr:hover{
 }
 
 #tr:nth-child(even) {
-#    background-color: lightblue;
-#}
+    background-color: lightblue;
+}
 
 
 #tr:nth-child(odd) {
-#    background-color: white;
-#}
-
-
-
-a:link, a:visited {
-	color: black;
+    background-color: white;
 }
 
 a:hover{
-	background: black;
-    color: lightskyblue;
-    #text-decoration: none;
+    color: green;
+}
+
+a:link {
+	color: darkgrey;
+	#text-decoration: none;
 }
 
 body {
