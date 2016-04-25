@@ -10,13 +10,13 @@ var stop_reload; // TODO rename
 
 
 var botnetData;
-var botnetDataSortType = "id";
+var botnetDataSortProp = "id";
 var botnetDataSortOrder = "asc"; // asc, desc
 
 
 var initializePageReload = function() {
 	console.log("periodic page reload started");
-    stop_reload= setInterval(function(){cncServerRequest();}, 10000);
+    stop_reload= setInterval(function(){cncServerRequest();}, 100000);
 };
 
 var Reloadstop = function() {
@@ -25,13 +25,16 @@ var Reloadstop = function() {
 
 //shorter version******
 var sort = function(key){
-    botnetDataSortType = key;
+    botnetDataSortProp = key;
 
     if(botnetDataSortOrder === "asc") {
+        botnetData.sort(byPropertyAsc(botnetDataSortProp));
         botnetDataSortOrder = "desc";
         console.log("status table sort: id descending");
     }
     else if (botnetDataSortOrder === "desc") {
+        botnetData.sort(byPropertyDesc(botnetDataSortProp));
+        //byPropertyDesc(botnetDataSortProp);
         botnetDataSortOrder = "asc";
         console.log("status table sort: id ascending");
     }
@@ -63,7 +66,7 @@ var byPropertyAsc = function(prop) {
 
 // redundant code ??? wie denkt ihr??
 /*var sortIP = function() {
-	botnetDataSortType = "ip";
+	botnetDataSortProp = "ip";
 	
 	if(botnetDataSortOrder === "asc") {
 		botnetDataSortOrder = "desc";
@@ -81,7 +84,7 @@ var byPropertyAsc = function(prop) {
 
 
 var sortID = function() {
-	botnetDataSortType = "id";
+	botnetDataSortProp = "id";
 	
 	if(botnetDataSortOrder === "asc") {
 		botnetDataSortOrder = "desc";
@@ -97,7 +100,7 @@ var sortID = function() {
 };
 
 var sortWorkload = function() {
-	botnetDataSortType = "workload";
+	botnetDataSortProp = "workload";
 	
 	if(botnetDataSortOrder === "asc") {
 		botnetDataSortOrder = "desc";
@@ -167,33 +170,33 @@ function compareWorkloadAsc(a,b) {
 };*/
 //**************************** redundant code<----
 
-function sortBotnetData() {
-	if(botnetDataSortType === "id") {
+/*function sortBotnetData() {
+	if(botnetDataSortProp === "id") {
 		if(botnetDataSortOrder === "asc") {
-			botnetData.sort(byPropertyAsc("id"));
+			botnetData.sort(byPropertyAsc(botnetDataSortProp));
 		}
 		else if(botnetDataSortOrder === "desc") {
-			botnetData.sort(byPropertyDesc("id"));
+			botnetData.sort(byPropertyDesc(botnetDataSortProp));
 		}
 	}
-	else if(botnetDataSortType === "ip") {
+	else if(botnetDataSortProp === "ip") {
 		if(botnetDataSortOrder === "asc") {
-			botnetData.sort(byPropertyAsc("ip"));
+			botnetData.sort(byPropertyAsc(botnetDataSortProp));
 		}
 		else if(botnetDataSortOrder === "desc") {
-			botnetData.sort(byPropertyDesc("ip"));
+			botnetData.sort(byPropertyDesc(botnetDataSortProp));
 		}
 	}
-	else if(botnetDataSortType === "workload") {
+	else if(botnetDataSortProp === "workload") {
 		if(botnetDataSortOrder === "asc") {
-			botnetData.sort(byPropertyAsc("workload"));
+			botnetData.sort(byPropertyAsc(botnetDataSortProp));
 		}
 		else if(botnetDataSortOrder === "desc") {
-			botnetData.sort(byPropertyDesc("workload"));
+			botnetData.sort(byPropertyDesc(botnetDataSortProp));
 		}
 		
 	}
-}
+}*/
 
 
 
@@ -235,7 +238,7 @@ var cncServerRequest = function() {
         
         
         
-        console.log("cnc server bot list reloaded")
+        console.log("cnc server bot list reloaded");
     };
 };
 
@@ -257,7 +260,7 @@ function updateStatusTable() {
 		clearTable(statusTable);
     }
         
-    sortBotnetData();
+    //sortBotnetData();
 
 	// fill table with new table rows
     for (var i = 0; i < botnetData.length; i++) {
