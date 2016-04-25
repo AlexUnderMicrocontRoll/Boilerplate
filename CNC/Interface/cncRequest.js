@@ -34,7 +34,6 @@ var sort = function(key){
     }
     else if (botnetDataSortOrder === "desc") {
         botnetData.sort(byPropertyDesc(botnetDataSortProp));
-        //byPropertyDesc(botnetDataSortProp);
         botnetDataSortOrder = "asc";
         console.log("status table sort: id ascending");
     }

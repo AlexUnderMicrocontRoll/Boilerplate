@@ -48,11 +48,11 @@
       <file leaf-file-name="cncRequest.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/CNC/Interface/cncRequest.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-1.6982968">
-              <caret line="172" column="0" selection-start-line="172" selection-start-column="0" selection-end-line="172" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.4914842">
+              <caret line="35" column="60" selection-start-line="35" selection-start-column="60" selection-end-line="35" selection-end-column="60" />
               <folding>
-                <element signature="e#1616#3546#0" expanded="false" />
-                <element signature="e#3599#4368#0" expanded="false" />
+                <element signature="e#1570#3500#0" expanded="false" />
+                <element signature="e#3553#4322#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -503,7 +503,13 @@
       <option name="project" value="LOCAL" />
       <updated>1461599473013</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="noch eine methode entfernt. sortierung kommt mit ca 3 functionen aus">
+      <created>1461600767676</created>
+      <option name="number" value="00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1461600767676</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -557,7 +563,8 @@
     <MESSAGE value="clearTable() add:  damit der status keine redundanten einträge beim mehrmaligen laden hat" />
     <MESSAGE value="some strange things" />
     <MESSAGE value="eine kürzere version der vorherigen sortierens gemacht. die alte version ist noch drin jedoch auskommentiert. betroffen: index.html, cncRequest.js" />
-    <option name="LAST_COMMIT_MESSAGE" value="eine kürzere version der vorherigen sortierens gemacht. die alte version ist noch drin jedoch auskommentiert. betroffen: index.html, cncRequest.js" />
+    <MESSAGE value="noch eine methode entfernt. sortierung kommt mit ca 3 functionen aus" />
+    <option name="LAST_COMMIT_MESSAGE" value="noch eine methode entfernt. sortierung kommt mit ca 3 functionen aus" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -587,8 +594,8 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#1616#3546#0" expanded="false" />
-            <element signature="e#3599#4368#0" expanded="false" />
+            <element signature="e#1570#3500#0" expanded="false" />
+            <element signature="e#3553#4322#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -939,11 +946,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/CNC/Interface/cncRequest.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.6982968">
-          <caret line="172" column="0" selection-start-line="172" selection-start-column="0" selection-end-line="172" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.4914842">
+          <caret line="35" column="60" selection-start-line="35" selection-start-column="60" selection-end-line="35" selection-end-column="60" />
           <folding>
-            <element signature="e#1616#3546#0" expanded="false" />
-            <element signature="e#3599#4368#0" expanded="false" />
+            <element signature="e#1570#3500#0" expanded="false" />
+            <element signature="e#3553#4322#0" expanded="false" />
           </folding>
         </state>
       </provider>
