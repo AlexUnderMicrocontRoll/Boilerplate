@@ -5,7 +5,7 @@
  */
 
 // cnc server URI
-var cncServer = "http://botnet.artificial.engineering:8080/api/Status"
+var cncServer = "http://botnet.artificial.engineering:8080/api/Status";
 var stop_reload; // TODO rename
 
 
@@ -15,7 +15,7 @@ var botnetDataSortOrder = "asc"; // asc, desc
 
 
 var initializePageReload = function() {
-	console.log("periodic page reload started")
+	console.log("periodic page reload started");
     stop_reload= setInterval(function(){cncServerRequest();}, 10000);
 };
 
@@ -23,7 +23,46 @@ var Reloadstop = function() {
 	clearTimeout(stop_reload);
 };
 
-var sortIP = function() {
+//shorter version******
+var sort = function(key){
+    botnetDataSortType = key;
+
+    if(botnetDataSortOrder === "asc") {
+        botnetDataSortOrder = "desc";
+        console.log("status table sort: id descending");
+    }
+    else if (botnetDataSortOrder === "desc") {
+        botnetDataSortOrder = "asc";
+        console.log("status table sort: id ascending");
+    }
+    updateStatusTable();
+};
+
+var byPropertyDesc = function(prop) {
+    return function(a,b) {
+        if (a[prop] > b[prop])
+            return -1;
+        else if (a[prop] < b[prop])
+            return 1;
+        else
+            return 0;
+    };
+};
+
+var byPropertyAsc = function(prop) {
+    return function(a,b) {
+        if (a[prop] < b[prop])
+            return -1;
+        else if (a[prop] > b[prop])
+            return 1;
+        else
+            return 0;
+    };
+};
+//** shorter version
+
+// redundant code ??? wie denkt ihr??
+/*var sortIP = function() {
 	botnetDataSortType = "ip";
 	
 	if(botnetDataSortOrder === "asc") {
@@ -39,6 +78,7 @@ var sortIP = function() {
 	// update status table
 	updateStatusTable();
 };
+
 
 var sortID = function() {
 	botnetDataSortType = "id";
@@ -81,7 +121,6 @@ function compareIdDesc(a,b) {
     return 0;
 };
 
-
 function compareIdAsc(a,b) {
   if (a.id < b.id)
     return -1;
@@ -90,8 +129,6 @@ function compareIdAsc(a,b) {
   else 
     return 0;
 };
-
-
 
 function compareIpDesc(a,b) {
   if (a.ip > b.ip)
@@ -102,7 +139,6 @@ function compareIpDesc(a,b) {
     return 0;
 };
 
-
 function compareIpAsc(a,b) {
   if (a.ip < b.ip)
     return -1;
@@ -111,7 +147,6 @@ function compareIpAsc(a,b) {
   else 
     return 0;
 };
-
 
 function compareWorkloadDesc(a,b) {
   if (a.workload > b.workload)
@@ -122,7 +157,6 @@ function compareWorkloadDesc(a,b) {
     return 0;
 };
 
-
 function compareWorkloadAsc(a,b) {
   if (a.workload < b.workload)
     return -1;
@@ -130,36 +164,36 @@ function compareWorkloadAsc(a,b) {
     return 1;
   else 
     return 0;
-};
-
+};*/
+//**************************** redundant code<----
 
 function sortBotnetData() {
 	if(botnetDataSortType === "id") {
 		if(botnetDataSortOrder === "asc") {
-			botnetData.sort(compareIdAsc);
+			botnetData.sort(byPropertyAsc("id"));
 		}
 		else if(botnetDataSortOrder === "desc") {
-			botnetData.sort(compareIdDesc);
+			botnetData.sort(byPropertyDesc("id"));
 		}
 	}
 	else if(botnetDataSortType === "ip") {
 		if(botnetDataSortOrder === "asc") {
-			botnetData.sort(compareIpAsc);
+			botnetData.sort(byPropertyAsc("ip"));
 		}
 		else if(botnetDataSortOrder === "desc") {
-			botnetData.sort(compareIpDesc);
+			botnetData.sort(byPropertyDesc("ip"));
 		}
 	}
 	else if(botnetDataSortType === "workload") {
 		if(botnetDataSortOrder === "asc") {
-			botnetData.sort(compareWorkloadAsc);
+			botnetData.sort(byPropertyAsc("workload"));
 		}
 		else if(botnetDataSortOrder === "desc") {
-			botnetData.sort(compareWorkloadDesc);
+			botnetData.sort(byPropertyDesc("workload"));
 		}
 		
 	}
-};
+}
 
 
 
@@ -211,7 +245,7 @@ function clearTable(table) {
     for( var k=i; k >=0; k--){
         table.deleteRow(k);
     }
-};
+}
 
 
 function updateStatusTable() {
@@ -229,7 +263,7 @@ function updateStatusTable() {
     for (var i = 0; i < botnetData.length; i++) {
 		console.log(botnetData[i].ip);
         row = statusTable.insertRow(i);
-        row.innerHTML = "<td>" + botnetData[i].id + "</td><td>" + botnetData[i].ip + "</td><td>" + botnetData[i].workload + "</td>"
+        row.innerHTML = "<td>" + botnetData[i].id + "</td><td>" + botnetData[i].ip + "</td><td>" + botnetData[i].workload + "</td>";
             
         if(botnetData[i].task === 0) {
 			// inactive, button says start
@@ -239,7 +273,7 @@ function updateStatusTable() {
 			row.innerHTML += "<td><button type=\"button\">Stop</button></td>";
 		}
 	}
-};
+}
 
 
 
