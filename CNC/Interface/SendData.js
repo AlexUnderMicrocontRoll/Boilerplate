@@ -45,9 +45,9 @@ var objekt = {
 	type: type,//type?
 	data: {
 		input:  data,
-		output: null;
+		output: null
 	}
-};
+}
 /*
 var xhr2 = new XMLHttpRequest();
   xhr2.open('POST', '/server', true);
