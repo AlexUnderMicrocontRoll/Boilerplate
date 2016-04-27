@@ -47,6 +47,10 @@ thead {
     text-align: left;
 }
 
+tbody{
+    background-color: white;
+}
+
 tbody tr:hover{
 	background: lightskyblue;
 	color: black;
@@ -76,5 +80,10 @@ a:link {
 }
 
 body {
-    background: white;
+  /*background-image: image("\picture\metal-gear-rising-revengeance-town-ruin-armor-art.jpg") no-repeat center center fixed ;*/
+background: url("http://1920x1080hdwallpapers.com/image/201510/games/2335/metal-gear-rising-revengeance-town-ruin-armor-art.jpg") no-repeat center center fixed ;
+-webkit-background-size: cover;
+-moz-background-size: cover;
+-o-background-size: cover;
+background-size: cover;
 }
