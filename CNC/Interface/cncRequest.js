@@ -83,10 +83,10 @@ function updateStatusTable() {
             
         if(botnetData[i].task === 0) {
 			// inactive, button says start
-			row.innerHTML += "<td><button type=\"button\">Start</button></td>";
+			row.innerHTML += "<td><button type=\"button\" id=\"data[i].id\" onclick="Postrequest_Task(this.id)">Start</button></td>";
 		} else {
 			// running, button says stop
-			row.innerHTML += "<td><button type=\"button\">Stop</button></td>";
+			row.innerHTML += "<td><button type=\"button\" id=\"data[i].id\" onclick="Postrequest_Task(this.id)">Stop</button></td>";
 		}
 	}
 }
