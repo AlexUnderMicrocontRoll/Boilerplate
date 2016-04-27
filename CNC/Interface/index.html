@@ -9,8 +9,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="design/index.css">
     <link rel="stylesheet" href="design/print.css" media="print">
-	<script src="cncRequest.js"></script>
+    <script src="cncRequest.js"></script>
     <script src="sort.js"></script>
+    <script type="text/javascript" src="SendData.js"></script>
 
     <title>CNC Interface</title>
 </head>
@@ -65,18 +66,21 @@
         </table>
         
         <h3>Neuen Task erstellen</h3>
-        <form id="taskform">
-			ID <input type="text" name="id"><br>
-			Type: 
+        <h1>Formular</h1>
+        <form id="taskform" action="" method="">
+			ID <input type="number" id="input_id" name="id" required><br>
+			<p>Type: </p> 
 			<label for="hash-md5">MD5-Hash</label>
 			<input type="radio" name="type" id="hash-md5" value="hash-md5">
 			<label for="hash-sha256">SHA256-Hash</label>
 			<input type="radio" name="type" id="hash-sha256" value="hash-sha256">
 			<label for="crack-md5">Crack MD5-Hash</label>
 			<input type="radio" name="type" id="crack-md5" value="crack-md5"><br>
-			Data <input type="text" name="data">
+			<br>
+			<p>Data: </p>
+			<input type="text" name="data" required>
+			<button id="submit"  name="submit" onclick="send_data()">Senden</button>
         </form>
-        <button type="submit" form="taskform">Auftrag abschicken</button>
     </section>
 
 
