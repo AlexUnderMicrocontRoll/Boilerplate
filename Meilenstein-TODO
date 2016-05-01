@@ -31,6 +31,11 @@ GET Integration (/api/Tasks)
 POST Integration (/api/Tasks)
 
 
+TODO Kein form sondern input laut Folien
+
+
+
+
 Interface
     Tasks "Formular"
     Input Elemente fuer ID, Type, data (input/output)

@@ -97,19 +97,50 @@ function updateStatusTable() {
         row.innerHTML = "<td>" + botnetData[i].id + "</td><td>" + botnetData[i].ip + "</td><td>" + botnetData[i].workload + "</td>";
             
         if(botnetData[i].task === 0) {
-			// inactive, button says start
-			row.innerHTML += "<td><button type=\"button\">Start</button></td>";
+			// if inactive, button says start
+			row.innerHTML += "<td><button type=\"button\" onclick=\"statusButtonClicked(this.id)\" id=\"statusTask_" + botnetData[i].id + "\">Start</button></td>";
 		} else {
-			// running, button says stop
-			row.innerHTML += "<td><button type=\"button\">Stop</button></td>";
+			// if running, button says stop
+			row.innerHTML += "<td><button type=\"button\" onclick=\"statusButtonClicked(this.id)\" id=\"statusTask_" + botnetData[i].id + "\">Stop</button></td>";
 		}
 	}
 }
 
+var statusButtonClicked = function(buttonId) {
+	console.log("status button of id " + buttonId + " clicked");
+	
+	for (var i = 0; i < botnetData.length; i++) {
+        if("statusTask_" + botnetData[i].id === buttonId) {
+			if (botnetData[i].task === 0) { // task is inactive
+				console.log(botnetData[i].id + " is inactive, activating");
+				document.getElementById(buttonId).innerHTML = "<i>activating...</i>";
+				statusTaskOperation(botnetData[i].id, "start");
+			}
+			else if (botnetData[i].task === 1) { // task is active
+				console.log(botnetData[i].id + " is active, deactivating");
+				document.getElementById(buttonId).innerHTML = "<i>deactivating...</i>";
+				statusTaskOperation(botnetData[i].id, "stop");
+			}
+        }
+	}
+}
+    
 
-
+var statusTaskOperation = function(taskID, action) {
+	console.log("id " + taskID + ": sending " + action + " to cnc server");
+	var xhr = new XMLHttpRequest();
+		
+    xhr.open("POST", cncServer);
+    //xhr.setRequestHeader("AlouScha", ""); TODO ----> ref: 07-Web API.md
+    //xhr.setRequestHeader("Authorization", "Token token=..."); ???
+    // Problem: 400 Bad Request
     
+    var task = {
+    	"id": taskID,
+    	"action": action 
+    };
     
-    
+    xhr.send(JSON.stringify(task));
+}
 
 
