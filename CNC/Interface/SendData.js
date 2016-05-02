@@ -12,14 +12,16 @@ function sendDataToServer(){
 
 				var xhr2 = new XMLHttpRequest();
 				xhr2.onreadystatechange = function() {
-    			if (xhttp.readyState == 4 && xhttp.status == 200) {
+    			if (xhr2.readyState == 4 && xhr2.status == 200) {
       			alert("leider nicht ready on stage");
     				}
   				};
 
 					xhr2.open('POST', 'http://botnet.artificial.engineering:8080/api/Status', true);
 					xhr2.setRequestHeader('Token', '031b46cd62bda614fffd542e20346821');
-					xhr.send(objekt);
+					xhr2.send(objekt);
+					var resultFormular= xhr2.response;
+					alert(resultFormular);
 
 	}
 };
