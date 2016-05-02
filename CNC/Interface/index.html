@@ -19,7 +19,7 @@
 <body onload="cncServerRequest(); initializePageReload();">
 
 <header>
-    <h1>CNC Interface</h1>
+    <h2>CNC Interface</h2>
 </header>
 
 <aside id="sidemenu">
@@ -64,21 +64,24 @@
 
             </tbody>
         </table>
-        
+
         <h3>Neuen Task erstellen</h3>
-        <h1>Formular</h1>
         <form id="taskform" action="" method="">
-			ID <input type="number" id="input_id" name="id" required><br>
-			<p>Type: </p> 
+			<p>ID: </p>
+      <input type="number" id="input_id" name="id" required><br>
+
+      <p>Data: </p>
+			<input type="text" name="data" required>
+<!--einstellen das nur  ein raiotype ausgewählt werden kann-->
+      <p>Type: </p>
 			<label for="hash-md5">MD5-Hash</label>
 			<input type="radio" name="hash-md" id="hash-md5" value="hash-md5">
 			<label for="hash-sha256">SHA256-Hash</label>
 			<input type="radio" name="hash-sha" id="hash-sha256" value="hash-sha256">
 			<label for="crack-md5">Crack MD5-Hash</label>
 			<input type="radio" name="crack-md" id="crack-md5" value="crack-md5"><br>
-			<br>
-			<p>Data: </p>
-			<input type="text" name="data" required>
+
+<!--Button muss noch designt werden in css-->
 			<button id="submit"  name="submit" onclick="send_data()">Senden</button>
         </form>
     </section>
