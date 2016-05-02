@@ -15,7 +15,7 @@ var botnetData;
  * Enables periodic data requests from cnc server.
  */
 var enablePeriodicCNCRequest = function() {
-    //periodicReload = setInterval(function(){cncServerRequest();}, 10000);
+    periodicReload = setInterval(function(){cncServerRequest();}, 30000);
     console.log("periodic cnc request: started");
 };
 
