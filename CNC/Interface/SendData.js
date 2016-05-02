@@ -11,6 +11,7 @@ function sendDataToServer(){
 				var objekt = JSON.stringify({'id': id, 'type': type, data: {'input':  data, 'output': null}});
 
 				var xhr2 = new XMLHttpRequest();
+
 				xhr2.onreadystatechange = function() {
     			if (xhr2.readyState == 4 && xhr2.status == 200) {
       			alert("leider nicht ready on stage");
