@@ -16,7 +16,7 @@
     <title>CNC Interface</title>
 </head>
 
-<body onload="cncServerRequest(); initializePageReload();">
+<body onload="cncServerRequest(); enablePeriodicCNCRequest();">
 
 <header>
     <h2>CNC Interface</h2>
@@ -25,8 +25,8 @@
 <aside id="sidemenu">
 	<h3>Menu</h3>
     <menu>
-        <li><a href="#status" onclick="initializePageReload()">Status</a></li>
-        <li><a href="#tasks" onclick="Reloadstop()">Tasks</a></li>
+        <li><a href="#status" onclick="enablePeriodicCNCRequest()">Status</a></li>
+        <li><a href="#tasks" onclick="disablePeriodicCNCRequest()">Tasks</a></li>
     </menu>
 </aside>
 
@@ -36,10 +36,10 @@
         <table id="status-overview">
             <thead>
             <tr>
-                <th id="id" onclick="sort('id')" role="columnheader button">Auftrag ID ↕</th>
-                <th id="ip" onclick="sort('ip')">IP ↕</th>
-                <th id="workload" onclick="sort('workload')">Workload ↕</th>
-                <th id="task">Start/Stop</th>
+                <th id="id" onclick="setSorting('id')">Auftrag ID ↕</th>
+                <th id="ip" onclick="setSorting('ip')">IP ↕</th>
+                <th id="workload" onclick="setSorting('workload')">Workload ↕</th>
+                <th id="task" onclick="setSorting('task')">Start/Stop ↕</th>
             </tr>
             </thead>
 

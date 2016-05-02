@@ -6,23 +6,33 @@
 
 // cnc server URI
 var cncServer = "http://botnet.artificial.engineering:8080/api/Status";
-var stop_reload; // TODO rename
-
+var periodicReload;
 
 var botnetData;
-var botnetDataSortProp = "id";
-var botnetDataSortOrder = "asc"; // asc, desc
 
 
-var initializePageReload = function() {
-	console.log("periodic page reload started");
-    stop_reload= setInterval(function(){cncServerRequest();}, 100000);
+/**
+ * Enables periodic data requests from cnc server.
+ */
+var enablePeriodicCNCRequest = function() {
+    periodicReload = setInterval(function(){cncServerRequest();}, 10000);
+    console.log("periodic cnc request: started");
 };
 
-var Reloadstop = function() {
-	clearTimeout(stop_reload);
+
+/**
+ * Disables periodic data requests from cnc server.
+ * 
+ */
+var disablePeriodicCNCRequest = function() {
+	clearTimeout(periodicReload);
+	console.log("periodic cnc request: stopped");
 };
 
+
+/**
+ * Requests botnet status data from cnc server.
+ */
 var cncServerRequest = function() {
     var xhr = new XMLHttpRequest();
 
@@ -43,7 +53,6 @@ var cncServerRequest = function() {
 	// onload event handler
     xhr.onload = function () {
 		
-
 		// try to parse response to json
         try {
 			// TODO xhr.response.setCharacterEncoding("UTF-8");
@@ -52,20 +61,27 @@ var cncServerRequest = function() {
             console.error(e);
         }
         
+        sortBotnetData();
 		updateStatusTable();
         console.log("cnc server bot list reloaded");
     };
 };
 
+/**
+ * Clears a html table.
+ */
 function clearTable(table) {
     var rows = table.rows;
-    var i = rows.length-1;
-    for( var k=i; k >=0; k--){
+    var i = rows.length - 1;
+    
+    for( var k = i; k >= 0; k--){
         table.deleteRow(k);
     }
 }
 
-
+/**
+ * Updates status table with botnet status data.
+ */
 function updateStatusTable() {
 	var statusTable = document.querySelector('#status-overview-results');
     var row = null;
@@ -77,27 +93,54 @@ function updateStatusTable() {
 
 	// fill table with new table rows
     for (var i = 0; i < botnetData.length; i++) {
-		console.log(botnetData[i].ip);
         row = statusTable.insertRow(i);
         row.innerHTML = "<td>" + botnetData[i].id + "</td><td>" + botnetData[i].ip + "</td><td>" + botnetData[i].workload + "</td>";
             
         if(botnetData[i].task === 0) {
-			// inactive, button says start
-			row.innerHTML += "<td><button type=\"button\" id=\"data[i].id\" onclick="Postrequest_Task(this.id)">Start</button></td>";
+			// if inactive, button says start
+			row.innerHTML += "<td><button type=\"button\" onclick=\"statusButtonClicked(this.id)\" id=\"statusTask_" + botnetData[i].id + "\">Start</button></td>";
 		} else {
-			// running, button says stop
-			row.innerHTML += "<td><button type=\"button\" id=\"data[i].id\" onclick="Postrequest_Task(this.id)">Stop</button></td>";
+			// if running, button says stop
+			row.innerHTML += "<td><button type=\"button\" onclick=\"statusButtonClicked(this.id)\" id=\"statusTask_" + botnetData[i].id + "\">Stop</button></td>";
 		}
 	}
 }
 
+var statusButtonClicked = function(buttonId) {
+	console.log("status button of id " + buttonId + " clicked");
+	
+	for (var i = 0; i < botnetData.length; i++) {
+        if("statusTask_" + botnetData[i].id === buttonId) {
+			if (botnetData[i].task === 0) { // task is inactive
+				console.log(botnetData[i].id + " is inactive, activating");
+				document.getElementById(buttonId).innerHTML = "<i>activating...</i>";
+				statusTaskOperation(botnetData[i].id, "start");
+			}
+			else if (botnetData[i].task === 1) { // task is active
+				console.log(botnetData[i].id + " is active, deactivating");
+				document.getElementById(buttonId).innerHTML = "<i>deactivating...</i>";
+				statusTaskOperation(botnetData[i].id, "stop");
+			}
+        }
+	}
+}
+    
 
-
+var statusTaskOperation = function(taskID, action) {
+	console.log("id " + taskID + ": sending " + action + " to cnc server");
+	var xhr = new XMLHttpRequest();
+		
+    xhr.open("POST", cncServer);
+    //xhr.setRequestHeader("AlouScha", ""); TODO ----> ref: 07-Web API.md
+    //xhr.setRequestHeader("Authorization", "Token token=..."); ???
+    // Problem: 400 Bad Request
     
+    var task = {
+    	"id": taskID,
+    	"action": action 
+    };
     
-    
-    
-    
-
+    xhr.send(JSON.stringify(task));
+}
 
 
