@@ -1,6 +1,6 @@
 /**
  * Requests botnet data from CNC Server, adds it to status table.
- * 
+ *
  * @author Alex, Sai, Tobi
  */
 
@@ -15,14 +15,14 @@ var botnetData;
  * Enables periodic data requests from cnc server.
  */
 var enablePeriodicCNCRequest = function() {
-    periodicReload = setInterval(function(){cncServerRequest();}, 10000);
+    //periodicReload = setInterval(function(){cncServerRequest();}, 10000);
     console.log("periodic cnc request: started");
 };
 
 
 /**
  * Disables periodic data requests from cnc server.
- * 
+ *
  */
 var disablePeriodicCNCRequest = function() {
 	clearTimeout(periodicReload);
@@ -39,20 +39,20 @@ var cncServerRequest = function() {
 	// TODO encoding auf UTF-8
     xhr.open("GET", cncServer, true);
     xhr.send();
-	
+
 	// error event handler
 	xhr.onerror = function() {
 		console.error("xhr error by GET from " + cncServer);
 	};
-	
+
 	// timeout event handler
 	xhr.ontimeout = function() {
 		console.error("xhr timeout by GET from " + cncServer);
 	};
-	
+
 	// onload event handler
     xhr.onload = function () {
-		
+
 		// try to parse response to json
         try {
 			// TODO xhr.response.setCharacterEncoding("UTF-8");
@@ -60,9 +60,9 @@ var cncServerRequest = function() {
         } catch (e) {
             console.error(e);
         }
-        
+
         sortBotnetData();
-		updateStatusTable();
+		    updateStatusTable();
         console.log("cnc server bot list reloaded");
     };
 };
@@ -73,7 +73,7 @@ var cncServerRequest = function() {
 function clearTable(table) {
     var rows = table.rows;
     var i = rows.length - 1;
-    
+
     for( var k = i; k >= 0; k--){
         table.deleteRow(k);
     }
@@ -85,7 +85,7 @@ function clearTable(table) {
 function updateStatusTable() {
 	var statusTable = document.querySelector('#status-overview-results');
     var row = null;
-        
+
 	// empty table if already filled
     if (statusTable.childElementCount > 0){
 		clearTable(statusTable);
@@ -95,7 +95,7 @@ function updateStatusTable() {
     for (var i = 0; i < botnetData.length; i++) {
         row = statusTable.insertRow(i);
         row.innerHTML = "<td>" + botnetData[i].id + "</td><td>" + botnetData[i].ip + "</td><td>" + botnetData[i].workload + "</td>";
-            
+
         if(botnetData[i].task === 0) {
 			// if inactive, button says start
 			row.innerHTML += "<td><button type=\"button\" onclick=\"statusButtonClicked(this.id)\" id=\"statusTask_" + botnetData[i].id + "\">Start</button></td>";
@@ -108,7 +108,7 @@ function updateStatusTable() {
 
 var statusButtonClicked = function(buttonId) {
 	console.log("status button of id " + buttonId + " clicked");
-	
+
 	for (var i = 0; i < botnetData.length; i++) {
         if("statusTask_" + botnetData[i].id === buttonId) {
 			if (botnetData[i].task === 0) { // task is inactive
@@ -124,23 +124,21 @@ var statusButtonClicked = function(buttonId) {
         }
 	}
 }
-    
+
 
 var statusTaskOperation = function(taskID, action) {
 	console.log("id " + taskID + ": sending " + action + " to cnc server");
 	var xhr = new XMLHttpRequest();
-		
+
     xhr.open("POST", cncServer);
     //xhr.setRequestHeader("AlouScha", ""); TODO ----> ref: 07-Web API.md
     //xhr.setRequestHeader("Authorization", "Token token=..."); ???
     // Problem: 400 Bad Request
-    
+
     var task = {
     	"id": taskID,
-    	"action": action 
+    	"action": action
     };
-    
+
     xhr.send(JSON.stringify(task));
 }
-
-

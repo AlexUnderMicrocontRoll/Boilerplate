@@ -66,12 +66,12 @@
         </table>
 
         <h3>Neuen Task erstellen</h3>
-        <form id="taskform" action="" method="">
+      <form id="taskform" action="" method="" onsubmit=return"">
 			<p>ID: </p>
-      <input type="number" id="input_id" name="id" required><br>
+      <input type="text-" id="input_id" name="id"><br>
 
       <p>Data: </p>
-			<input type="text" name="data" required>
+			<input type="text" name="data">
 <!--einstellen das nur  ein raiotype ausgewählt werden kann-->
       <p>Type: </p>
 			<label for="hash-md5">MD5-Hash</label>
@@ -82,7 +82,7 @@
 			<input type="radio" name="crack-md" id="crack-md5" value="crack-md5"><br>
 
 <!--Button muss noch designt werden in css-->
-			<button id="submit"  name="submit" onclick="send_data()">Senden</button>
+			<button id="submit"  name="submit" onclick="validateForm()">Senden</button>
         </form>
     </section>
 
