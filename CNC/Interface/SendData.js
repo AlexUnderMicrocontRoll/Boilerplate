@@ -1,5 +1,5 @@
 //formular daten senden, das nur werte einmal pro eingabe gesendet werden kann muss noch abgefangen werden und werte muss noch validiert
-//werden
+//werden...
 var data = function send_data(){
 
 var id = document.forms["tasks_form"]["id"].value;
