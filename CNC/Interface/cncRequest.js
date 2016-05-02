@@ -38,6 +38,7 @@ var cncServerRequest = function() {
 
 	// TODO encoding auf UTF-8
     xhr.open("GET", cncServer, true);
+    //xhr.setRequestHeader('Token', '031b46cd62bda614fffd542e20346821');
     xhr.send();
 
 	// error event handler

@@ -75,14 +75,16 @@
 <!--einstellen das nur  ein raiotype ausgewählt werden kann-->
       <p>Type: </p>
 			<label for="hash-md5">MD5-Hash</label>
-			<input type="radio" name="hash-md" id="hash-md5" value="hash-md5">
+			<input type="radio" name="type" id="hash-md5" value="hash-md5" checked>
+      <br>
 			<label for="hash-sha256">SHA256-Hash</label>
-			<input type="radio" name="hash-sha" id="hash-sha256" value="hash-sha256">
-			<label for="crack-md5">Crack MD5-Hash</label>
-			<input type="radio" name="crack-md" id="crack-md5" value="crack-md5"><br>
-
+			<input type="radio" name="type" id="hash-sha256" value="hash-sha256">
+      <br>
+      <label for="crack-md5">Crack MD5-Hash</label>
+			<input type="radio" name="type" id="crack-md5" value="crack-md5"><br>
+      <br>
 <!--Button muss noch designt werden in css-->
-			<button id="submit"  name="submit" onclick="validateForm()">Senden</button>
+			<button id="submit"  name="submit" onclick="sendDataToServer()">Senden</button>
         </form>
     </section>
 

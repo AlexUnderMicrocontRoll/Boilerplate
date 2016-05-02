@@ -87,3 +87,11 @@ background: url("http://1920x1080hdwallpapers.com/image/201510/games/2335/metal-
 -o-background-size: cover;
 background-size: cover;
 }
+
+label{
+ font-size:14px;
+}
+
+input[type="radio"]{
+ float:left;
+}
