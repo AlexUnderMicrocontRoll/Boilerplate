@@ -3,7 +3,7 @@
     left: 0;
     right: auto;
     width:150px;
-    background-color: lightgrey;
+    background-color: #98ff98;
 }
 
 #main{
@@ -13,6 +13,19 @@
     background-color: antiquewhite;
 }
 
+
+
+.button {
+    background-color: #98ff98;
+    border: none;
+    color: black;
+    padding: 5px 40px;
+    margin: 5px 5px 5px 5px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-flex;
+    border-radius: 8px;
+}
 
 section.content{
     position: absolute;
@@ -37,6 +50,7 @@ header{
 
 #status-overview, thead, tr{
     border: 1px solid;
+    height: 35px;
     border-collapse: collapse;
     width: 70%;
 }
