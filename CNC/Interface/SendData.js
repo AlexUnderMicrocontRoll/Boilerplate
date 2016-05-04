@@ -11,7 +11,8 @@ function sendDataToServer(){
 				var objekt = JSON.stringify({'type': type, data: {'input':  data, 'output': null}});
 				//'id': id,
 				var xhr2 = new XMLHttpRequest();
-<<<<<<< HEAD
+
+
 				xhr2.open('POST', 'http://botnet.artificial.engineering:8080/api/tasks');
 				xhr2.setRequestHeader('Token', '031b46cd62bda614fffd542e20346821');
 				xhr2.setRequestHeader('Content-Type','application/json');
@@ -22,23 +23,7 @@ function sendDataToServer(){
 					console.log(xhr2.readystate);
 				};
 				xhr2.send(objekt);
-=======
-				xhr2.open('POST', 'http://botnet.artificial.engineering:8080/api/tasks', true);
-				xhr2.setRequestHeader('Token', '031b46cd62bda614fffd542e20346821');
-				xhr2.send(objekt);
 
-				xhr2.onreadystatechange = function() {
-				console.log(xhr2.readyState);
-				console.log(xhr2.status);
-    			if (xhr2.readyState == 4 && xhr2.status == 200) {
-      			alert("funktioniert");
-    				}
-  				};
-
-					
-				console.log(xhr2.responseText);
-
->>>>>>> fd60b5d03aeb690197990746ed5e5c8a2a1f40ed
 	}
 };
 

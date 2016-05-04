@@ -25,6 +25,7 @@ var enablePeriodicCNCRequest = function() {
  *
  */
 var disablePeriodicCNCRequest = function() {
+  taskrequest();
 	clearTimeout(periodicReload);
 	console.log("periodic cnc request: stopped");
 };
@@ -134,7 +135,7 @@ var statusTaskOperation = function(taskID, action) {
     xhr.open("POST", cncServer);
     xhr.responseType = "json";
     xhr.setRequestHeader('Content-Type', 'application/json');
-    
+
     xhr.setRequestHeader("Token", "031b46cd62bda614fffd542e20346821");
 
 	if(action === "stop") {

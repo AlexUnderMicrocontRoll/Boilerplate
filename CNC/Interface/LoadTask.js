@@ -1,24 +1,23 @@
-/*
- mit fetch api Request
- https://developer.mozilla.org/en-US/docs/Web/API/GlobalFetch/fetch
- */
-//funktioniert noch nicht...fetch und promis API muss noch verstanden werden xD
-var LoadTableTask = taskrequest()
-{
-    var myInit = {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'json'//hoer können weitere header rein
-        },
-        mode: 'cors',
-        cache: 'default'
+//TaskTabelle laden, Request an Server
+function taskrequest(){
+
+  var xhr2 = new XMLHttpRequest();
+
+  xhr2.open('GET', 'http://botnet.artificial.engineering:8080/api/tasks',true);
+  xhr2.setRequestHeader('Token', '031b46cd62bda614fffd542e20346821');
+  xhr2.setRequestHeader('Content-Type','application/json');
+  xhr2.responseType = 'json';
+  // onload event handler
+    xhr2.onload = function () {
+		// try to parse response to json
+        try {
+			// TODO xhr.response.setCharacterEncoding("UTF-8");
+            taskData = JSON.parse(xhr2.response);
+        } catch (e) {
+            console.error(e);
+        }
+        console.log(taskData);
     };
 
-    var taskrequest = new Request('', myInit);
-    fetch(taskrequest).then(function (response) {
-        return //response.blob();
-    }).then(function (response) {
-        //var objectURL = URL.createObjectURL(response);
-        //myImage.src = objectURL;
-    });
-}
+  xhr2.send();
+};
