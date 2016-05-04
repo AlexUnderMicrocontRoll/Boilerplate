@@ -62,7 +62,7 @@ var cncServerRequest = function() {
         }
 
         sortBotnetData();
-		    updateStatusTable();
+        updateStatusTable();
         console.log("cnc server bot list reloaded");
     };
 };
@@ -94,9 +94,9 @@ function updateStatusTable() {
 	// fill table with new table rows
     for (var i = 0; i < botnetData.length; i++) {
         row = statusTable.insertRow(i);
-        row.innerHTML = "<td>" + botnetData[i].id + "</td><td>" + botnetData[i].ip + "</td><td>" + botnetData[i].workload + "</td>";
+        row.innerHTML = "<td>" + botnetData[i].id + "</td><td>" + botnetData[i].ip + "</td><td>" + botnetData[i].workload + "</td><td>" + botnetData[i].task + "</td>";
 
-        if(botnetData[i].task === 0) {
+        if(botnetData[i].workload === 0) {
 			// if inactive, button says start
 			row.innerHTML += "<td><button type=\"button\" onclick=\"statusButtonClicked(this.id)\" id=\"statusTask_" + botnetData[i].id + "\">Start</button></td>";
 		} else {
