@@ -112,12 +112,12 @@ var statusButtonClicked = function(buttonId) {
 
 	for (var i = 0; i < botnetData.length; i++) {
         if("statusTask_" + botnetData[i].id === buttonId) {
-			if (botnetData[i].task === 0) { // task is inactive
+			if (botnetData[i].workload === 0) { // task is inactive
 				console.log(botnetData[i].id + " is inactive, activating");
 				document.getElementById(buttonId).innerHTML = "<i>activating...</i>";
 				statusTaskOperation(botnetData[i].id, "start");
 			}
-			else if (botnetData[i].task === 1) { // task is active
+			else { // task is active
 				console.log(botnetData[i].id + " is active, deactivating");
 				document.getElementById(buttonId).innerHTML = "<i>deactivating...</i>";
 				statusTaskOperation(botnetData[i].id, "stop");
@@ -146,7 +146,7 @@ var statusTaskOperation = function(taskID, action) {
 
     var task = {
     	"id": taskID,
-    	"status": true
+    	"status": status
     };
 
 console.log(task);
