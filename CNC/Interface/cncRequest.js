@@ -38,7 +38,6 @@ var cncServerRequest = function() {
 
 	// TODO encoding auf UTF-8
     xhr.open("GET", cncServer, true);
-    //xhr.setRequestHeader('Token', '031b46cd62bda614fffd542e20346821');
     xhr.send();
 
 	// error event handler
@@ -132,14 +131,24 @@ var statusTaskOperation = function(taskID, action) {
 	var xhr = new XMLHttpRequest();
 
     xhr.open("POST", cncServer);
-    //xhr.setRequestHeader("AlouScha", ""); TODO ----> ref: 07-Web API.md
-    //xhr.setRequestHeader("Authorization", "Token token=..."); ???
-    // Problem: 400 Bad Request
+    xhr.responseType = "json";
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    
+    xhr.setRequestHeader("Token", "031b46cd62bda614fffd542e20346821");
+
+	if(action === "stop") {
+		status = false;
+	}
+	else if(action === "start") {
+		status = true;
+	}
 
     var task = {
     	"id": taskID,
-    	"action": action
+    	"status": true
     };
+
+console.log(task);
 
     xhr.send(JSON.stringify(task));
 }
