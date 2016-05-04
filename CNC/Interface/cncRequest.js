@@ -15,7 +15,7 @@ var botnetData;
  * Enables periodic data requests from cnc server.
  */
 var enablePeriodicCNCRequest = function() {
-    periodicReload = setInterval(function(){cncServerRequest();}, 30000);
+    periodicReload = setInterval(function(){cncServerRequest();}, 2500);
     console.log("periodic cnc request: started");
 };
 
@@ -128,6 +128,7 @@ var statusButtonClicked = function(buttonId) {
 
 
 var statusTaskOperation = function(taskID, action) {
+	// TODO testen wenn weniger Leute auf CNC
 	console.log("id " + taskID + ": sending " + action + " to cnc server");
 	var xhr = new XMLHttpRequest();
 
@@ -138,18 +139,19 @@ var statusTaskOperation = function(taskID, action) {
     xhr.setRequestHeader("Token", "031b46cd62bda614fffd542e20346821");
 
 	if(action === "stop") {
-		status = false;
+		var task = {
+			"id": taskID,
+			"status": false
+		};
 	}
 	else if(action === "start") {
-		status = true;
+		var task = {
+			"id": taskID,
+			"status": true
+		};
 	}
 
-    var task = {
-    	"id": taskID,
-    	"status": status
-    };
-
-console.log(task);
+	console.log(task);
 
     xhr.send(JSON.stringify(task));
 }
