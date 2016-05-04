@@ -71,6 +71,7 @@ var cncServerRequest = function() {
 /**
  * Clears a html table.
  */
+
 function clearTable(table) {
     var rows = table.rows;
     var i = rows.length - 1;
