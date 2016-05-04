@@ -100,10 +100,10 @@ function updateStatusTable() {
 
         if(botnetData[i].workload === 0) {
 			// if inactive, button says start
-			row.innerHTML += "<td><button type=\"button\" onclick=\"statusButtonClicked(this.id)\" id=\"statusTask_" + botnetData[i].id + "\">Start</button></td>";
+			row.innerHTML += "<td><button class=\"button\" type=\"button\" onclick=\"statusButtonClicked(this.id)\" id=\"statusTask_" + botnetData[i].id + "\">▶</button></td>";
 		} else {
 			// if running, button says stop
-			row.innerHTML += "<td><button type=\"button\" onclick=\"statusButtonClicked(this.id)\" id=\"statusTask_" + botnetData[i].id + "\">Stop</button></td>";
+			row.innerHTML += "<td><button class=\"button\" type=\"button\" onclick=\"statusButtonClicked(this.id)\" id=\"statusTask_" + botnetData[i].id + "\">⏸</button></td>";
 		}
 	}
 }
