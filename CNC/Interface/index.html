@@ -21,12 +21,13 @@
 
 <aside id="sidemenu">
     <p><a id="menu_status" href="#status" onclick="enablePeriodicCNCRequest(); menuActiveStatusEntry();">Status</a></p>
+
     <p><a id="menu_tasks" href="#tasks" onclick="disablePeriodicCNCRequest(); menuActiveTasksEntry();">Tasks</a></p>
 </aside>
 
 <main id="main">
     <section id="status" class="content">
-		<h2>Botnet status interface (BSI)</h2>
+        <h2>Botnet status interface (BSI)</h2>
         <table id="status-overview">
             <thead>
             <tr>
@@ -44,7 +45,7 @@
         </table>
     </section>
     <section id="tasks" class="content">
-		<h2>Tasks</h2>
+        <h2>Tasks</h2>
         <table id="task-overview" onload="taskrequest()">
             <thead>
             <tr>
@@ -61,22 +62,23 @@
         </table>
 
         <h3>Neuen Task erstellen</h3>
-      <form id="taskform" action="" method="" onsubmit="return">
-		ID: <input type="text" id="input_id" name="id"><br>
-		Data: <input type="text" name="data">
-		<p>Type: </p>
-			<label for="hash-md5">MD5-Hash</label>
-			<input type="radio" name="type" id="hash-md5" value="hash-md5" checked><br>
-			<label for="hash-sha256">SHA256-Hash</label>
-			<input type="radio" name="type" id="hash-sha256" value="hash-sha256"><br>
-			<label for="crack-md5">Crack MD5-Hash</label>
-			<input type="radio" name="type" id="crack-md5" value="crack-md5"><br>
-			<br>
-			<button id="submit"  name="submit" onclick="sendDataToServer()">Senden</button>
+
+
+        <form id="taskform" action="" method="" onsubmit="return">
+            ID: <input type="text" id="input_id" name="id"><br>
+            Data: <input type="text" name="data">
+
+            <p>Type: </p>
+            <label for="hash-md5">MD5-Hash</label>
+            <input type="radio" name="type" id="hash-md5" value="hash-md5" checked><br>
+            <label for="hash-sha256">SHA256-Hash</label>
+            <input type="radio" name="type" id="hash-sha256" value="hash-sha256"><br>
+            <label for="crack-md5">Crack MD5-Hash</label>
+            <input type="radio" name="type" id="crack-md5" value="crack-md5"><br>
+            <br>
+            <button id="submit" name="submit" onclick="sendDataToServer()">Senden</button>
         </form>
     </section>
-
-
 
 </main>
 
