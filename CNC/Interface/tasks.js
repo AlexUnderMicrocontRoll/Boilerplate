@@ -13,7 +13,9 @@ function taskrequest() {
         // try to parse response to json
         try {
             xhr2.response.setCharacterEncoding = "utf-8";
-            taskData = xhr2.response;
+            taskData = xhr2.response
+            updateTaskTable();
+
         } catch (e) {
             console.error(e);
         }
@@ -21,7 +23,7 @@ function taskrequest() {
     };
 
     xhr2.send();
-    updateTaskTable();
+
 };
 
 function updateTaskTable() {
@@ -36,6 +38,6 @@ function updateTaskTable() {
     // fill table with new table rows
     for (var i = 0; i < taskData.length; i++) {
         row = taskTable.insertRow(i);
-        row.innerHTML = "<td>" + taskData[i].id + "</td><td>" + taskData[i].type + "</td><td>" + taskData[i].input + "</td><td>" + taskData[i].output + "</td>";
+        row.innerHTML = "<td>" + taskData[i].id + "</td><td>" + taskData[i].type + "</td><td>" + taskData[i].data.input + "</td><td>" + taskData[i].data.output + "</td>";
     }
 }
