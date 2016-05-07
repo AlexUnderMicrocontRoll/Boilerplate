@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="54bfa994-2963-4972-80cb-85f6ccb86d20" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CNC/Interface/tasks.js" afterPath="$PROJECT_DIR$/CNC/Interface/tasks.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CNC/Interface/design/index.css" afterPath="$PROJECT_DIR$/CNC/Interface/design/index.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Boilerplate.iws" />
@@ -25,11 +25,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="index.css" pinned="false" current-in-tab="false">
+      <file leaf-file-name="index.css" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/CNC/Interface/design/index.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="110" column="0" selection-start-line="110" selection-start-column="0" selection-end-line="110" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.32019705">
+              <caret line="64" column="12" selection-start-line="64" selection-start-column="12" selection-end-line="64" selection-end-column="12" />
               <folding />
             </state>
           </provider>
@@ -38,18 +38,18 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/CNC/Interface/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-26.25">
-              <caret line="47" column="55" selection-start-line="47" selection-start-column="55" selection-end-line="47" selection-end-column="55" />
+            <state vertical-scroll-proportion="-12.5">
+              <caret line="47" column="27" selection-start-line="47" selection-start-column="27" selection-end-line="47" selection-end-column="27" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="tasks.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="tasks.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/CNC/Interface/tasks.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.4187192">
-              <caret line="17" column="12" selection-start-line="17" selection-start-column="12" selection-end-line="17" selection-end-column="12" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -110,7 +110,6 @@
         <option value="$PROJECT_DIR$/design/index.css" />
         <option value="$PROJECT_DIR$/CNC/Interface/.gitkeep" />
         <option value="$PROJECT_DIR$/CNC/Interface/requests.js" />
-        <option value="$PROJECT_DIR$/CNC/Interface/design/index.css" />
         <option value="$PROJECT_DIR$/CNC/Interface/design/sort.js" />
         <option value="$PROJECT_DIR$/CNC/Interface/SendData.js" />
         <option value="$PROJECT_DIR$/CNC/Interface/LoadTask.js" />
@@ -118,6 +117,7 @@
         <option value="$PROJECT_DIR$/CNC/Interface/index.html" />
         <option value="$PROJECT_DIR$/CNC/Interface/sort.js" />
         <option value="$PROJECT_DIR$/CNC/Interface/tasks.js" />
+        <option value="$PROJECT_DIR$/CNC/Interface/design/index.css" />
       </list>
     </option>
   </component>
@@ -584,7 +584,13 @@
       <option name="project" value="LOCAL" />
       <updated>1462650359414</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="task laden jetzt weiter sachen zu machen">
+      <created>1462652129337</created>
+      <option name="number" value="00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1462652129337</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -644,7 +650,8 @@
     <MESSAGE value="sais pfusch beseitigt :D" />
     <MESSAGE value="task spalte rein gemacht" />
     <MESSAGE value="was weis ich was nicht wieder ging glaub bei refactor bug rein gerutsch. wieder OK!" />
-    <option name="LAST_COMMIT_MESSAGE" value="was weis ich was nicht wieder ging glaub bei refactor bug rein gerutsch. wieder OK!" />
+    <MESSAGE value="task laden jetzt weiter sachen zu machen" />
+    <option name="LAST_COMMIT_MESSAGE" value="task laden jetzt weiter sachen zu machen" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -996,14 +1003,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/CNC/Interface/design/index.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="110" column="0" selection-start-line="110" selection-start-column="0" selection-end-line="110" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Meilenstein-TODO">
       <provider editor-type-id="com.intellij.database.editor.CsvTableFileEditorProvider">
         <state />
@@ -1018,14 +1017,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="12" column="48" selection-start-line="12" selection-start-column="48" selection-end-line="12" selection-end-column="48" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/CNC/Interface/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-26.25">
-          <caret line="47" column="55" selection-start-line="47" selection-start-column="55" selection-end-line="47" selection-end-column="55" />
           <folding />
         </state>
       </provider>
@@ -1048,8 +1039,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/CNC/Interface/tasks.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4187192">
-          <caret line="17" column="12" selection-start-line="17" selection-start-column="12" selection-end-line="17" selection-end-column="12" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CNC/Interface/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-12.5">
+          <caret line="47" column="27" selection-start-line="47" selection-start-column="27" selection-end-line="47" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CNC/Interface/design/index.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.32019705">
+          <caret line="64" column="12" selection-start-line="64" selection-start-column="12" selection-end-line="64" selection-end-column="12" />
           <folding />
         </state>
       </provider>
