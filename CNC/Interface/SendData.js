@@ -11,11 +11,6 @@ function sendDataToServer(){
 				var objekt = JSON.stringify({'type': type, data: {'input':  data, 'output': null}});
 				//'id': id,
 				var xhr2 = new XMLHttpRequest();
-<<<<<<< HEAD
-
-
-=======
->>>>>>> 9d7fe9e1f4648517db85440fed40cc655f43a053
 				xhr2.open('POST', 'http://botnet.artificial.engineering:8080/api/tasks');
 				xhr2.setRequestHeader('Token', '031b46cd62bda614fffd542e20346821');
 				xhr2.setRequestHeader('Content-Type','application/json');

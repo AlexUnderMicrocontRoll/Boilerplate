@@ -13,7 +13,7 @@
     <script src="sort.js"></script>
     <script src="menu.js"></script>
     <script type="text/javascript" src="SendData.js"></script>
-    <script type="text/javascript" src="LoadTask.js"></script>
+    <script type="text/javascript" src="tasks.js"></script>
     <title>CNC Interface</title>
 </head>
 
@@ -34,7 +34,7 @@
                 <th id="ip" onclick="setSorting('ip')">IP ↕</th>
                 <th id="workload" onclick="setSorting('workload')">Workload ↕</th>
                 <th id="task" onclick="setSorting('task')">Task ↕</th>
-                <th id="activate">Start / Stop</th>
+                <th id="action">Action</th>
             </tr>
             </thead>
 
@@ -45,13 +45,13 @@
     </section>
     <section id="tasks" class="content">
 		<h2>Tasks</h2>
-        <table id="task-overview">
+        <table id="task-overview" onload="taskrequest()">
             <thead>
             <tr>
-                <th>Task table</th>
-                <th></th>
-                <th></th>
-                <th></th>
+                <th>ID</th>
+                <th>Type</th>
+                <th>Input</th>
+                <th>Output</th>
             </tr>
             </thead>
 
