@@ -3,14 +3,14 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="description" content="INT-WAW Übung">
-    <meta name="keywords" content="HTML,CSS">
-    <meta name="author" content="Alex,Sai,Tobi Team AlouScha">
+    <meta name="description" content="cnc interface">
+    <meta name="keywords" content="Botnet, CNC, Interface">
+    <meta name="author" content="Team AlouScha">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="design/index.css">
     <link rel="stylesheet" href="design/print.css" media="print">
-    <script type="text/javascript" src="SendData.js"></script>
-    <script type="text/javascript" src="tasks.js"></script>
+    <script src="SendData.js"></script>
+    <script src="tasks.js"></script>
     <script src="cncRequest.js"></script>
     <script src="sort.js"></script>
     <script src="menu.js"></script>
@@ -18,72 +18,64 @@
 </head>
 
 <body onload="cncServerRequest(); menuGotoStatus(); enablePeriodicCNCRequest();">
-
-<aside id="sidemenu">
-    <p><a id="menu_status" href="#status" onclick="enablePeriodicCNCRequest(); menuActiveStatusEntry();">Status</a></p>
-
-    <p><a id="menu_tasks" href="#tasks" onclick="disablePeriodicCNCRequest(); menuActiveTasksEntry();">Tasks</a></p>
-</aside>
-
-<main id="main">
-    <section id="status" class="content">
-        <h2>Botnet status interface (BSI)</h2>
-        <table id="status-overview">
-            <thead>
-            <tr>
-                <th id="id" onclick="setSorting('id')">Auftrag ID ↕</th>
-                <th id="ip" onclick="setSorting('ip')">IP ↕</th>
-                <th id="workload" onclick="setSorting('workload')">Workload ↕</th>
-                <th id="task" onclick="setSorting('task')">Task ↕</th>
-                <th id="action">Action</th>
-            </tr>
-            </thead>
-
-            <tbody id="status-overview-results">
-
-            </tbody>
-        </table>
-    </section>
-    <section id="tasks" class="content">
-        <h2>Tasks</h2>
-        <div><button onClick="scrollDown();">click to scroll down</button></div>
-        <table id="task-overview" onload="taskrequest()">
-            <thead>
-            <tr>
-                <th>ID</th>
-                <th>Type</th>
-                <th>Input</th>
-                <th>Output</th>
-            </tr>
-            </thead>
-
-            <tbody id="task-overview-results">
-
-            </tbody>
-        </table>
-        <div><button onClick="scrollUp();">click to scroll up</button></div>
-
-        <h3 >Neuen Task erstellen</h3>
-
-
-        <form id="taskform" onsubmit="sendDataToServer()">
-            ID: <input type="text" id="input_id" name="id"><br>
-            Data: <input type="text" name="data">
-
-            <p>Type: </p>
-            <label for="hash-md5">MD5-Hash</label>
-            <input type="radio" name="type" id="hash-md5" value="hash-md5" checked><br>
-            <label for="hash-sha256">SHA256-Hash</label>
-            <input type="radio" name="type" id="hash-sha256" value="hash-sha256"><br>
-            <label for="crack-md5">Crack MD5-Hash</label>
-            <input type="radio" name="type" id="crack-md5" value="crack-md5"><br>
-            <br>
-            <input type="submit" value="Senden">
-        </form>
-    </section>
-
-</main>
-
-
+	<aside id="sidemenu">
+		<p><a id="menu_status" href="#status" onclick="enablePeriodicCNCRequest(); menuActiveStatusEntry();">Status</a></p>
+		<p><a id="menu_tasks" href="#tasks" onclick="disablePeriodicCNCRequest(); menuActiveTasksEntry();">Tasks</a></p>
+	</aside>
+	
+	<main>
+		<!-- botnet status table section -->
+		<section id="status" class="content">
+			<h2>Botnet status interface (BSI)</h2>
+			<table id="status-overview">
+				<thead>
+					<tr>
+						<th id="id" onclick="setSorting('id')">Auftrag ID ↕</th>
+						<th id="ip" onclick="setSorting('ip')">IP ↕</th>
+						<th id="workload" onclick="setSorting('workload')">Workload ↕</th>
+						<th id="task" onclick="setSorting('task')">Task ↕</th>
+						<th id="action">Action</th>
+					</tr>
+				</thead>
+				<tbody id="status-overview-results">
+				</tbody>
+			</table>
+		</section>
+		
+		<!-- botnet tasks section -->
+		<section id="tasks" class="content">
+			<h2>Tasks</h2>
+			<button onClick="scrollDown();">click to scroll down</button>
+			<table id="task-overview" onload="taskrequest()">
+				<thead>
+					<tr>
+						<th>ID</th>
+						<th>Type</th>
+						<th>Input</th>
+						<th>Output</th>
+					</tr>
+				</thead>
+				<tbody id="task-overview-results">
+				</tbody>
+			</table>
+			<button onClick="scrollUp();">click to scroll up</button>
+			
+			<!-- create new task -->
+			<h2>Neuen Task erstellen</h2>
+			<form id="taskform" onsubmit="sendDataToServer()">
+				<p>ID: <input type="text" id="input_id" name="id"></p>
+				<p>Data: <input type="text" name="data"></p>
+            
+				<p>Type:<br>
+				<label for="hash-md5">MD5-Hash</label>
+				<input type="radio" name="type" id="hash-md5" value="hash-md5" checked><br>
+				<label for="hash-sha256">SHA256-Hash</label>
+				<input type="radio" name="type" id="hash-sha256" value="hash-sha256"><br>
+				<label for="crack-md5">Crack MD5-Hash</label>
+				<input type="radio" name="type" id="crack-md5" value="crack-md5"></p>
+				<button type="submit">Task starten</button>
+			</form>
+		</section>
+	</main>
 </body>
 </html>
