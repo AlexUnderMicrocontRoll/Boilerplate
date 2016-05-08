@@ -54,19 +54,25 @@ tr {
     height: 30px;
     width: 80%;
     background-color: #3498db;
+    page-break-inside:avoid; page-break-after:auto
 }
 
 table{
     table-layout:fixed;
     word-wrap:break-word;
     width: 80%;
+    page-break-inside:auto
+
 }
+
+thead { display:table-header-group }
 
 th {
 	color: white;
     background-color: #34495e;
     cursor: pointer;
     text-align: left;
+
 }
 
 tbody tr:hover{
@@ -79,7 +85,9 @@ tbody tr:hover{
 }
 
 th, td {
+
 	padding: 0px 5px 0px 5px;
+
 }
 
 
