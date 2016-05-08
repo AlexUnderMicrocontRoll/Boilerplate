@@ -11,12 +11,12 @@ h2 {
     background-color: #34495e;
 }
 
-#main{
+main{
     position: absolute;
-	right: 0;
+	right: 0px;
 	left: 200px;
-    width: 100%;
-    margin: 20px 20px 20px 20px;
+    width: auto;
+    margin: 0px 20px 0px 20px;
 }
 
 
@@ -31,7 +31,6 @@ button {
     text-decoration: none;
     display: inline-block;
     height: 100%;
-    #border-radius: 8px;
 }
 
 section.content{
@@ -51,10 +50,8 @@ section.content:target{
     margin-top:0;
 }
 
-#status-overview, thead, tr {
-    border: 1px solid;
+tr {
     height: 30px;
-    border-collapse: collapse;
     width: 80%;
     background-color: #3498db;
 }
@@ -72,18 +69,17 @@ th {
     text-align: left;
 }
 
-tbody{
-    #background-color: white;
-}
-
 tbody tr:hover{
-	#background: #16a085;
 	color: white;
 	-moz-transition: all 0.5s ease-in;
     -webkit-transition: all 0.5s ease-in;
     -ms-transition: all 0.5s ease-in;
     -o-transition: all 0.5s ease-in;
     transition: all 0.5s ease-in;
+}
+
+th, td {
+	padding: 0px 5px 0px 5px;
 }
 
 
@@ -116,10 +112,10 @@ body {
 	margin: 0 0 0 0;
 }
 
-label{
- font-size:14px;
+label {
+	font-size:14px;
 }
 
-input[type="radio"]{
- float:left;
+input[type="radio"] {
+	float:left;
 }
