@@ -45,7 +45,7 @@
 		<!-- botnet tasks section -->
 		<section id="tasks" class="content">
 			<h2>Tasks</h2>
-			<button onClick="scrollDown();">click to scroll down</button>
+			<button onClick="scrollDown();">&darr; scroll down</button>
 			<table id="task-overview" onload="taskrequest()">
 				<thead>
 					<tr>
@@ -58,7 +58,7 @@
 				<tbody id="task-overview-results">
 				</tbody>
 			</table>
-			<button onClick="scrollUp();">click to scroll up</button>
+			<button onClick="scrollUp();">&uarr; scroll up</button>
 			
 			<!-- create new task -->
 			<h2>Neuen Task erstellen</h2>
@@ -73,7 +73,8 @@
 				<input type="radio" name="type" id="hash-sha256" value="hash-sha256"><br>
 				<label for="crack-md5">Crack MD5-Hash</label>
 				<input type="radio" name="type" id="crack-md5" value="crack-md5"></p>
-				<button type="submit">Task starten</button>
+				<button type="reset">&#x2612; Formular zurücksetzen</button>
+				<button type="submit">&#x2611; Task starten</button>
 			</form>
 		</section>
 	</main>
