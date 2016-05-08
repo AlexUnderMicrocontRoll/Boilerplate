@@ -64,6 +64,12 @@ table{
     page-break-inside:auto
 
 }
+button:hover{
+    color:#2ecc71;
+}
+button{
+    height: 30px;
+}
 
 thead { display:table-header-group }
 
@@ -72,7 +78,6 @@ th {
     background-color: #34495e;
     cursor: pointer;
     text-align: left;
-
 }
 
 tbody tr:hover{
@@ -85,9 +90,7 @@ tbody tr:hover{
 }
 
 th, td {
-
-	padding: 0px 5px 0px 5px;
-
+    padding: 0px 5px 0px 5px;
 }
 
 
