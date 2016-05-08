@@ -9,11 +9,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="design/index.css">
     <link rel="stylesheet" href="design/print.css" media="print">
+    <script type="text/javascript" src="SendData.js"></script>
+    <script type="text/javascript" src="tasks.js"></script>
     <script src="cncRequest.js"></script>
     <script src="sort.js"></script>
     <script src="menu.js"></script>
-    <script type="text/javascript" src="SendData.js"></script>
-    <script type="text/javascript" src="tasks.js"></script>
     <title>CNC Interface</title>
 </head>
 
@@ -66,7 +66,7 @@
         <h3 >Neuen Task erstellen</h3>
 
 
-        <form id="taskform" action="" method="" onsubmit="return sendDataToServer()">
+        <form id="taskform" onsubmit="sendDataToServer()">
             ID: <input type="text" id="input_id" name="id"><br>
             Data: <input type="text" name="data">
 
@@ -78,7 +78,7 @@
             <label for="crack-md5">Crack MD5-Hash</label>
             <input type="radio" name="type" id="crack-md5" value="crack-md5"><br>
             <br>
-            <button type="submit" id="submit" onclick="sendDataToServer()">Senden</button>
+            <input type="submit" value="Senden">
         </form>
     </section>
 

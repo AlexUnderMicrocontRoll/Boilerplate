@@ -38,7 +38,7 @@ section.content{
     position: absolute;
     width: 100%;
     height: 100%;
-    margin-top: -1000%;
+    margin-top: -1500%;
     -moz-transition: all 1s ease;
     -webkit-transition: all 1s ease;
     -ms-transition: all 1s ease;
@@ -123,4 +123,3 @@ label{
 input[type="radio"]{
  float:left;
 }
-

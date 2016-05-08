@@ -1,9 +1,11 @@
 //Formular validieren und senden an Server mit konfigurierten Header + token
+
 function sendDataToServer(){
-console.log("submit");
+
 	var result_Validate_Form = validateForm();
 
 	if(result_Validate_Form){
+
 				var id = document.forms["taskform"]["id"].value;
 				var type = document.forms["taskform"]["type"].value;
 				var data = document.forms["taskform"]["data"].value;
@@ -25,8 +27,9 @@ console.log("submit");
 	}
 }
 
+
 function validateForm() {
-	var form_Value = false;
+	var form_Value = true;
 	//var id = document.forms["tasksform"]["id"].value;
 	var data = document.forms["taskform"]["data"].value;
 
@@ -37,11 +40,18 @@ function validateForm() {
         return false;
     }
 	*/
-		if (data == null || data == "") {
+		if (data == null || data == ""){
 				alert("Keine Daten vorhanden, Bitte Daten eingeben");
-		}else{
-			form_Value=true;
-			alert('Validierung erfolgreich');
+				form_Value=false;
+		}
+
+		if(data.length>"10"){
+			alert("Maximal 10 Zeichen erlaubt!");
+			form_Value=false;
+		}
+
+		if(form_Value){
+			alert("Validierung erfolgreich!")
 		}
 		return form_Value;
 }
