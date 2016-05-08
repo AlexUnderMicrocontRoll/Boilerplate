@@ -13,7 +13,7 @@ function taskrequest() {
         // try to parse response to json
         try {
             xhr2.response.setCharacterEncoding = "utf-8";
-            taskData = xhr2.response
+            taskData = xhr2.response;
             updateTaskTable();
 
         } catch (e) {
@@ -24,7 +24,7 @@ function taskrequest() {
 
     xhr2.send();
 
-};
+}
 
 function updateTaskTable() {
     var taskTable = document.querySelector('#task-overview-results');
@@ -40,4 +40,14 @@ function updateTaskTable() {
         row = taskTable.insertRow(i);
         row.innerHTML = "<td>" + taskData[i].id + "</td><td>" + taskData[i].type + "</td><td>" + taskData[i].data.input + "</td><td>" + taskData[i].data.output + "</td>";
     }
+
+}
+
+function scrollDown(){
+    var taskTable = document.querySelector('#task-overview');
+    window.scrollTo(0,taskTable.scrollHeight);
+}
+
+function scrollUp(){
+    window.scrollTo(0,0);
 }

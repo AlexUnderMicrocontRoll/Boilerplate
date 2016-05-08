@@ -46,6 +46,7 @@
     </section>
     <section id="tasks" class="content">
         <h2>Tasks</h2>
+        <div><button onClick="scrollDown();">click to scroll down</button></div>
         <table id="task-overview" onload="taskrequest()">
             <thead>
             <tr>
@@ -60,11 +61,12 @@
 
             </tbody>
         </table>
+        <div><button onClick="scrollUp();">click to scroll up</button></div>
 
-        <h3>Neuen Task erstellen</h3>
+        <h3 >Neuen Task erstellen</h3>
 
 
-        <form id="taskform" action="" method="" onsubmit="return">
+        <form id="taskform" action="" method="post" onsubmit="sendDataToServer()">
             ID: <input type="text" id="input_id" name="id"><br>
             Data: <input type="text" name="data">
 

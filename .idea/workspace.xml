@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="54bfa994-2963-4972-80cb-85f6ccb86d20" name="Default" comment="">
+    <list default="true" id="54bfa994-2963-4972-80cb-85f6ccb86d20" name="Default" comment="ok dürfte fertig sein. nach unten springen geht nach oben auch. versand per enter taste geht auch&#10;">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CNC/Interface/SendData.js" afterPath="$PROJECT_DIR$/CNC/Interface/SendData.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CNC/Interface/design/index.css" afterPath="$PROJECT_DIR$/CNC/Interface/design/index.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CNC/Interface/index.html" afterPath="$PROJECT_DIR$/CNC/Interface/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CNC/Interface/tasks.js" afterPath="$PROJECT_DIR$/CNC/Interface/tasks.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Boilerplate.iws" />
@@ -29,8 +31,8 @@
       <file leaf-file-name="index.css" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/CNC/Interface/design/index.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.073891625">
-              <caret line="40" column="18" selection-start-line="40" selection-start-column="18" selection-end-line="40" selection-end-column="18" />
+            <state vertical-scroll-proportion="0.33163264">
+              <caret line="106" column="4" selection-start-line="106" selection-start-column="4" selection-end-line="106" selection-end-column="4" />
               <folding />
             </state>
           </provider>
@@ -39,8 +41,8 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/CNC/Interface/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-6.25">
-              <caret line="47" column="22" selection-start-line="47" selection-start-column="22" selection-end-line="47" selection-end-column="22" />
+            <state vertical-scroll-proportion="-5.0833335">
+              <caret line="70" column="19" selection-start-line="70" selection-start-column="19" selection-end-line="70" selection-end-column="19" />
               <folding />
             </state>
           </provider>
@@ -50,7 +52,7 @@
         <entry file="file://$PROJECT_DIR$/CNC/Interface/tasks.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="39" column="37" selection-start-line="39" selection-start-column="37" selection-end-line="39" selection-end-column="37" />
+              <caret line="52" column="1" selection-start-line="52" selection-start-column="1" selection-end-line="52" selection-end-column="1" />
               <folding />
             </state>
           </provider>
@@ -59,8 +61,8 @@
       <file leaf-file-name="SendData.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/CNC/Interface/SendData.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="12" column="48" selection-start-line="12" selection-start-column="48" selection-end-line="12" selection-end-column="48" />
+            <state vertical-scroll-proportion="-9.62963">
+              <caret line="46" column="1" selection-start-line="46" selection-start-column="1" selection-end-line="46" selection-end-column="1" />
               <folding />
             </state>
           </provider>
@@ -70,7 +72,7 @@
         <entry file="file://$PROJECT_DIR$/CNC/Interface/cncRequest.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="59" column="50" selection-start-line="59" selection-start-column="25" selection-end-line="59" selection-end-column="50" />
+              <caret line="105" column="74" selection-start-line="105" selection-start-column="34" selection-end-line="105" selection-end-column="74" />
               <folding />
             </state>
           </provider>
@@ -112,12 +114,12 @@
         <option value="$PROJECT_DIR$/CNC/Interface/.gitkeep" />
         <option value="$PROJECT_DIR$/CNC/Interface/requests.js" />
         <option value="$PROJECT_DIR$/CNC/Interface/design/sort.js" />
-        <option value="$PROJECT_DIR$/CNC/Interface/SendData.js" />
         <option value="$PROJECT_DIR$/CNC/Interface/LoadTask.js" />
         <option value="$PROJECT_DIR$/CNC/Interface/cncRequest.js" />
         <option value="$PROJECT_DIR$/CNC/Interface/sort.js" />
-        <option value="$PROJECT_DIR$/CNC/Interface/tasks.js" />
         <option value="$PROJECT_DIR$/CNC/Interface/design/index.css" />
+        <option value="$PROJECT_DIR$/CNC/Interface/SendData.js" />
+        <option value="$PROJECT_DIR$/CNC/Interface/tasks.js" />
         <option value="$PROJECT_DIR$/CNC/Interface/index.html" />
       </list>
     </option>
@@ -135,7 +137,7 @@
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
     <option name="y" value="23" />
-    <option name="width" value="1228" />
+    <option name="width" value="1438" />
     <option name="height" value="755" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
@@ -597,21 +599,27 @@
       <option name="project" value="LOCAL" />
       <updated>1462654989524</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="iwas stimmt noch nicht. damit scroll nach unten realisiert wird">
+      <created>1462658760752</created>
+      <option name="number" value="00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1462658760752</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1228" height="755" extended-state="0" />
-    <editor active="true" />
+    <frame x="0" y="23" width="1438" height="755" extended-state="0" />
+    <editor active="false" />
     <layout>
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.34077382" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.34065935" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32886904" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32810047" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3583474" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.30444127" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.48194662" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
@@ -659,7 +667,9 @@
     <MESSAGE value="was weis ich was nicht wieder ging glaub bei refactor bug rein gerutsch. wieder OK!" />
     <MESSAGE value="task laden jetzt weiter sachen zu machen" />
     <MESSAGE value="zeilen umbruch bei html table der tasks da ca 400 einträge&#10;button zum springen nach unten nötig" />
-    <option name="LAST_COMMIT_MESSAGE" value="zeilen umbruch bei html table der tasks da ca 400 einträge&#10;button zum springen nach unten nötig" />
+    <MESSAGE value="iwas stimmt noch nicht. damit scroll nach unten realisiert wird" />
+    <MESSAGE value="ok dürfte fertig sein. nach unten springen geht nach oben auch. versand per enter taste geht auch&#10;" />
+    <option name="LAST_COMMIT_MESSAGE" value="ok dürfte fertig sein. nach unten springen geht nach oben auch. versand per enter taste geht auch&#10;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1021,14 +1031,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/CNC/Interface/SendData.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="12" column="48" selection-start-line="12" selection-start-column="48" selection-end-line="12" selection-end-column="48" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/CNC/Interface/sort.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1040,7 +1042,15 @@
     <entry file="file://$PROJECT_DIR$/CNC/Interface/cncRequest.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="59" column="50" selection-start-line="59" selection-start-column="25" selection-end-line="59" selection-end-column="50" />
+          <caret line="105" column="74" selection-start-line="105" selection-start-column="34" selection-end-line="105" selection-end-column="74" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CNC/Interface/SendData.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-9.62963">
+          <caret line="46" column="1" selection-start-line="46" selection-start-column="1" selection-end-line="46" selection-end-column="1" />
           <folding />
         </state>
       </provider>
@@ -1048,23 +1058,23 @@
     <entry file="file://$PROJECT_DIR$/CNC/Interface/tasks.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="39" column="37" selection-start-line="39" selection-start-column="37" selection-end-line="39" selection-end-column="37" />
+          <caret line="52" column="1" selection-start-line="52" selection-start-column="1" selection-end-line="52" selection-end-column="1" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/CNC/Interface/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.25">
-          <caret line="47" column="22" selection-start-line="47" selection-start-column="22" selection-end-line="47" selection-end-column="22" />
+        <state vertical-scroll-proportion="-5.0833335">
+          <caret line="70" column="19" selection-start-line="70" selection-start-column="19" selection-end-line="70" selection-end-column="19" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/CNC/Interface/design/index.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.073891625">
-          <caret line="40" column="18" selection-start-line="40" selection-start-column="18" selection-end-line="40" selection-end-column="18" />
+        <state vertical-scroll-proportion="0.33163264">
+          <caret line="106" column="4" selection-start-line="106" selection-start-column="4" selection-end-line="106" selection-end-column="4" />
           <folding />
         </state>
       </provider>

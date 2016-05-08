@@ -1,11 +1,11 @@
 //Formular validieren und senden an Server mit konfigurierten Header + token
 function sendDataToServer(){
-
+console.log("submit");
 	var result_Validate_Form = validateForm();
 
 	if(result_Validate_Form){
 				var id = document.forms["taskform"]["id"].value;
-				var type = document.forms["taskform"]["type"].value
+				var type = document.forms["taskform"]["type"].value;
 				var data = document.forms["taskform"]["data"].value;
 
 				var objekt = JSON.stringify({'type': type, data: {'input':  data, 'output': null}});
@@ -23,7 +23,7 @@ function sendDataToServer(){
 				xhr2.send(objekt);
 
 	}
-};
+}
 
 function validateForm() {
 	var form_Value = false;
@@ -44,4 +44,4 @@ function validateForm() {
 			alert('Validierung erfolgreich');
 		}
 		return form_Value;
-};
+}
