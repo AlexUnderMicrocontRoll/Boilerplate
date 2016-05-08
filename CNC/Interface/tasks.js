@@ -1,31 +1,27 @@
-//TaskTabelle laden, Request an Server
-var taskData;
-function taskrequest() {
+/**
+ * TaskTabelle laden, Request an Server
+ */
 
-    var xhr2 = new XMLHttpRequest();
 
-    xhr2.open('GET', 'http://botnet.artificial.engineering:8080/api/tasks', true);
-    xhr2.setRequestHeader('Token', '031b46cd62bda614fffd542e20346821');
-    xhr2.setRequestHeader('Content-Type', 'application/json');
-    xhr2.responseType = 'json';
+/**
+ * Get tasks data from server.
+ */
+function taskRequest() {
+    var xhr = cncXMLHttpRequest("GET", cncServerTasksURL);
+
     // onload event handler
-    xhr2.onload = function () {
-        // try to parse response to json
-        try {
-            xhr2.response.setCharacterEncoding = "utf-8";
-            taskData = xhr2.response;
-            updateTaskTable();
-
-        } catch (e) {
-            console.error(e);
-        }
-        console.log(taskData);
+    xhr.onload = function () {
+		xhr.response.setCharacterEncoding = "utf-8";
+		taskData = xhr.response;
+        updateTaskTable();
     };
 
-    xhr2.send();
-
+    xhr.send();
 }
 
+/**
+ * Fill the tasks table.
+ */
 function updateTaskTable() {
     var taskTable = document.querySelector('#task-overview-results');
     var row = null;
@@ -43,11 +39,99 @@ function updateTaskTable() {
 
 }
 
+/**
+ * Jump to the tasks page bottom.
+ */
 function scrollDown(){
     var taskTable = document.querySelector('#task-overview');
     window.scrollTo(0,taskTable.scrollHeight);
 }
 
+/**
+ * Jump to the tasks page top.
+ */
 function scrollUp(){
     window.scrollTo(0,0);
+}
+
+
+/**
+ * Delete a task on cnc.
+ * WARNING: defunc
+ */
+var taskDelete = function(taskId) {
+	console.log("task delete: id=" + taskId);
+	
+	var delData = {
+		id: taskId,
+		action: "delete"
+	};
+	
+	var xhr = cncXMLHttpRequest("POST", cncServerTasksURL);
+	
+	xhr.onload = function() {
+		xhr.response.setCharacterEncoding = "utf-8";
+		
+		if (this.status == 200) {
+            if (xhr.response.message === "OK") {
+                console.log("task delete: successfull");
+			}
+            else {
+				console.log("task delete: not successfull");
+			}
+        }
+	};
+	
+	console.log("task delete: sending " + JSON.stringify(delData));
+	
+	xhr2.send(JSON.stringify(delData));
+}
+
+
+/**
+ * 
+ * Submit a new task to cnc using form element parameters.
+ */
+var tasksSubmitNewTask = function() {
+	// get form values
+	var taskId = document.getElementById("input_id").value;
+	var taskData = document.getElementById("input_data").value;
+	var taskType = document.getElementById("input_type").value;
+	
+	// validate task data
+	if(taskData === "") {
+		alert("Data must be set");
+		
+		return
+	}
+	
+	
+	var postData = {
+		//id: parseInt(taskId),
+		type: taskType,
+		data: {
+			input: taskData,
+		}
+	};
+	
+	console.log("task submit: id=" + taskId + " data=" + taskData + " type=" + taskType);
+	
+	var xhr = cncXMLHttpRequest("POST", cncServerTasksURL);
+	
+	xhr.onload = function() {
+		xhr.response.setCharacterEncoding = "utf-8";
+		
+        if (this.status == 200) {
+            if (xhr.response.message === "OK") {
+                console.log("task submit: successfull");
+			}
+            else {
+				console.log("task submit: not successfull");
+			}
+        }
+    };
+
+	console.log("task submit: sending " + JSON.stringify(postData));
+	
+	xhr.send(JSON.stringify(postData));
 }
