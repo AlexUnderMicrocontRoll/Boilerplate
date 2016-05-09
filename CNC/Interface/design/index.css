@@ -1,18 +1,38 @@
+
+h2 {
+	font-size: 30px;
+	color: #34495e;
+}
+
 #sidemenu{
-    position:fixed;
+    position: fixed;
     left: 0;
-    right: auto;
-    width:150px;
-    background-color: lightgrey;
+    height: 100%;
+    width: 200px;
+    background-color: #34495e;
 }
 
-#main{
+main{
     position: absolute;
-    right: 0px;
-    width: 80%;
-    background-color: antiquewhite;
+	right: 0;
+	left: 200px;
+    width: auto;
+    margin: 0 20px 0 20px;
 }
 
+
+
+button {
+    background-color: #34495e;
+    border: none;
+    color: white;
+    padding: 5px 40px;
+    margin: 5px 0 5px 0;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    height: 100%;
+}
 
 section.content{
     position: absolute;
@@ -31,59 +51,91 @@ section.content:target{
     margin-top:0;
 }
 
-header{
- text-align: center;
+tr {
+    height: 30px;
+    width: 100%;
+    background-color: #3498db;
+
 }
 
-#status-overview, thead, tr{
-    border: 1px solid;
-    border-collapse: collapse;
-    width: 70%;
+table{
+    table-layout:fixed;
+    word-wrap:break-word;
+    width: 100%;
+
 }
 
-thead {
-    background-color: lightskyblue;
+#scrolldiv {
+	overflow-y: scroll;
+	overflow-x: hidden;
+	height: 400px;
+	width: 100%;
+}
+
+button:hover{
+    color:#2ecc71;
+}
+
+button{
+    height: 30px;
+}
+
+thead { display:table-header-group }
+
+th {
+	color: white;
+    background-color: #34495e;
     cursor: pointer;
     text-align: left;
 }
 
-tbody{
-    background-color: white;
-}
-
 tbody tr:hover{
-	background: lightskyblue;
-	color: black;
-	-moz-transition: all 0.1s ease;
-    -webkit-transition: all 0.1s ease;
-    -ms-transition: all 0.1s ease;
-    -o-transition: all 0.1s ease;
-    transition: all 0.1s ease;
+	color: white;
+	-moz-transition: all 0.5s ease-in;
+    -webkit-transition: all 0.5s ease-in;
+    -ms-transition: all 0.5s ease-in;
+    -o-transition: all 0.5s ease-in;
+    transition: all 0.5s ease-in;
 }
 
-#tr:nth-child(even) {
-    background-color: lightblue;
+th, td {
+    padding: 0 5px 0 5px;
 }
 
 
-#tr:nth-child(odd) {
-    background-color: white;
+a:link, a:visited {
+	font-size:18px;
+    background-color: #2980b9;
+    color: white;
+    padding: 14px 25px;
+    width: 130px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin: 0 0 0 20px;
+    right: 0;
 }
 
-a:hover{
-    color: green;
-}
-
-a:link {
-	color: darkgrey;
-	#text-decoration: none;
+a:hover, a:active {
+    color: black;
+    -moz-transition: all 0.5s ease-in;
+    -webkit-transition: all 0.5s ease-in;
+    -ms-transition: all 0.5s ease-in;
+    -o-transition: all 0.5s ease-in;
+    transition: all 0.5s ease-in;
 }
 
 body {
-  /*background-image: image("\picture\metal-gear-rising-revengeance-town-ruin-armor-art.jpg") no-repeat center center fixed ;*/
-background: url("http://1920x1080hdwallpapers.com/image/201510/games/2335/metal-gear-rising-revengeance-town-ruin-armor-art.jpg") no-repeat center center fixed ;
--webkit-background-size: cover;
--moz-background-size: cover;
--o-background-size: cover;
-background-size: cover;
+	background: #2ecc71;
+	margin: 0 0 0 0;
 }
+
+label {
+	font-size:14px;
+}
+
+input[type="radio"] {
+	float:left;
+}
+
+

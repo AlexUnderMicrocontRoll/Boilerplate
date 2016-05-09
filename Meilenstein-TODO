@@ -31,6 +31,11 @@ GET Integration (/api/Tasks)
 POST Integration (/api/Tasks)
 
 
+TODO Kein form sondern input laut Folien
+
+
+
+
 Interface
     Tasks "Formular"
     Input Elemente fuer ID, Type, data (input/output)
@@ -50,8 +55,10 @@ Tasks Tabelle
 
 
 Tasks Formular
-    Input Elemente fuer ID, Type und Data
-    Nutzung von JSON stringify
-    Anwendung des token Headers
-    Senden der Daten mit XHR Version 2
+    ok Input Elemente fuer ID, Type und Data
+    ok Nutzung von JSON stringify
+    ok Anwendung des token Headers
+    ok Senden der Daten mit XHR Version 2
+    todo Ergebnisse testen am Mittwoch
+    
 
