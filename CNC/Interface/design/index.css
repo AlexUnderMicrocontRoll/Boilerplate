@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 h2 {
 	font-size: 30px;
 	color: #34495e;
@@ -14,10 +14,10 @@ h2 {
 
 main{
     position: absolute;
-	right: 0px;
+	right: 0;
 	left: 200px;
     width: auto;
-    margin: 0px 20px 0px 20px;
+    margin: 0 20px 0 20px;
 }
 
 
@@ -55,14 +55,14 @@ tr {
     height: 30px;
     width: 100%;
     background-color: #3498db;
-    page-break-inside:avoid; page-break-after:auto;
+
 }
 
 table{
     table-layout:fixed;
     word-wrap:break-word;
     width: 100%;
-    page-break-inside:auto;
+
 }
 
 #scrolldiv {
@@ -99,7 +99,7 @@ tbody tr:hover{
 }
 
 th, td {
-    padding: 0px 5px 0px 5px;
+    padding: 0 5px 0 5px;
 }
 
 
@@ -125,8 +125,6 @@ a:hover, a:active {
     transition: all 0.5s ease-in;
 }
 
-
-
 body {
 	background: #2ecc71;
 	margin: 0 0 0 0;
@@ -139,11 +137,9 @@ label {
 input[type="radio"] {
 	float:left;
 }
-=======
 
 body {
 	color: #ffffff;
 	background: black;
 }
 
->>>>>>> 65293a0de3cdb17dc71fb5e87e8f703ce3353b57
