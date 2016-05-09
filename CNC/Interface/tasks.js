@@ -89,7 +89,6 @@ var taskDelete = function(taskId) {
 
 
 /**
- * 
  * Submit a new task to cnc using form element parameters.
  */
 var tasksSubmitNewTask = function() {
@@ -124,9 +123,11 @@ var tasksSubmitNewTask = function() {
         if (this.status == 200) {
             if (xhr.response.message === "OK") {
                 console.log("task submit: successfull");
+                alert("task submit: successfull");
 			}
             else {
 				console.log("task submit: not successfull");
+				alert("task submit: not successfull");
 			}
         }
     };

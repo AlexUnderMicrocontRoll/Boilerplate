@@ -1,5 +1,5 @@
 /**
- * TODO
+ * cnc connection handling.
  *
  * @author Alex, Sai, Tobi
  */
