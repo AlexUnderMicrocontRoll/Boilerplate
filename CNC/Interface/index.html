@@ -1,22 +1,95 @@
 <!DOCTYPE html>
+
 <html lang="de">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="description" content="cnc interface">
-    <meta name="keywords" content="Botnet, CNC, Interface">
-    <meta name="author" content="Team AlouScha">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="design/index.css">
-    <link rel="stylesheet" href="design/print.css" media="print">
-    <script src="tasks.js"></script>
-    <script src="status.js"></script>
-    <script src="sort.js"></script>
-    <script src="menu.js"></script>
-    <script src="cnc.js"></script>
-    <title>CNC Interface</title>
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="description" content="cnc interface">
+        <meta name="keywords" content="Botnet, CNC, Interface">
+        <meta name="author" content="Team AlouScha">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="design/index.css">
+        <link rel="stylesheet" href="design/print.css" media="print">
+        <script src="tasks.js"></script>
+        <script src="status.js"></script>
+        <script src="sort.js"></script>
+        <script src="menu.js"></script>
+        <script src="cnc.js"></script>
+        <title>CNC Interface</title>
+    </head>
 
+    <body onload="cncServerRequest(); menuGotoStatus(); enablePeriodicCNCRequest();">
+    <aside id="sidemenu">
+        <p><a id="menu_status" href="#status" onclick="enablePeriodicCNCRequest(); menuActiveStatusEntry();">Status</a></p>
+
+        <p><a id="menu_tasks" href="#tasks" onclick="disablePeriodicCNCRequest(); menuActiveTasksEntry();">Tasks</a></p>
+    </aside>
+
+    <main>
+        <!-- botnet status table section -->
+        <section id="status" class="content">
+            <h2>Botnet status interface (BSI)</h2>
+            <table id="status-overview">
+                <thead>
+                <tr>
+                    <th id="id" onclick="setSorting('id')">Auftrag ID ↕</th>
+                    <th id="ip" onclick="setSorting('ip')">IP ↕</th>
+                    <th id="workload" onclick="setSorting('workload')">Workload ↕</th>
+                    <th id="task" onclick="setSorting('task')">Task ↕</th>
+                    <th id="action">Action</th>
+                </tr>
+                </thead>
+                <tbody id="status-overview-results">
+                </tbody>
+            </table>
+            <button onclick="cncServerRequest();">🔃 Reload</button>
+        </section>
+
+        <!-- botnet tasks section -->
+        <section id="tasks" class="content">
+            <h2>Tasks</h2>
+
+            <div id="scrolldiv">
+                <table id="task-overview" onload="taskRequest()">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Type</th>
+                        <th>Input</th>
+                        <th>Output</th>
+                    </tr>
+                    </thead>
+                    <tbody id="task-overview-results">
+                    </tbody>
+                </table>
+            </div>
+            <button onclick="taskRequest();">🔃 Reload</button>
+
+            <!-- create new task -->
+            <h2>Neuen Task erstellen</h2>
+
+            <form id="taskform">
+                <p>ID (optional): <input type="number" id="input_id" name="id" placeholder="Enter a ID (optional)"></p>
+
+                <p>Data: <input type="text" id="input_data" name="data" required placeholder="Enter your data"></p>
+
+                <p>Type:
+                    <select id="input_type">
+                        <option value="hash-md5">MD5-Hash</option>
+                        <option value="hash-sha256">SHA256-Hash</option>
+                        <option value="crack-md5">MD5-Crack</option>
+                    </select>
+                </p>
+
+                <button type="reset">&#x2612; Formular zurücksetzen</button>
+                <button type="button" onclick="tasksSubmitNewTask()">&#x2611; Task starten</button>
+            </form>
+        </section>
+    </main>
+
+    </body>
+
+<<<<<<< HEAD
 <body onload="cncServerRequest(); menuGotoStatus(); enablePeriodicCNCRequest();">
 	<aside id="sidemenu">
 		<p><a id="menu_status" href="#status" onclick="enablePeriodicCNCRequest(); menuActiveStatusEntry();">Status</a></p>
@@ -84,3 +157,6 @@
 	</main>
 </body>
 </html>
+=======
+</html>
+>>>>>>> 070ad49fd87f554a37c16995e5e420684c19cf29
