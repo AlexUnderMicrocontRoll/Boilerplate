@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 h2 {
 	font-size: 30px;
 	color: #34495e;
@@ -138,3 +139,11 @@ label {
 input[type="radio"] {
 	float:left;
 }
+=======
+
+body {
+	color: #ffffff;
+	background: black;
+}
+
+>>>>>>> 65293a0de3cdb17dc71fb5e87e8f703ce3353b57

@@ -2,6 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="54bfa994-2963-4972-80cb-85f6ccb86d20" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/CNC/Server/README.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CNC/Interface/design/index.css" afterPath="$PROJECT_DIR$/CNC/Interface/design/index.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CNC/Interface/index.html" afterPath="$PROJECT_DIR$/CNC/Interface/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CNC/Server/package.json" afterPath="$PROJECT_DIR$/CNC/Server/package.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Boilerplate.iws" />
@@ -24,20 +29,20 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="index.css" pinned="false" current-in-tab="true">
+      <file leaf-file-name="index.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/CNC/Interface/design/index.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="1.2671233">
-              <caret line="71" column="0" selection-start-line="71" selection-start-column="0" selection-end-line="71" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="72" column="0" selection-start-line="72" selection-start-column="0" selection-end-line="72" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/CNC/Interface/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-9.625">
+            <state vertical-scroll-proportion="0.557971">
               <caret line="48" column="12" selection-start-line="48" selection-start-column="12" selection-end-line="48" selection-end-column="12" />
               <folding />
             </state>
@@ -87,9 +92,9 @@
         <option value="$PROJECT_DIR$/CNC/Interface/cncRequest.js" />
         <option value="$PROJECT_DIR$/CNC/Interface/sort.js" />
         <option value="$PROJECT_DIR$/CNC/Interface/SendData.js" />
-        <option value="$PROJECT_DIR$/CNC/Interface/index.html" />
         <option value="$PROJECT_DIR$/CNC/Interface/tasks.js" />
         <option value="$PROJECT_DIR$/CNC/Interface/design/index.css" />
+        <option value="$PROJECT_DIR$/CNC/Interface/index.html" />
       </list>
     </option>
   </component>
@@ -604,7 +609,13 @@
       <option name="project" value="LOCAL" />
       <updated>1462727596004</updated>
     </task>
-    <option name="localTasksCounter" value="38" />
+    <task id="LOCAL-00038" summary="test">
+      <created>1462797117605</created>
+      <option name="number" value="00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1462797117605</updated>
+    </task>
+    <option name="localTasksCounter" value="39" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -644,7 +655,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Einfache Site added&#10;index.csss added&#10;print.css added&#10;" />
     <MESSAGE value="index.html erweitert&#10;main,section, menu&#10;" />
     <MESSAGE value="Status tabelle erstellt, Interface&#10;" />
     <MESSAGE value="requests.js" />
@@ -669,7 +679,8 @@
     <MESSAGE value="senden mit enter geht doch iwie nicht.bitte checken" />
     <MESSAGE value="asdsd" />
     <MESSAGE value="button OK" />
-    <option name="LAST_COMMIT_MESSAGE" value="button OK" />
+    <MESSAGE value="test" />
+    <option name="LAST_COMMIT_MESSAGE" value="test" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1042,18 +1053,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/CNC/Interface/index.html">
+    <entry file="file://$PROJECT_DIR$/CNC/Interface/design/index.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-9.625">
-          <caret line="48" column="12" selection-start-line="48" selection-start-column="12" selection-end-line="48" selection-end-column="12" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="72" column="0" selection-start-line="72" selection-start-column="0" selection-end-line="72" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/CNC/Interface/design/index.css">
+    <entry file="file://$PROJECT_DIR$/CNC/Interface/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.2671233">
-          <caret line="71" column="0" selection-start-line="71" selection-start-column="0" selection-end-line="71" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.557971">
+          <caret line="48" column="12" selection-start-line="48" selection-start-column="12" selection-end-line="48" selection-end-column="12" />
           <folding />
         </state>
       </provider>
