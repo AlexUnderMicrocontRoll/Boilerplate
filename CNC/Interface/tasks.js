@@ -40,22 +40,6 @@ function updateTaskTable() {
 }
 
 /**
- * Jump to the tasks page bottom.
- */
-function scrollDown(){
-    var taskTable = document.querySelector('#task-overview');
-    window.scrollTo(0,taskTable.scrollHeight);
-}
-
-/**
- * Jump to the tasks page top.
- */
-function scrollUp(){
-    window.scrollTo(0,0);
-}
-
-
-/**
  * Delete a task on cnc.
  * WARNING: defunc
  */
