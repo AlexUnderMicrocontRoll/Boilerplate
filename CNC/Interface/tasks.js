@@ -84,7 +84,7 @@ var taskDelete = function(taskId) {
 	
 	console.log("task delete: sending " + JSON.stringify(delData));
 	
-	xhr2.send(JSON.stringify(delData));
+	xhr.send(JSON.stringify(delData));
 }
 
 
