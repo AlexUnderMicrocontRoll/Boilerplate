@@ -2,10 +2,43 @@ var express = require('express');
 var app = express();
 var parser = require('body-parser');
 var cors = require('cors');
+var fs = require("fs");
 
 app.use(cors());
 app.use(parser.urlencoded({extended: true}));
 app.use(parser.json());
+
+// status array
+var status;
+
+// tasks array
+var tasks;
+
+var statusRead = function(err, data) {
+	if (err) throw err;
+	
+	console.log("statusRead: " + data);
+	
+	status = JSON.parse(data);
+};
+
+
+var tasksRead = function(err, data) {
+	if (err) throw err;
+	
+	console.log("tasksRead: " + data);
+	
+	tasks = JSON.parse(data);
+};
+
+
+
+
+
+
+
+
+
 
 app.post('/Tasks/:id', (req, res) => {
 	console.log('Received data', req.body);
@@ -20,7 +53,11 @@ app.get('/', (req, res) => {
 
 // api tasks array 
 app.get('/api/Tasks', (req, res) => {
-	res.send('No task id given');
+	//res.send('No task id given');
+	
+	fs.readFile('tasks.json', tasksRead);
+	res.json(tasks);
+	res.send();
 });
 
 app.get('/api/Tasks/:id', (req, res) => {
@@ -29,7 +66,11 @@ app.get('/api/Tasks/:id', (req, res) => {
 
 // api status
 app.get('/api/Status', (req, res) => {
-	res.send('status list');
+	fs.readFile('status.json', statusRead);
+	
+	res.json(status);
+	
+	res.send();
 });
 
 app.get('/api/Status/:id', (req, res) => {
@@ -47,6 +88,7 @@ app.post('/Tasks/:id', (req, res) => {
 app.use(function(err, req, res, next) {
 	res.json({message: 'NOT OK'});
 });
+
 
 app.listen(3000);
 
