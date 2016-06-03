@@ -14,79 +14,79 @@ var status;
 // tasks array
 var tasks;
 
-var statusRead = function(err, data) {
-	if (err) throw err;
-	
-	console.log("statusRead: " + data);
-	
-	status = JSON.parse(data);
-};
+var statusRead = function (err, data) {
+    if (err) throw err;
 
+    console.log("statusRead: " + data);
 
-var tasksRead = function(err, data) {
-	if (err) throw err;
-	
-	console.log("tasksRead: " + data);
-	
-	tasks = JSON.parse(data);
+    status = JSON.parse(data);
 };
 
 
 
+var tasksRead = function (err, data) {
+    if (err) throw err;
 
+    console.log("tasksRead: " + data);
 
-
-
-
-
+    tasks = JSON.parse(data);
+};
+var findById = function () {
+    return fruit.name === 'cherries';
+}
 
 app.post('/Tasks/:id', (req, res) => {
-	console.log('Received data', req.body);
-	res.json({message: 'UPDATE Task ' + req.params.id});
+    console.log('Received data', req.body);
+    res.json({message: 'UPDATE Task ' + req.params.id});
 });
 
 
 // botnet page
 app.get('/', (req, res) => {
-	res.send('Hello World!');
+    res.send('Hello World!');
 });
 
 // api tasks array 
 app.get('/api/Tasks', (req, res) => {
-	//res.send('No task id given');
-	
-	fs.readFile('tasks.json', tasksRead);
-	res.json(tasks);
-	res.send();
+    //res.send('No task id given');
+
+    fs.readFile('tasks.json', tasksRead);
+    res.json(tasks);
+    res.send();
 });
 
 app.get('/api/Tasks/:id', (req, res) => {
-	res.send('Task id was: ' + req.params.id);
+    res.send('Task id was: ' + req.params.id);
 });
 
 // api status
 app.get('/api/Status', (req, res) => {
-	fs.readFile('status.json', statusRead);
-	
-	res.json(status);
-	
-	res.send();
+    fs.readFile('status.json', statusRead);
+
+    res.json(status);
+
+    res.send();
 });
 
 app.get('/api/Status/:id', (req, res) => {
-	res.send('Task id was: ' + req.params.id);
+    fs.readFile('status.json', statusRead);
+    var statusById = status.filter( (status)=> (status.id == req.params.id)? true :false );
+    res.send(statusById)
 });
 
+app.post('/api/Status/:id', (req, res) => {
+    res.send('Status id was: ' + req.params.id);
+});
 
 
 app.post('/Tasks/:id', (req, res) => {
-	console.log('Received data', req.body);
-	res.json({message: 'UPDATE Task ' + req.params.id});
+    console.log('Received data', req.body);
+    res.json({message: 'UPDATE Task ' + req.params.id});
 });
 
 // error handling
-app.use(function(err, req, res, next) {
-	res.json({message: 'NOT OK'});
+app.use(function (err, req, res, next) {
+    res.json({message: 'NOT OK'});
 });
 
 
