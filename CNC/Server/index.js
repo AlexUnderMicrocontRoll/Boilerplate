@@ -70,8 +70,7 @@ app.get('/api/Status', (req, res) => {
 
 app.get('/api/Status/:id', (req, res) => {
     fs.readFile('status.json', statusRead);
-    var statusById = status.filter( (status)=> (status.id == req.params.id)? true :false );
-    res.send(statusById)
+    res.send( status.filter((status) => (status.id == req.params.id)? true :false ))
 });
 
 app.post('/api/Status/:id', (req, res) => {
