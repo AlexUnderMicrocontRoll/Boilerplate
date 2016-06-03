@@ -31,9 +31,7 @@ var tasksRead = function (err, data) {
 
     tasks = JSON.parse(data);
 };
-var findById = function () {
-    return fruit.name === 'cherries';
-}
+
 
 app.post('/Tasks/:id', (req, res) => {
     console.log('Received data', req.body);
