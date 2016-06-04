@@ -8,28 +8,31 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }) );
 
-
-
 // status array
 var status;
 
 // tasks array
 var tasks;
 
+var respondOKLike = (res)=> {
+    res.status = 200;
+    console.log(res);
+    res.json({message:'OK'});
+};
+
+var respond_NOTOK_Like = (res)=> {
+    res.status = 400;
+    console.log(res);
+    res.json({message:'NOT OK'});
+}
+
 var statusRead = function (err, data) {
     if (err) throw err;
-
-    console.log("statusRead: " + data);
     status = JSON.parse(data);
 };
 
-
-
 var tasksRead = function (err, data) {
     if (err) throw err;
-
-    console.log("tasksRead: " + data);
-
     tasks = JSON.parse(data);
 };
 
@@ -46,7 +49,17 @@ var updateStatus = (reqId)=> {
         }
     });
     return JSON.stringify(status);
-}
+};
+
+var getMaxId = (status)=>{
+    var maxId=0;
+    status.forEach((item)=>{
+        if (maxId < item.id){
+            maxId = item.id;
+        }
+    });
+    return maxId;
+};
 
 
 app.post('/Tasks/:id', (req, res) => {
@@ -82,7 +95,6 @@ app.post('/Tasks/:id', (req, res) => {
 app.get('/api/Status', (req, res) => {
     fs.readFile('status.json', statusRead);
     res.json(status);
-    res.send();
 });
 
 app.get('/api/Status/:id', (req, res) => {
@@ -91,15 +103,12 @@ app.get('/api/Status/:id', (req, res) => {
 
 app.post('/api/Status', (req, res) => {
     fs.writeFile('status.json',updateStatus(req.body.id));
-    res.json({message: 'UPDATE Task ' + req.body.id});
+    respondOKLike(res);
 });
-
-
-
 
 // error handling
 app.use(function (err, req, res, next) {
-    res.json({message: 'NOT OK'});
+    respond_NOTOK_Like(res);
 });
 
 
