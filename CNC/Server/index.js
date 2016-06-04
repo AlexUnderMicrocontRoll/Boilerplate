@@ -34,7 +34,6 @@ var tasksRead = function (err, data) {
 };
 
 var searchById = (reqId)=> {
-    console.log("searchbyID");
     fs.readFile('status.json', statusRead);
     return status.filter((stat) => (stat.id == reqId)? true :false )
 };
@@ -47,10 +46,7 @@ var modifyStatus = (toModifyItem)=>{
 
 var updateStatus = (reqId)=> {
     fs.readFile('status.json', statusRead);
-    console.log("updateStatus");
     status.forEach((item)=> {
-        console.log("test");
-        console.log(item);
         if (item.id == reqId) {
             item.workload = item.workload ? 0 : 1 ;
         }
@@ -83,12 +79,15 @@ app.get('/api/Tasks/:id', (req, res) => {
     res.send('get Task id was: ' + req.params.id);
 });
 
+app.post('/Tasks/:id', (req, res) => {
+    console.log('Received data', req.body);
+    res.json({message: 'UPDATE Task ' + req.params.id});
+});
+
 // api status
 app.get('/api/Status', (req, res) => {
     fs.readFile('status.json', statusRead);
-
     res.json(status);
-
     res.send();
 });
 
@@ -102,10 +101,7 @@ app.post('/api/Status', (req, res) => {
 });
 
 
-app.post('/Tasks/:id', (req, res) => {
-    console.log('Received data', req.body);
-    res.json({message: 'UPDATE Task ' + req.params.id});
-});
+
 
 // error handling
 app.use(function (err, req, res, next) {
