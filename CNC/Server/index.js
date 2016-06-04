@@ -38,12 +38,6 @@ var searchById = (reqId)=> {
     return status.filter((stat) => (stat.id == reqId)? true :false )
 };
 
-var modifyStatus = (toModifyItem)=>{
-    modifiedItem = toModifyItem[0]
-    modifiedItem.workload = toModifyItem[0].workload ? 0 : 1 ;
-    return modifiedItem
-};
-
 var updateStatus = (reqId)=> {
     fs.readFile('status.json', statusRead);
     status.forEach((item)=> {
