@@ -1,12 +1,14 @@
 var express = require('express');
 var app = express();
-var parser = require('body-parser');
+var bodyParser = require('body-parser');
 var cors = require('cors');
 var fs = require("fs");
 
 app.use(cors());
-app.use(parser.urlencoded({extended: true}));
-app.use(parser.json());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }) );
+
+
 
 // status array
 var status;
@@ -18,7 +20,6 @@ var statusRead = function (err, data) {
     if (err) throw err;
 
     console.log("statusRead: " + data);
-
     status = JSON.parse(data);
 };
 
@@ -31,6 +32,31 @@ var tasksRead = function (err, data) {
 
     tasks = JSON.parse(data);
 };
+
+var searchById = (reqId)=> {
+    console.log("searchbyID");
+    fs.readFile('status.json', statusRead);
+    return status.filter((stat) => (stat.id == reqId)? true :false )
+};
+
+var modifyStatus = (toModifyItem)=>{
+    modifiedItem = toModifyItem[0]
+    modifiedItem.workload = toModifyItem[0].workload ? 0 : 1 ;
+    return modifiedItem
+};
+
+var updateStatus = (reqId)=> {
+    fs.readFile('status.json', statusRead);
+    console.log("updateStatus");
+    status.forEach((item)=> {
+        console.log("test");
+        console.log(item);
+        if (item.id == reqId) {
+            item.workload = item.workload ? 0 : 1 ;
+        }
+    });
+    return JSON.stringify(status);
+}
 
 
 app.post('/Tasks/:id', (req, res) => {
@@ -54,7 +80,7 @@ app.get('/api/Tasks', (req, res) => {
 });
 
 app.get('/api/Tasks/:id', (req, res) => {
-    res.send('Task id was: ' + req.params.id);
+    res.send('get Task id was: ' + req.params.id);
 });
 
 // api status
@@ -67,12 +93,12 @@ app.get('/api/Status', (req, res) => {
 });
 
 app.get('/api/Status/:id', (req, res) => {
-    fs.readFile('status.json', statusRead);
-    res.send( status.filter((status) => (status.id == req.params.id)? true :false ))
+    res.send(searchById(req.params.id) );
 });
 
-app.post('/api/Status/:id', (req, res) => {
-    res.send('Status id was: ' + req.params.id);
+app.post('/api/Status', (req, res) => {
+    fs.writeFile('status.json',updateStatus(req.body.id));
+    res.json({message: 'UPDATE Task ' + req.body.id});
 });
 
 
