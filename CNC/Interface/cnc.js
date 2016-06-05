@@ -3,7 +3,7 @@
  *
  * @author Alex, Sai, Tobi
  */
- 
+
  // cnc server URI
 var cncServer = "http://botnet.artificial.engineering:8080/api";
 var cncServerStatusURL = cncServer + "/Status";
@@ -29,7 +29,7 @@ var token =  '031b46cd62bda614fffd542e20346821';
 var cncXMLHttpRequest = function(httpMethod, cncURL) {
 	var xhr = new XMLHttpRequest();
     xhr.open(httpMethod, cncURL, true);
-    
+
 	xhr.setRequestHeader('Token', token);
 	xhr.setRequestHeader('Content-Type','application/json');
 	xhr.responseType = 'json';
@@ -77,11 +77,11 @@ var cncServerRequest = function() {
     xhr.onload = function() {
 		xhr.response.setCharacterEncoding = "utf-8";
 		botnetData = xhr.response;
-	
+
         sortBotnetData();
         updateStatusTable();
         console.log("cnc server bot list reloaded");
     };
-    
+
 	xhr.send();
 };

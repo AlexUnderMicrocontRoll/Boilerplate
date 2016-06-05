@@ -2,7 +2,6 @@
  * TaskTabelle laden, Request an Server
  */
 
-
 /**
  * Get tasks data from server.
  */
@@ -45,17 +44,17 @@ function updateTaskTable() {
  */
 var taskDelete = function(taskId) {
 	console.log("task delete: id=" + taskId);
-	
+
 	var delData = {
 		id: taskId,
 		action: "delete"
 	};
-	
+
 	var xhr = cncXMLHttpRequest("POST", cncServerTasksURL);
-	
+
 	xhr.onload = function() {
 		xhr.response.setCharacterEncoding = "utf-8";
-		
+
 		if (this.status == 200) {
             if (xhr.response.message === "OK") {
                 console.log("task delete: successfull");
@@ -65,9 +64,9 @@ var taskDelete = function(taskId) {
 			}
         }
 	};
-	
+
 	console.log("task delete: sending " + JSON.stringify(delData));
-	
+
 	xhr.send(JSON.stringify(delData));
 }
 
@@ -80,15 +79,15 @@ var tasksSubmitNewTask = function() {
 	var taskId = document.getElementById("input_id").value;
 	var taskData = document.getElementById("input_data").value;
 	var taskType = document.getElementById("input_type").value;
-	
+
 	// validate task data
 	if(taskData === "") {
 		alert("Data must be set");
-		
+
 		return
 	}
-	
-	
+
+
 	var postData = {
 		//id: parseInt(taskId),
 		type: taskType,
@@ -96,14 +95,14 @@ var tasksSubmitNewTask = function() {
 			input: taskData,
 		}
 	};
-	
+
 	console.log("task submit: id=" + taskId + " data=" + taskData + " type=" + taskType);
-	
+
 	var xhr = cncXMLHttpRequest("POST", cncServerTasksURL);
-	
+
 	xhr.onload = function() {
 		xhr.response.setCharacterEncoding = "utf-8";
-		
+
         if (this.status == 200) {
             if (xhr.response.message === "OK") {
                 console.log("task submit: successfull");
@@ -117,6 +116,6 @@ var tasksSubmitNewTask = function() {
     };
 
 	console.log("task submit: sending " + JSON.stringify(postData));
-	
+
 	xhr.send(JSON.stringify(postData));
 }

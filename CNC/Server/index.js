@@ -3,16 +3,38 @@ var app = express();
 var bodyParser = require('body-parser');
 var cors = require('cors');
 var fs = require("fs");
+var token = '031b46cd62bda614fffd542e20346821';
 
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }) );
+
+
+
 
 // status array
 var status;
 
 // tasks array
 var tasks;
+
+//check Request-Header
+var validateRequestHeader = (req)=>{
+  var validateHeader = false;
+  if(JSON.stringify(req.headers['Token'])== token){
+    if(JSON.stringify(req.headers['Content-Type'])=='application/json'){
+      validateHeader=true;
+      return validateHeader;
+    }
+  }
+  return validateHeader;
+};
+
+//set Response-Header
+var setResponseHeader = (res)=>{
+res.set('Content-Type', 'application/json; charset=utf-8');
+res.set('Token', '031b46cd62bda614fffd542e20346821');
+};
 
 var respondOKLike = (res)=> {
     res.status = 200;
@@ -67,13 +89,7 @@ app.post('/Tasks/:id', (req, res) => {
     res.json({message: 'UPDATE Task ' + req.params.id});
 });
 
-
-// botnet page
-app.get('/', (req, res) => {
-    res.send('Hello World!');
-});
-
-// api tasks array 
+// api tasks array
 app.get('/api/Tasks', (req, res) => {
     //res.send('No task id given');
 
@@ -113,4 +129,3 @@ app.use(function (err, req, res, next) {
 
 
 app.listen(3000);
-
