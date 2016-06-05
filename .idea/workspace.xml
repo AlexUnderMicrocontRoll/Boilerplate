@@ -29,8 +29,18 @@
       <file leaf-file-name="index.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/CNC/Server/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6094808">
-              <caret line="31" column="16" selection-start-line="31" selection-start-column="16" selection-end-line="31" selection-end-column="16" />
+            <state vertical-scroll-proportion="0.4401806">
+              <caret line="72" column="60" selection-start-line="72" selection-start-column="60" selection-end-line="72" selection-end-column="60" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="status.json" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/CNC/Server/status.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="1.875">
+              <caret line="0" column="4" selection-start-line="0" selection-start-column="4" selection-end-line="0" selection-end-column="4" />
               <folding />
             </state>
           </provider>
@@ -672,7 +682,13 @@
       <option name="project" value="LOCAL" />
       <updated>1465054187585</updated>
     </task>
-    <option name="localTasksCounter" value="49" />
+    <task id="LOCAL-00049" summary="validate token und content type&#10;">
+      <created>1465158426681</created>
+      <option name="number" value="00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1465158426681</updated>
+    </task>
+    <option name="localTasksCounter" value="50" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -733,7 +749,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="clearTable() add:  damit der status keine redundanten einträge beim mehrmaligen laden hat" />
     <MESSAGE value="some strange things" />
     <MESSAGE value="eine kürzere version der vorherigen sortierens gemacht. die alte version ist noch drin jedoch auskommentiert. betroffen: index.html, cncRequest.js" />
     <MESSAGE value="noch eine methode entfernt. sortierung kommt mit ca 3 functionen aus" />
@@ -758,7 +773,8 @@
     <MESSAGE value="api Status  GET sowie POST fertig soll noch DELETE gemacht werden?" />
     <MESSAGE value="api Status  GET sowie POST fertig soll noch DELETE gemacht werden?&#10;&#10;cleaned" />
     <MESSAGE value="respondOkLike()" />
-    <option name="LAST_COMMIT_MESSAGE" value="respondOkLike()" />
+    <MESSAGE value="validate token und content type&#10;" />
+    <option name="LAST_COMMIT_MESSAGE" value="validate token und content type&#10;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1182,14 +1198,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/CNC/Server/status.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.25">
-          <caret line="2" column="6" selection-start-line="2" selection-start-column="6" selection-end-line="2" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/CNC/Interface/design/index.css">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1198,10 +1206,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/CNC/Server/status.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.875">
+          <caret line="0" column="4" selection-start-line="0" selection-start-column="4" selection-end-line="0" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/CNC/Server/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6094808">
-          <caret line="31" column="16" selection-start-line="31" selection-start-column="16" selection-end-line="31" selection-end-column="16" />
+        <state vertical-scroll-proportion="0.4401806">
+          <caret line="72" column="60" selection-start-line="72" selection-start-column="60" selection-end-line="72" selection-end-column="60" />
           <folding />
         </state>
       </provider>

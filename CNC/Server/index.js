@@ -40,14 +40,12 @@ var setResponseHeader = (res)=> {
 
 var respondOKLike = (res)=> {
     res.status = 200;
-    console.log(res);
-    res.json({message: 'OK'});
+    res.json({"message": "OK"});
 };
 
 var respond_NOTOK_Like = (res)=> {
     res.status = 400;
-    console.log(res);
-    res.json({message: 'NOT OK'});
+    res.json({"message": "NOT OK"});
 }
 
 var statusRead = function (err, data) {
@@ -63,12 +61,20 @@ var searchStatusByID = (reqId)=> {
 
 var updateStatus = (reqId)=> {
     fs.readFile('status.json', statusRead);
+    var foundFlag = false;
     status.forEach((item)=> {
         if (item.id == reqId) {
+            foundFlag = true;
             item.workload = item.workload ? 0 : 1;
         }
     });
-    return JSON.stringify(status);
+
+    if (foundFlag){
+        fs.writeFile('status.json', JSON.stringify(status));
+        return true;
+    }else{
+        return false;
+    }
 };
 
 var tasksRead = function (err, data) {
@@ -83,12 +89,22 @@ var searchTasksByID = (reqId) => {
 
 var updateTask = (reqId) => {
     fs.readFile('status.json', tasksRead);
+    var foundFlag = false;
     status.forEach((item)=> {
         if (item.id == reqId) {
+            foundFlag = true;
             item.workload = item.workload ? 0 : 1;
+            console.log("FOUND");
         }
     });
-    return JSON.stringify(status);
+
+    if (foundFlag){
+        fs.writeFile('status.json', JSON.stringify(status));
+        console.log("WRITTEN");
+        return true;
+    }else{
+        return false;
+    }
 };
 
 
@@ -122,12 +138,16 @@ app.get('/api/Status', (req, res) => {
 });
 
 app.get('/api/Status/:id', (req, res) => {
-    res.send(searchStatusByID(req.params.id));
+    foundItem = searchStatusByID(req.params.id);
+    res.send(foundItem.length < 1 ? respond_NOTOK_Like(res) : foundItem );
 });
 
 app.post('/api/Status', (req, res) => {
-    fs.writeFile('status.json', updateStatus(req.body.id));
-    respondOKLike(res);
+    if (updateStatus(req.body.id)){
+        respondOKLike(res);
+    }else{
+        respond_NOTOK_Like(res);
+    }
 });
 
 // error handling
