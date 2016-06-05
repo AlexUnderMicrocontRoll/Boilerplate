@@ -5,11 +5,15 @@ var cors = require('cors');
 var fs = require("fs");
 var token = '031b46cd62bda614fffd542e20346821';
 
+app.use((req, res, next) => {
+    if (validateRequestHeader(req)) {
+        return next();
+    }
+    res.status(403).end("invalid token");
+});
 app.use(cors());
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }) );
-
-
+app.use(bodyParser.urlencoded({extended: true}));
 
 
 // status array
@@ -19,33 +23,31 @@ var status;
 var tasks;
 
 //check Request-Header
-var validateRequestHeader = (req)=>{
-  var validateHeader = false;
-  if(JSON.stringify(req.headers['Token'])== token){
-    if(JSON.stringify(req.headers['Content-Type'])=='application/json'){
-      validateHeader=true;
-      return validateHeader;
+var validateRequestHeader = (req)=> {
+    if (req.get('Token') == token) {
+        if (req.get('Content-Type') == 'application/json') {
+            return true;
+        }
     }
-  }
-  return validateHeader;
+    return false;
 };
 
 //set Response-Header
-var setResponseHeader = (res)=>{
-res.set('Content-Type', 'application/json; charset=utf-8');
-res.set('Token', '031b46cd62bda614fffd542e20346821');
+var setResponseHeader = (res)=> {
+    res.set('Content-Type', 'application/json; charset=utf-8');
+    res.set('Token', '031b46cd62bda614fffd542e20346821');
 };
 
 var respondOKLike = (res)=> {
     res.status = 200;
     console.log(res);
-    res.json({message:'OK'});
+    res.json({message: 'OK'});
 };
 
 var respond_NOTOK_Like = (res)=> {
     res.status = 400;
     console.log(res);
-    res.json({message:'NOT OK'});
+    res.json({message: 'NOT OK'});
 }
 
 var statusRead = function (err, data) {
@@ -53,34 +55,40 @@ var statusRead = function (err, data) {
     status = JSON.parse(data);
 };
 
-var tasksRead = function (err, data) {
-    if (err) throw err;
-    tasks = JSON.parse(data);
+var searchStatusByID = (reqId)=> {
+    fs.readFile('status.json', statusRead);
+    return status.filter((stat) => (stat.id == reqId) ? true : false)
 };
 
-var searchById = (reqId)=> {
-    fs.readFile('status.json', statusRead);
-    return status.filter((stat) => (stat.id == reqId)? true :false )
-};
 
 var updateStatus = (reqId)=> {
     fs.readFile('status.json', statusRead);
     status.forEach((item)=> {
         if (item.id == reqId) {
-            item.workload = item.workload ? 0 : 1 ;
+            item.workload = item.workload ? 0 : 1;
         }
     });
     return JSON.stringify(status);
 };
 
-var getMaxId = (status)=>{
-    var maxId=0;
-    status.forEach((item)=>{
-        if (maxId < item.id){
-            maxId = item.id;
+var tasksRead = function (err, data) {
+    if (err) throw err;
+    tasks = JSON.parse(data);
+};
+
+var searchTasksByID = (reqId) => {
+    fs.readFile('tasks.json', statusRead);
+    return status.filter((task) => (task.id == reqId) ? true : false)
+};
+
+var updateTask = (reqId) => {
+    fs.readFile('status.json', tasksRead);
+    status.forEach((item)=> {
+        if (item.id == reqId) {
+            item.workload = item.workload ? 0 : 1;
         }
     });
-    return maxId;
+    return JSON.stringify(status);
 };
 
 
@@ -114,11 +122,11 @@ app.get('/api/Status', (req, res) => {
 });
 
 app.get('/api/Status/:id', (req, res) => {
-    res.send(searchById(req.params.id) );
+    res.send(searchStatusByID(req.params.id));
 });
 
 app.post('/api/Status', (req, res) => {
-    fs.writeFile('status.json',updateStatus(req.body.id));
+    fs.writeFile('status.json', updateStatus(req.body.id));
     respondOKLike(res);
 });
 
