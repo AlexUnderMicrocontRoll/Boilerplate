@@ -89,7 +89,6 @@ var tasksSubmitNewTask = function() {
 
 
 	var postData = {
-		//id: parseInt(taskId),
 		type: taskType,
 		data: {
 			input: taskData,

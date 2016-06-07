@@ -11,8 +11,8 @@
     "id": 2,
     "type": "hash-md5",
     "data": {
-      "input": "bar",
-      "output": "c157a79031e1c40f85931829bc5fc552"
+      "input": "alex client",
+      "output": "d3b07384d113alex49eaa6238ad5ff00"
     }
   },
   {
@@ -37,6 +37,14 @@
     "data": {
       "input": "",
       "output": null
+    }
+  },
+  {
+    "id": 6,
+    "type": "hash-md5",
+    "data": {
+      "input": "von alex client",
+      "output": "alex war hier"
     }
   }
 ]
