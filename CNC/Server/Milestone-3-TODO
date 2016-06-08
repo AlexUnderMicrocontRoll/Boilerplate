@@ -1,0 +1,23 @@
+API
+
+
+    Token header fuer jede Gruppe notwendig
+    POST Requests werden nur mit validem Token akzeptiert
+    API Struktur ist /api/Pfad/:id
+    GET /api/Pfad liefert Array
+    GET /api/Pfad/:id liefert Objekt
+    POST /api/Pfad/:id liefert {message:'OK'} oder {message:'NOT OK'}
+
+
+    Wenn id gesetzt, dann wird ein vorhandenes Objekt modifiziert
+    Wenn id nicht gesetzt, wird ein Objekt erstellt
+    Wenn id nicht gefunden, gibt es einen Fehler
+
+
+OK	/api/status 
+
+
+	/api/Tasks
+OK		GET
+		POST
+		

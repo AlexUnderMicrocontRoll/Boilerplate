@@ -5,12 +5,6 @@ var cors = require('cors');
 var fs = require("fs");
 var token = '031b46cd62bda614fffd542e20346821';
 
-app.use((req, res, next) => {
-    if (isRequestHeaderValid(req)) {
-        return next();
-    }
-    res.status(403).end("invalid token");
-});
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
@@ -27,13 +21,8 @@ var tasks;
  * @param req
  * @returns {boolean}
  */
-var isRequestHeaderValid = (req)=> {
-    if (req.get('Token') == token) {
-        if (req.get('Content-Type') == 'application/json') {
-            return true;
-        }
-    }
-    return false;
+var isRequestHeaderValid = (req) => {
+    return req.get('Token') == token && req.get('Content-Type') == 'application/json';
 };
 
 /**
@@ -42,13 +31,14 @@ var isRequestHeaderValid = (req)=> {
  */
 var setResponseHeader = (res)=> {
     res.set('Content-Type', 'application/json; charset=utf-8');
-    res.set('Token', '031b46cd62bda614fffd542e20346821');
 };
+
 /**
  * Rsesponds with status 200 and Message OK
  * @param res
  */
-var respond_OK_Like = (res)=> {
+var respond_OK_Like = (res) => {
+	setResponseHeader(res);
     res.status = 200;
     res.json({"message": "OK"});
 };
@@ -57,10 +47,11 @@ var respond_OK_Like = (res)=> {
  * Respond with status 400 and message NOT_OK
  * @param res
  */
-var respond_NOTOK_Like = (res)=> {
+var respond_NOTOK_Like = (res) => {
+	setResponseHeader(res);
     res.status = 400;
     res.json({"message": "NOT OK"});
-}
+};
 
 /**
  * read all Status entry's from file
@@ -78,8 +69,7 @@ var readAllStati = function (err, data) {
  * @returns {*}
  */
 var searchStatusByID = (reqId)=> {
-    fs.readFile('status.json', readAllStati);
-    return status.filter((stat) => (stat.id == reqId) ? true : false)
+    return status.filter((stat) => (stat.id == reqId))
 };
 
 /**
@@ -88,9 +78,8 @@ var searchStatusByID = (reqId)=> {
  * @returns {boolean} Returns true on success.
  */
 var updateStatus = (reqId)=> {
-    fs.readFile('status.json', readAllStati);
     var isFound = false;
-    status.forEach((item)=> {
+    status.forEach((item) => {
         if (item.id == reqId) {
             isFound = true;
             item.workload = item.workload ? 0 : 1;
@@ -121,23 +110,22 @@ var readAllTasks = function (err, data) {
  * @returns {*}
  */
 var searchTasksByID = (reqId) => {
-    fs.readFile('tasks.json', readAllTasks);
-    return tasks.filter((task) => (task.id == reqId) ? true : false)
+    return tasks.filter((task) => (task.id == reqId))
 };
 
 /**
- * Returns the next available ID (maxId +1)
- * @returns {number} maxId +1
+ * Returns the next available taks id
+ * @returns {number}
  */
-var getNextFreeId = ()=>{
-    var maxId =0;
+var getNextFreeId = () => {
+    var maxId = 0;
     tasks.forEach((item)=> {
         if (item.id > maxId) {
             maxId = item.id;
         }
     });
     console.log ('max id is '+ maxId);
-    return maxId +1;
+    return maxId + 1;
 };
 
 /**
@@ -148,53 +136,69 @@ var getNextFreeId = ()=>{
  * @returns {boolean}
  */
 var updateTask = (req) => {
-
-    fs.readFile('tasks.json', readAllTasks);
-    if (req.body.id != 0){
+	console.log("task: update");
+	
+    if (req.body.id != 0) {
+		// modify given task
+		console.log("task: id is given");
         tasks.forEach((item)=> {
             if (item.id == req.body.id) {
-                item.type =req.body.type;
+                item.type = req.body.type;
                 item.data = req.body.data;
+                // ?
                 item.data.output = "d3b07384d113alex49eaa6238ad5ff00";
             }
         });
-    }else{
-        var maxId = getNextFreeId();
-        tasks.push({id: maxId++,
-            type: req.body.type,
-             data: { input: req.body.data.input, output: " ---> Zukünftige Bot Eintrage hier ! <--"}
-        });
-
+        tasks.add
+    } else {
+		// new task
+        var nextId = getNextFreeId();
+        
+        console.log("tasks: id is not given, creating new task " + nextId);
+        
+        tasks.push(
+			{
+				id: nextId,
+				type: req.body.type,
+				data: { 
+					input: req.body.data.input, 
+					output: "to be filled by bot-calculated value"
+				}
+			}
+        );
     }
 
     fs.writeFile('tasks.json', JSON.stringify(tasks));
 
     return true;
-
 };
 
 
 // GET:/api/Tasks ->> all Tasks
 app.get('/api/Tasks', (req, res) => {
+    console.log("tasks GET: /api/Tasks");
+    
     fs.readFile('tasks.json', readAllTasks);
     res.json(tasks);
-    res.send();
 });
 
 // GET:/api/Tasks/:id ->> one task by id
 app.get('/api/Tasks/:id', (req, res) => {
+	console.log("tasks: /api/Tasks/:id " + req.params.id);
+	
     foundItem = searchTasksByID(req.params.id);
     res.send(foundItem.length < 1 ? respond_NOTOK_Like(res) : foundItem );
 });
 
 // POST:/apiTasks update one task by id set inside header
 app.post('/api/Tasks', (req, res) => {
+	console.log("tasks POST: /api/Status/");
     (updateTask(req)) ? respond_OK_Like(res) : respond_NOTOK_Like(res);
 });
 
 // GET:/apiStatus .>> all status
 app.get('/api/Status', (req, res) => {
-    fs.readFile('status.json', readAllStati);
+	console.log("status GET: /api/Status/");
     res.json(status);
 });
 
@@ -206,6 +210,7 @@ app.get('/api/Status/:id', (req, res) => {
 
 //POST:/apiStatus -->> updates a existing Status
 app.post('/api/Status', (req, res) => {
+	console.log("status POST: /api/Status/");
     updateStatus(req.body.id) ? respond_OK_Like(res) : respond_NOTOK_Like(res)
 });
 
@@ -213,4 +218,21 @@ app.post('/api/Status', (req, res) => {
 app.use( (err, req, res, next) => respond_NOTOK_Like(res));
 
 
-app.listen(3000);
+var readStatus = function() {
+	console.log("status: reading status.json");
+	fs.readFile('status.json', readAllStati);	
+}
+
+var readTasks = function() {
+	console.log("tasks: reading tasks.json");
+	fs.readFile('tasks.json', readAllTasks);
+}
+
+
+readStatus();
+readTasks();
+
+
+app.listen(3000, function() {
+	console.log("cnc server listening on port 3000");	
+});
