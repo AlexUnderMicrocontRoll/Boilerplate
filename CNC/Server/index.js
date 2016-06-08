@@ -5,6 +5,9 @@ var cors = require('cors');
 var fs = require("fs");
 var token = '031b46cd62bda614fffd542e20346821';
 
+var STATUS_FILE = "status.json";
+var TASKS_FILE = "tasks.json";
+
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
@@ -53,24 +56,6 @@ var respond_NOTOK_Like = (res) => {
     res.json({"message": "NOT OK"});
 };
 
-/**
- * read all Status entry's from file
- * @param err
- * @param data JSON Data from file
- */
-var readAllStati = function (err, data) {
-    if (err) throw err;
-    status = JSON.parse(data);
-};
-
-/**
- * Searches for one Item by ID param
- * @param reqId the ID to search by inside Status.json
- * @returns {*}
- */
-var searchStatusByID = (reqId)=> {
-    return status.filter((stat) => (stat.id == reqId))
-};
 
 /**
  * Update one Status entry
@@ -92,16 +77,6 @@ var updateStatus = (reqId)=> {
     }else{
         return false;
     }
-};
-
-/**
- * Read all Taks from tasks.json file
- * @param err
- * @param data Jason data from file
- */
-var readAllTasks = function (err, data) {
-    if (err) throw err;
-    tasks = JSON.parse(data);
 };
 
 /**
@@ -198,15 +173,35 @@ app.post('/api/Tasks', (req, res) => {
 
 // GET:/apiStatus .>> all status
 app.get('/api/Status', (req, res) => {
+	setResponseHeader(res);
 	console.log("status GET: /api/Status/");
     res.json(status);
 });
 
 // GET:/api/Status/:id ->> get one Status by Id
 app.get('/api/Status/:id', (req, res) => {
-    foundItem = searchStatusByID(req.params.id);
-    res.send(foundItem.length < 1 ? respond_NOTOK_Like(res) : foundItem );
+	setResponseHeader(res);
+	
+	var item = status.find(function(val, index) {
+		return val.id == req.params.id;
+	});
+	
+	if(typeof item === "undefined") {
+		console.log("status: id not present");
+		respond_NOTOK_Like(res);
+	}
+	else {
+		console.log("status: id present");
+		jsonResponse(res, item);
+	}
 });
+
+
+var jsonResponse = function(res, json) {
+	res.set('Content-Type', 'application/json; charset=utf-8');
+	res.json(json);
+};
+
 
 //POST:/apiStatus -->> updates a existing Status
 app.post('/api/Status', (req, res) => {
@@ -218,14 +213,26 @@ app.post('/api/Status', (req, res) => {
 app.use( (err, req, res, next) => respond_NOTOK_Like(res));
 
 
+
+
+
+
 var readStatus = function() {
 	console.log("status: reading status.json");
-	fs.readFile('status.json', readAllStati);	
+	fs.readFile(STATUS_FILE, function (err, data) 
+	{
+		if (err) throw err;
+		status = JSON.parse(data);
+	});	
 }
 
 var readTasks = function() {
 	console.log("tasks: reading tasks.json");
-	fs.readFile('tasks.json', readAllTasks);
+	fs.readFile(TASKS_FILE, function (err, data) 
+	{
+		if (err) throw err;
+		tasks = JSON.parse(data);
+	});
 }
 
 

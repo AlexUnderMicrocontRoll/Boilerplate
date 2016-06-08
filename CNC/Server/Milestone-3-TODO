@@ -8,16 +8,19 @@ API
     GET /api/Pfad/:id liefert Objekt
     POST /api/Pfad/:id liefert {message:'OK'} oder {message:'NOT OK'}
 
+API Regeln
 
     Wenn id gesetzt, dann wird ein vorhandenes Objekt modifiziert
     Wenn id nicht gesetzt, wird ein Objekt erstellt
     Wenn id nicht gefunden, gibt es einen Fehler
 
 
-OK	/api/status 
+/api/Status 
+	
+OK	GET Request liefert Array an Bot Status Objekten
+OK	POST Request akzeptiert status Flag, Verwendung fuer Toggle Button
 
-
-	/api/Tasks
-OK		GET
+/api/Tasks
+OK	GET Request liefert Array an Auftrag Objekten
 		POST
 		
