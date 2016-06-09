@@ -17,10 +17,10 @@ API Regeln
 
 /api/Status 
 	
-OK	GET Request liefert Array an Bot Status Objekten
-OK	POST Request akzeptiert status Flag, Verwendung fuer Toggle Button
+OK		GET Request liefert Array an Bot Status Objekten
+TODO	POST Request akzeptiert status Flag, Verwendung fuer Toggle Button (TODO: status auslesen nicht einfach swappen)
 
 /api/Tasks
-OK	GET Request liefert Array an Auftrag Objekten
-		POST
+OK		GET Request liefert Array an Auftrag Objekten
+		POST akzeptiert Datenobjekt ohne id, Verwendung für Tasks Formular
 		

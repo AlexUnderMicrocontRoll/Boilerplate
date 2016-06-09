@@ -5,6 +5,10 @@ var cors = require('cors');
 var fs = require("fs");
 var token = '031b46cd62bda614fffd542e20346821';
 
+
+
+
+
 var STATUS_FILE = "status.json";
 var TASKS_FILE = "tasks.json";
 
@@ -19,6 +23,15 @@ var status;
 // tasks array
 var tasks;
 
+
+
+var jsonResponse = function(res, json) {
+	res.set('Content-Type', 'application/json; charset=utf-8');
+	res.json(json);
+};
+
+
+
 /**
  * check Request-Header for valid Token and Content-Type
  * @param req
@@ -29,21 +42,12 @@ var isRequestHeaderValid = (req) => {
 };
 
 /**
- * Set the Response Header ( Token, Content-Type)
- * @param res
- */
-var setResponseHeader = (res)=> {
-    res.set('Content-Type', 'application/json; charset=utf-8');
-};
-
-/**
  * Rsesponds with status 200 and Message OK
  * @param res
  */
 var respond_OK_Like = (res) => {
-	setResponseHeader(res);
     res.status = 200;
-    res.json({"message": "OK"});
+    jsonResponse(res, {"message": "OK"});
 };
 
 /**
@@ -51,9 +55,8 @@ var respond_OK_Like = (res) => {
  * @param res
  */
 var respond_NOTOK_Like = (res) => {
-	setResponseHeader(res);
     res.status = 400;
-    res.json({"message": "NOT OK"});
+    jsonResponse(res, {"message": "NOT OK"});
 };
 
 
@@ -63,6 +66,7 @@ var respond_NOTOK_Like = (res) => {
  * @returns {boolean} Returns true on success.
  */
 var updateStatus = (reqId)=> {
+	// TODO nicht einfach swappen, muss status true/false auf body auslesen
     var isFound = false;
     status.forEach((item) => {
         if (item.id == reqId) {
@@ -111,22 +115,34 @@ var getNextFreeId = () => {
  * @returns {boolean}
  */
 var updateTask = (req) => {
-	console.log("task: update");
-	
-    if (req.body.id != 0) {
-		// modify given task
-		console.log("task: id is given");
-        tasks.forEach((item)=> {
+	console.log(req.body.id);
+
+    if (req.body.id === undefined) {
+		// id isn't given, create new task
+		console.log("task: id is not given, creating a new task");
+		
+        /*tasks.forEach((item)=> {
             if (item.id == req.body.id) {
                 item.type = req.body.type;
                 item.data = req.body.data;
                 // ?
                 item.data.output = "d3b07384d113alex49eaa6238ad5ff00";
             }
-        });
-        tasks.add
+        });*/
+        
+        var nextId = getNextFreeId();
+        
+        tasks.push(
+			{
+				id: nextId,
+				type: req.body.type,
+				data: { 
+					input: req.body.data.input, 
+					output: null
+				}
+			}
+        );
     } else {
-		// new task
         var nextId = getNextFreeId();
         
         console.log("tasks: id is not given, creating new task " + nextId);
@@ -153,40 +169,53 @@ var updateTask = (req) => {
 app.get('/api/Tasks', (req, res) => {
     console.log("tasks GET: /api/Tasks");
     
-    fs.readFile('tasks.json', readAllTasks);
-    res.json(tasks);
+    jsonResponse(res, tasks);
 });
 
 // GET:/api/Tasks/:id ->> one task by id
 app.get('/api/Tasks/:id', (req, res) => {
 	console.log("tasks: /api/Tasks/:id " + req.params.id);
 	
-    foundItem = searchTasksByID(req.params.id);
-    res.send(foundItem.length < 1 ? respond_NOTOK_Like(res) : foundItem );
-});
-
-// POST:/apiTasks update one task by id set inside header
-app.post('/api/Tasks', (req, res) => {
-	console.log("tasks POST: /api/Status/");
-    (updateTask(req)) ? respond_OK_Like(res) : respond_NOTOK_Like(res);
-});
-
-// GET:/apiStatus .>> all status
-app.get('/api/Status', (req, res) => {
-	setResponseHeader(res);
-	console.log("status GET: /api/Status/");
-    res.json(status);
-});
-
-// GET:/api/Status/:id ->> get one Status by Id
-app.get('/api/Status/:id', (req, res) => {
-	setResponseHeader(res);
-	
-	var item = status.find(function(val, index) {
+	var item = tasks.find(function(val, index) {
 		return val.id == req.params.id;
 	});
 	
 	if(typeof item === "undefined") {
+		console.log("tasks: id not present");
+		respond_NOTOK_Like(res);
+	}
+	else {
+		console.log("tasks: id present");
+		jsonResponse(res, item);
+	}
+});
+
+// POST:/apiTasks update one task by id set inside header
+app.post('/api/Tasks', (req, res) => {
+	console.log("tasks POST: /api/Tasks/");
+	console.log(JSON.stringify(req.body));
+	
+	if(isRequestHeaderValid(req)) {
+		 (updateTask(req)) ? respond_OK_Like(res) : respond_NOTOK_Like(res);
+	}
+	else {
+		respond_NOTOK_Like(res);
+	}
+});
+
+// GET:/apiStatus -> all status
+app.get('/api/Status', (req, res) => {
+	console.log("status GET: /api/Status/");
+    jsonResponse(res, status);
+});
+
+// GET:/api/Status/:id -> get one Status by Id
+app.get('/api/Status/:id', (req, res) => {
+	var item = status.find(function(val, index) {
+		return val.id == req.params.id;
+	});
+	
+	if(item === undefined) {
 		console.log("status: id not present");
 		respond_NOTOK_Like(res);
 	}
@@ -197,16 +226,19 @@ app.get('/api/Status/:id', (req, res) => {
 });
 
 
-var jsonResponse = function(res, json) {
-	res.set('Content-Type', 'application/json; charset=utf-8');
-	res.json(json);
-};
+
 
 
 //POST:/apiStatus -->> updates a existing Status
 app.post('/api/Status', (req, res) => {
 	console.log("status POST: /api/Status/");
-    updateStatus(req.body.id) ? respond_OK_Like(res) : respond_NOTOK_Like(res)
+	
+	if(isRequestHeaderValid(req)) {
+		 updateStatus(req.body.id) ? respond_OK_Like(res) : respond_NOTOK_Like(res)
+	}
+	else {
+		respond_NOTOK_Like(res);
+	}
 });
 
 // error handling
@@ -219,6 +251,7 @@ app.use( (err, req, res, next) => respond_NOTOK_Like(res));
 
 var readStatus = function() {
 	console.log("status: reading status.json");
+	
 	fs.readFile(STATUS_FILE, function (err, data) 
 	{
 		if (err) throw err;
