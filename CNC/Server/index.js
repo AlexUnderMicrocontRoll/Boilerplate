@@ -26,21 +26,25 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
 
-// status array
+// status array, caching status.json file. copy-on-write.
 var status;
 
-// tasks array
+// tasks array, caching tasks.json file. copy-on-write.
 var tasks;
 
 
-
+/**
+ * Do a json formatted response.
+ * @param res response, given by express.js
+ * @param json json-formatted text
+ */
 var jsonResponse = function(res, json) {
-	//set Response header field Content-Type
+	// set Response header field Content-Type
 	res.set('Content-Type', 'application/json; charset=utf-8');
-	//sends Json response
+	
+	// sends Json response
 	res.json(json);
 };
-
 
 
 /**
@@ -52,6 +56,7 @@ var isRequestHeaderValid = (req) => {
     return req.get('Token') == token && req.get('Content-Type') == 'application/json';
 };
 
+
 /**
  * Rsesponds with status 200 and Message OK
  * @param res
@@ -60,6 +65,7 @@ var respondOk = (res) => {
     res.status = 200;
     jsonResponse(res, {"message": "OK"});
 };
+
 
 /**
  * Respond with status 400 and message NOT_OK
@@ -72,14 +78,15 @@ var respondNotOk = (res) => {
 
 
 /**
- * Update one Status entry
- * @param reqId The Id of item wich should update
+ * Update workload of all status entries (start/stop)
+ * @param reqId The Id of item which should update
  * @returns {boolean} Returns true on success.
  */
 var updateStatus = (reqBody)=> {
 	var isFound = false;
 
 	status.forEach((item) => {
+		// id matches the given
         if (item.id == reqBody.id) {
             isFound = true;
             item.workload = reqBody.status === true ? 1 : 0;
@@ -87,12 +94,14 @@ var updateStatus = (reqBody)=> {
     });
 
     if (isFound) {
+		// status is modified, save to disk
         fs.writeFile('status.json', JSON.stringify(status));
         return true;
     } else {
         return false;
     }
 };
+
 
 /**
  * Returns the next available taks id
@@ -105,6 +114,7 @@ var getNextFreeId = () => {
             maxId = item.id;
         }
     });
+    
     console.log ('max id is '+ maxId);
     return maxId + 1;
 };
@@ -117,8 +127,6 @@ var getNextFreeId = () => {
  * @returns {boolean}
  */
 var updateTask = (req) => {
-	console.log("Update task" + req.body.id);
-	
     if (req.body.id === undefined) {
 		// id isn't given, create new task
 		console.log("task: id is not given, creating a new task");
@@ -138,9 +146,9 @@ var updateTask = (req) => {
         
         fs.writeFile('tasks.json', JSON.stringify(tasks));
         
-        return true;
-        
-    } else {
+        return true;    
+    } 
+    else {
 		// req.body.id is given, modify task
 		var hasModified = false;
 		tasks.forEach( (task) => {
@@ -152,31 +160,30 @@ var updateTask = (req) => {
 
 				fs.writeFile('tasks.json', JSON.stringify(tasks));
 				console.log("before return");
-				hasModified = true;
-				
+				hasModified = true;	
 			}
-			
 		});
 		
-		return hasModified;
-		
-    }
-
-   
+		return hasModified;	
+    } 
 };
 
 
-// GET:/api/Tasks ->> all Tasks
+/**
+ * http get to /api/Tasks/ handler, get the tasks.
+ */
 app.get('/api/Tasks', (req, res) => {
     console.log("tasks GET: /api/Tasks");
 
     jsonResponse(res, tasks);
 });
 
-// GET:/api/Tasks/:id ->> one task by id
-app.get('/api/Tasks/:id', (req, res) => {
-	console.log("tasks: /api/Tasks/:id " + req.params.id);
 
+/**
+ * http get to /api/Tasks/:id handler, get the task given by id.
+ */
+app.get('/api/Tasks/:id', (req, res) => {
+	
 	//find tasks id from Tasks
 	var item = tasks.find((task) => task.id == req.params.id);
 	
@@ -190,10 +197,11 @@ app.get('/api/Tasks/:id', (req, res) => {
 	}
 });
 
-// POST:/apiTasks update one task by id set inside header
-app.post('/api/Tasks', (req, res) => {
-	console.log("tasks POST: /api/Tasks/");
 
+/**
+ * http post to /api/Tasks/ handler, creates or updates a task by id
+ */
+app.post('/api/Tasks', (req, res) => {
 	if(isRequestHeaderValid(req) && updateTask(req)) {
 		respondOk(res);
 	}
@@ -203,14 +211,18 @@ app.post('/api/Tasks', (req, res) => {
 });
 
 
-// GET:/apiStatus -> all status
+/**
+ * http get to /api/Status handler, get all bots.
+ */
 app.get('/api/Status', (req, res) => {
 	console.log("status GET: /api/Status/");
     jsonResponse(res, status);
 });
 
 
-// GET:/api/Status/:id -> get one Status by Id
+/**
+ * http get to /api/Status/:id handler, gets a bot by given id.
+ */
 app.get('/api/Status/:id', (req, res) => {
 	var item = status.find(function(val, index) {
 		return val.id == req.params.id;
@@ -227,13 +239,12 @@ app.get('/api/Status/:id', (req, res) => {
 });
 
 
-//POST:/apiStatus -->> updates a existing Status
+/**
+ * http post to /api/Status handler, updates a bot configuration.
+ */
 app.post('/api/Status', (req, res) => {
-	console.log("status POST: /api/Status/");
-
-	if(isRequestHeaderValid(req)) {
-
-		 updateStatus(req.body) ? respondOk(res) : respondNotOk(res)
+	if(isRequestHeaderValid(req) && updateStatus(req.body)) {
+		respondOk(res);
 	}
 	else {
 		respondNotOk(res);
@@ -241,45 +252,19 @@ app.post('/api/Status', (req, res) => {
 });
 
 
-// error handling
+/** 
+ * fallback for error handling
+ */
 app.use( (err, req, res, next) => {
 	console.log(err);
+	
 	respondNotOk(res);
-	});
+});
 
-
-var readStatus = function() {
-	console.log("status: reading status.json");
-
-	fs.readFile(STATUS_FILE, function (err, data)
-	{
-		if (err) throw err;
-		status = JSON.parse(data);
-	});
-}
-
-var readTasks = function() {
-	console.log("tasks: reading tasks.json");
-	fs.readFile(TASKS_FILE, function (err, data)
-	{
-		if (err) throw err;
-		tasks = JSON.parse(data);
-	});
-}
-
-
-
-app.get('/api', (req, res) => {
-	res.send("Hello cnc server");
-})
 
 var server = app.listen(3000, function() {
 	readStatus();
 	readTasks();
 
-	
-	var host = server.address().address;
-	var port = server.address().port;
-
-	console.log("cnc server listening at http://%s:%s", host, port);
+	console.log("cnc server listening");
 });
