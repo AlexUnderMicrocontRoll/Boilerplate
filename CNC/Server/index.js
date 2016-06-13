@@ -78,7 +78,6 @@ var respond_NOTOK_Like = (res) => {
  */
 var updateStatus = (reqBody)=> {
 		var isFound = false;
-//anderen namen verwenden eventuell nicht item da item nach tasks sucht?
 //Muss noch getestet werden
 		status.forEach((item) => {
         if (item.id == reqBody.id) {
