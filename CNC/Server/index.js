@@ -1,14 +1,23 @@
 var express = require('express');
 var app = express();
+
+/*
+*body-parser - This is a node.js middleware for handling
+*JSON, Raw, Text and URL encoded form data.
+*/
 var bodyParser = require('body-parser');
+
+/*
+*cors (cross-origin ressource sharing)is a mechanism to allows
+*the restricted resources from another domain in web browser
+*/
 var cors = require('cors');
+
+//require File System (fs) modul
 var fs = require("fs");
 var token = '031b46cd62bda614fffd542e20346821';
 
-
-
-
-
+//Files to save objects
 var STATUS_FILE = "status.json";
 var TASKS_FILE = "tasks.json";
 
@@ -26,7 +35,9 @@ var tasks;
 
 
 var jsonResponse = function(res, json) {
+	//set Response header field Content-Type
 	res.set('Content-Type', 'application/json; charset=utf-8');
+	//sends Json response
 	res.json(json);
 };
 
@@ -65,13 +76,15 @@ var respond_NOTOK_Like = (res) => {
  * @param reqId The Id of item wich should update
  * @returns {boolean} Returns true on success.
  */
-var updateStatus = (reqId)=> {
-	// TODO nicht einfach swappen, muss status true/false auf body auslesen
-    var isFound = false;
-    status.forEach((item) => {
-        if (item.id == reqId) {
+var updateStatus = (reqBody)=> {
+		var isFound = false;
+//muss hier noch eine extra fehlermeldung wenn id nicht gefunden?
+//anderen namen verwenden eventuell nicht item da item nach tasks sucht?
+//Muss noch getestet werden
+		status.forEach((item) => {
+        if (item.id == reqBody.id) {
             isFound = true;
-            item.workload = item.workload ? 0 : 1;
+            item.workload = reqBody.status==true? 1 : 0;
         }
     });
 
@@ -120,7 +133,7 @@ var updateTask = (req) => {
     if (req.body.id === undefined) {
 		// id isn't given, create new task
 		console.log("task: id is not given, creating a new task");
-		
+
         /*tasks.forEach((item)=> {
             if (item.id == req.body.id) {
                 item.type = req.body.type;
@@ -129,30 +142,30 @@ var updateTask = (req) => {
                 item.data.output = "d3b07384d113alex49eaa6238ad5ff00";
             }
         });*/
-        
+
         var nextId = getNextFreeId();
-        
+
         tasks.push(
 			{
 				id: nextId,
 				type: req.body.type,
-				data: { 
-					input: req.body.data.input, 
+				data: {
+					input: req.body.data.input,
 					output: null
 				}
 			}
         );
     } else {
         var nextId = getNextFreeId();
-        
+
         console.log("tasks: id is not given, creating new task " + nextId);
-        
+
         tasks.push(
 			{
 				id: nextId,
 				type: req.body.type,
-				data: { 
-					input: req.body.data.input, 
+				data: {
+					input: req.body.data.input,
 					output: "to be filled by bot-calculated value"
 				}
 			}
@@ -168,18 +181,19 @@ var updateTask = (req) => {
 // GET:/api/Tasks ->> all Tasks
 app.get('/api/Tasks', (req, res) => {
     console.log("tasks GET: /api/Tasks");
-    
+
     jsonResponse(res, tasks);
 });
 
 // GET:/api/Tasks/:id ->> one task by id
 app.get('/api/Tasks/:id', (req, res) => {
 	console.log("tasks: /api/Tasks/:id " + req.params.id);
-	
+
+//find tasks id from Tasks
 	var item = tasks.find(function(val, index) {
 		return val.id == req.params.id;
 	});
-	
+
 	if(typeof item === "undefined") {
 		console.log("tasks: id not present");
 		respond_NOTOK_Like(res);
@@ -194,7 +208,7 @@ app.get('/api/Tasks/:id', (req, res) => {
 app.post('/api/Tasks', (req, res) => {
 	console.log("tasks POST: /api/Tasks/");
 	console.log(JSON.stringify(req.body));
-	
+
 	if(isRequestHeaderValid(req)) {
 		 (updateTask(req)) ? respond_OK_Like(res) : respond_NOTOK_Like(res);
 	}
@@ -203,18 +217,20 @@ app.post('/api/Tasks', (req, res) => {
 	}
 });
 
+
 // GET:/apiStatus -> all status
 app.get('/api/Status', (req, res) => {
 	console.log("status GET: /api/Status/");
     jsonResponse(res, status);
 });
 
+
 // GET:/api/Status/:id -> get one Status by Id
 app.get('/api/Status/:id', (req, res) => {
 	var item = status.find(function(val, index) {
 		return val.id == req.params.id;
 	});
-	
+
 	if(item === undefined) {
 		console.log("status: id not present");
 		respond_NOTOK_Like(res);
@@ -226,42 +242,37 @@ app.get('/api/Status/:id', (req, res) => {
 });
 
 
-
-
-
 //POST:/apiStatus -->> updates a existing Status
 app.post('/api/Status', (req, res) => {
 	console.log("status POST: /api/Status/");
-	
+
 	if(isRequestHeaderValid(req)) {
-		 updateStatus(req.body.id) ? respond_OK_Like(res) : respond_NOTOK_Like(res)
+
+		 updateStatus(req.body) ? respond_OK_Like(res) : respond_NOTOK_Like(res)
 	}
 	else {
 		respond_NOTOK_Like(res);
 	}
 });
 
+
 // error handling
 app.use( (err, req, res, next) => respond_NOTOK_Like(res));
 
 
-
-
-
-
 var readStatus = function() {
 	console.log("status: reading status.json");
-	
-	fs.readFile(STATUS_FILE, function (err, data) 
+
+	fs.readFile(STATUS_FILE, function (err, data)
 	{
 		if (err) throw err;
 		status = JSON.parse(data);
-	});	
+	});
 }
 
 var readTasks = function() {
 	console.log("tasks: reading tasks.json");
-	fs.readFile(TASKS_FILE, function (err, data) 
+	fs.readFile(TASKS_FILE, function (err, data)
 	{
 		if (err) throw err;
 		tasks = JSON.parse(data);
@@ -272,7 +283,13 @@ var readTasks = function() {
 readStatus();
 readTasks();
 
+app.get('/api', (req, res) => {
+	res.send("Hello cnc server");
+})
 
-app.listen(3000, function() {
-	console.log("cnc server listening on port 3000");	
+var server = app.listen(3000, function() {
+	var host = server.address().address;
+	var port = server.address().port;
+
+ console.log("cnc server listening at http://%s:%s", host, port);
 });

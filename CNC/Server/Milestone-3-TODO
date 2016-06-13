@@ -15,12 +15,11 @@ API Regeln
     Wenn id nicht gefunden, gibt es einen Fehler
 
 
-/api/Status 
-	
+/api/Status
+
 OK		GET Request liefert Array an Bot Status Objekten
-TODO	POST Request akzeptiert status Flag, Verwendung fuer Toggle Button (TODO: status auslesen nicht einfach swappen)
+test 	POST Request akzeptiert status Flag, Verwendung fuer Toggle Button
 
 /api/Tasks
 OK		GET Request liefert Array an Auftrag Objekten
-		POST akzeptiert Datenobjekt ohne id, Verwendung für Tasks Formular
-		
+?		  POST akzeptiert Datenobjekt ohne id, Verwendung für Tasks Formular(schon vorhanden ?)
