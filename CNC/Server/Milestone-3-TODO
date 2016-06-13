@@ -18,8 +18,10 @@ API Regeln
 /api/Status
 
 OK		GET Request liefert Array an Bot Status Objekten
-test 	POST Request akzeptiert status Flag, Verwendung fuer Toggle Button
+OK		POST Request akzeptiert status Flag, Verwendung fuer Toggle Button
 
 /api/Tasks
 OK		GET Request liefert Array an Auftrag Objekten
-?		  POST akzeptiert Datenobjekt ohne id, Verwendung für Tasks Formular(schon vorhanden ?)
+OK		POST akzeptiert Datenobjekt ohne id, Verwendung für Tasks Formular(schon vorhanden ?)
+OK		Modifkation
+

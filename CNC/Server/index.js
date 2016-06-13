@@ -2,22 +2,22 @@ var express = require('express');
 var app = express();
 
 /*
-*body-parser - This is a node.js middleware for handling
-*JSON, Raw, Text and URL encoded form data.
+* body-parser - This is a node.js middleware for handling
+* JSON, Raw, Text and URL encoded form data.
 */
 var bodyParser = require('body-parser');
 
 /*
-*cors (cross-origin ressource sharing)is a mechanism to allows
-*the restricted resources from another domain in web browser
+* cors (cross-origin ressource sharing)is a mechanism to allows
+* the restricted resources from another domain in web browser
 */
 var cors = require('cors');
 
-//require File System (fs) modul
+// require File System (fs) modul
 var fs = require("fs");
 var token = '031b46cd62bda614fffd542e20346821';
 
-//Files to save objects
+// Files to save objects
 var STATUS_FILE = "status.json";
 var TASKS_FILE = "tasks.json";
 
@@ -56,7 +56,7 @@ var isRequestHeaderValid = (req) => {
  * Rsesponds with status 200 and Message OK
  * @param res
  */
-var respond_OK_Like = (res) => {
+var respondOk = (res) => {
     res.status = 200;
     jsonResponse(res, {"message": "OK"});
 };
@@ -65,7 +65,7 @@ var respond_OK_Like = (res) => {
  * Respond with status 400 and message NOT_OK
  * @param res
  */
-var respond_NOTOK_Like = (res) => {
+var respondNotOk = (res) => {
     res.status = 400;
     jsonResponse(res, {"message": "NOT OK"});
 };
@@ -77,30 +77,21 @@ var respond_NOTOK_Like = (res) => {
  * @returns {boolean} Returns true on success.
  */
 var updateStatus = (reqBody)=> {
-		var isFound = false;
-//Muss noch getestet werden
-		status.forEach((item) => {
+	var isFound = false;
+
+	status.forEach((item) => {
         if (item.id == reqBody.id) {
             isFound = true;
-            item.workload = reqBody.status==true? 1 : 0;
+            item.workload = reqBody.status === true ? 1 : 0;
         }
     });
 
-    if (isFound){
+    if (isFound) {
         fs.writeFile('status.json', JSON.stringify(status));
         return true;
-    }else{
+    } else {
         return false;
     }
-};
-
-/**
- * Searche for one task by id
- * @param reqId the search id
- * @returns {*}
- */
-var searchTasksByID = (reqId) => {
-    return tasks.filter((task) => (task.id == reqId))
 };
 
 /**
@@ -126,20 +117,11 @@ var getNextFreeId = () => {
  * @returns {boolean}
  */
 var updateTask = (req) => {
-	console.log(req.body.id);
-
+	console.log("Update task" + req.body.id);
+	
     if (req.body.id === undefined) {
 		// id isn't given, create new task
 		console.log("task: id is not given, creating a new task");
-
-        /*tasks.forEach((item)=> {
-            if (item.id == req.body.id) {
-                item.type = req.body.type;
-                item.data = req.body.data;
-                // ?
-                item.data.output = "d3b07384d113alex49eaa6238ad5ff00";
-            }
-        });*/
 
         var nextId = getNextFreeId();
 
@@ -153,26 +135,34 @@ var updateTask = (req) => {
 				}
 			}
         );
+        
+        fs.writeFile('tasks.json', JSON.stringify(tasks));
+        
+        return true;
+        
     } else {
-        var nextId = getNextFreeId();
+		// req.body.id is given, modify task
+		var hasModified = false;
+		tasks.forEach( (task) => {
+			if(task.id == req.body.id) {
+				console.log("task found" + task);
+				task.type = req.body.type;
+				task.data.input = req.body.data.input;
+				//task.data.output = req.body.data.output;
 
-        console.log("tasks: id is not given, creating new task " + nextId);
-
-        tasks.push(
-			{
-				id: nextId,
-				type: req.body.type,
-				data: {
-					input: req.body.data.input,
-					output: "to be filled by bot-calculated value"
-				}
+				fs.writeFile('tasks.json', JSON.stringify(tasks));
+				console.log("before return");
+				hasModified = true;
+				
 			}
-        );
+			
+		});
+		
+		return hasModified;
+		
     }
 
-    fs.writeFile('tasks.json', JSON.stringify(tasks));
-
-    return true;
+   
 };
 
 
@@ -187,14 +177,12 @@ app.get('/api/Tasks', (req, res) => {
 app.get('/api/Tasks/:id', (req, res) => {
 	console.log("tasks: /api/Tasks/:id " + req.params.id);
 
-//find tasks id from Tasks
-	var item = tasks.find(function(val, index) {
-		return val.id == req.params.id;
-	});
-
-	if(typeof item === "undefined") {
+	//find tasks id from Tasks
+	var item = tasks.find((task) => task.id == req.params.id);
+	
+	if(item === undefined) {
 		console.log("tasks: id not present");
-		respond_NOTOK_Like(res);
+		respondNotOk(res);
 	}
 	else {
 		console.log("tasks: id present");
@@ -205,13 +193,12 @@ app.get('/api/Tasks/:id', (req, res) => {
 // POST:/apiTasks update one task by id set inside header
 app.post('/api/Tasks', (req, res) => {
 	console.log("tasks POST: /api/Tasks/");
-	console.log(JSON.stringify(req.body));
 
-	if(isRequestHeaderValid(req)) {
-		 (updateTask(req)) ? respond_OK_Like(res) : respond_NOTOK_Like(res);
+	if(isRequestHeaderValid(req) && updateTask(req)) {
+		respondOk(res);
 	}
 	else {
-		respond_NOTOK_Like(res);
+		respondNotOk(res);
 	}
 });
 
@@ -231,7 +218,7 @@ app.get('/api/Status/:id', (req, res) => {
 
 	if(item === undefined) {
 		console.log("status: id not present");
-		respond_NOTOK_Like(res);
+		respondNotOk(res);
 	}
 	else {
 		console.log("status: id present");
@@ -246,16 +233,19 @@ app.post('/api/Status', (req, res) => {
 
 	if(isRequestHeaderValid(req)) {
 
-		 updateStatus(req.body) ? respond_OK_Like(res) : respond_NOTOK_Like(res)
+		 updateStatus(req.body) ? respondOk(res) : respondNotOk(res)
 	}
 	else {
-		respond_NOTOK_Like(res);
+		respondNotOk(res);
 	}
 });
 
 
 // error handling
-app.use( (err, req, res, next) => respond_NOTOK_Like(res));
+app.use( (err, req, res, next) => {
+	console.log(err);
+	respondNotOk(res);
+	});
 
 
 var readStatus = function() {
@@ -278,16 +268,18 @@ var readTasks = function() {
 }
 
 
-readStatus();
-readTasks();
 
 app.get('/api', (req, res) => {
 	res.send("Hello cnc server");
 })
 
 var server = app.listen(3000, function() {
+	readStatus();
+	readTasks();
+
+	
 	var host = server.address().address;
 	var port = server.address().port;
 
- console.log("cnc server listening at http://%s:%s", host, port);
+	console.log("cnc server listening at http://%s:%s", host, port);
 });
