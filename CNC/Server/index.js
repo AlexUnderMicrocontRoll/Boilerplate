@@ -1,3 +1,15 @@
+/**
+ * botnet control server, provides REST API.
+ * /api/Status[/id]
+ * 		HTTP GET: for bot information
+ * /api/Status/
+ * 		HTTP POST: change bot workload by status
+ * /api/Tasks[/id]
+ * 		HTTP GET: task list or task information of given task id
+ * /api/Tasks/
+ * 		HTTP POST: modify task (id given) or create new task (id not given)
+ */
+
 var express = require('express');
 var app = express();
 
