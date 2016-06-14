@@ -5,7 +5,8 @@
  */
 
  // cnc server URI
-var cncServer = "http://botnet.artificial.engineering:8080/api";
+//var cncServer = "http://botnet.artificial.engineering:8080/api";
+var cncServer = "http://localhost:3000/api";
 var cncServerStatusURL = cncServer + "/Status";
 var cncServerTasksURL = cncServer + "/Tasks";
 
