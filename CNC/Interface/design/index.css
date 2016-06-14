@@ -124,16 +124,7 @@ a:hover, a:active {
 }
 
 body {
-	background: #2ecc71;
-	margin: 0 0 0 0;
+	color: #ffffff;
+	background: black;
 }
-
-label {
-	font-size:14px;
-}
-
-input[type="radio"] {
-	float:left;
-}
-
 
