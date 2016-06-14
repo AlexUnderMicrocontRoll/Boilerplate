@@ -253,13 +253,39 @@ app.post('/api/Status', (req, res) => {
 
 
 /** 
- * fallback for error handling
+ * middleware fallback for error handling
  */
 app.use( (err, req, res, next) => {
 	console.log(err);
 	
 	respondNotOk(res);
 });
+
+
+/**
+ * Read status.json, bot status is saved in global status variable
+ */
+var readStatus = function() {
+	console.log("status: reading status.json");
+
+	fs.readFile(STATUS_FILE, function (err, data)
+	{
+		if (err) throw err;
+		status = JSON.parse(data);
+	});
+}
+
+/**
+ * Read tasks.json, tasks information is saved in global tasks variable
+ */
+var readTasks = function() {
+	console.log("tasks: reading tasks.json");
+	fs.readFile(TASKS_FILE, function (err, data)
+	{
+		if (err) throw err;
+		tasks = JSON.parse(data);
+	});
+}
 
 
 var server = app.listen(3000, function() {
