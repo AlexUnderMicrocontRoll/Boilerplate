@@ -150,7 +150,7 @@ var updateTask = (req) => {
     } 
     else {
 		// req.body.id is given, modify task
-		var hasModified = false;
+		var isModified = false;
 		tasks.forEach( (task) => {
 			if(task.id == req.body.id) {
 				console.log("task found" + task);
@@ -160,11 +160,11 @@ var updateTask = (req) => {
 
 				fs.writeFile('tasks.json', JSON.stringify(tasks));
 				console.log("before return");
-				hasModified = true;	
+				isModified = true;
 			}
 		});
 		
-		return hasModified;	
+		return isModified;
     } 
 };
 
